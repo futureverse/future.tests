@@ -1,6 +1,6 @@
 Package: future.tests
 Title: Test Suite for 'Future API' Backends
-Version: 0.7.0-9000
+Version: 0.7.0-9001
 Authors@R: c(
   person("Henrik", "Bengtsson", role = c("aut", "cre", "cph"), email = "henrikb@braju.com"),
   person(family = "The R Consortium", comment = "Project was awared an Infrastructure Steering Committee (ISC) grant in 2017", role = "fnd"))
@@ -21,7 +21,7 @@ Suggests:
 VignetteBuilder: future.tests
 License: LGPL (>= 2.1)
 Encoding: UTF-8
-URL: https://future.tests.futureverse.org, https://github.com/HenrikBengtsson/future.tests
-BugReports: https://github.com/HenrikBengtsson/future.tests/issues
-RoxygenNote: 7.2.3
+URL: https://future.tests.futureverse.org, https://github.com/futureverse/future.tests
+BugReports: https://github.com/futureverse/future.tests/issues
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)

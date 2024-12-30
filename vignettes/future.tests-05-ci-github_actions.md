@@ -118,7 +118,7 @@ jobs:
           path: check
 ```
 
-For real-world examples, see the GitHub repositories of [**future**](https://github.com/HenrikBengtsson/future), [**future.batchtools**](https://github.com/HenrikBengtsson/future.batchtools), and [**future.callr**](https://github.com/HenrikBengtsson/future.callr).
+For real-world examples, see the GitHub repositories of [**future**](https://github.com/futureverse/future), [**future.batchtools**](https://github.com/futureverse/future.batchtools), and [**future.callr**](https://github.com/futureverse/future.callr).
 
 [R]: https://www.r-project.org
 [future]: https://cran.r-project.org/package=future
