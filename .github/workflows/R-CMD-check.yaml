@@ -27,7 +27,7 @@ jobs:
           - {os: ubuntu-latest,  r: 'oldrel'   }
           - {os: ubuntu-latest,  r: 'oldrel-1' }
           - {os: ubuntu-latest,  r: 'oldrel-2' }
-          - {os: ubuntu-latest,  r: '3.4'      }
+          - {os: ubuntu-latest,  r: '4.0'      }
           - {os: windows-latest, r: 'release'  , prune_functions: true, label: 'prune' }
           - {os: macOS-latest,   r: 'release'  , prune_functions: true, label: 'prune' }
           - {os: ubuntu-latest,  r: 'devel'    , prune_functions: true, label: 'prune' }
@@ -50,7 +50,7 @@ jobs:
       R_FUTURE_GLOBALS_KEEPWHERE: ${{ matrix.config.globals_keepWhere }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -104,7 +104,7 @@ jobs:
 
       - name: Upload check results
         if: failure()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ runner.os }}-r${{ matrix.config.r }}-results
           path: check
