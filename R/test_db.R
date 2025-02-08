@@ -28,7 +28,9 @@ test_db <- local({
       }
       if (!skip) {
 #        message(sprintf("Registering %s: %s", class(test)[1], sQuote(test$title)))
-        db <<- c(db, list(test))
+        entry <- list(test)
+        names(entry) <- test$title
+        db <<- c(db, entry)
       }
     }
 

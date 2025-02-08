@@ -1,6 +1,9 @@
 # Version (development version)
 
- * ...
+## New Features
+
+ * Now `load_tests()` returns a named list, where the names
+   corresponds to the test titles.
  
 
 # Version 0.7.0 [2023-05-20]
