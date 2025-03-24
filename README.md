@@ -33,17 +33,17 @@ All future backends implementing the Future API should validate that they confor
 ### From Outside R
 
 ```sh
-$ Rscript -e future.tests::check --args --test-plan="multisession"
+$ Rscript -e future.tests::check --test-plan="multisession"
 $ exit_code=$?
 $ [[ exit_code -eq 0 ]] || { >&2 echo "One or more tests failed"; exit 1; }
 ```
 
 
 [R]: https://www.r-project.org
-[future]: https://cran.r-project.org/package=future
-[future.callr]: https://cran.r-project.org/package=future.callr
-[future.batchtools]: https://cran.r-project.org/package=future.batchtools
-[future.tests]: https://cran.r-project.org/package=future.tests
+[future]: https://future.futureverse.org
+[future.callr]: https://future.callr.futureverse.org
+[future.batchtools]: https://future.batchtools.futureverse.org
+[future.tests]: https://future.tests.futureverse.org
 [Future API Backend Specification]: https://future.futureverse.org/articles/future-6-future-api-backend-specification.html
 
 ## Installation
