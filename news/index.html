@@ -23,7 +23,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">future.tests</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0-9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.0-9003</span>
       </span>
     </div>
 
@@ -143,8 +143,15 @@
 
     <div class="section level2">
 <h2 class="page-header" data-toc-text="development version" id="version-development-version">Version (development version)<a class="anchor" aria-label="anchor" href="#version-development-version"></a></h2>
-<ul><li>…</li>
+<div class="section level3">
+<h3 id="new-features-development-version">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
+<ul><li>Now <code><a href="../reference/load_tests.html">load_tests()</a></code> returns a named list, where the names corresponds to the test titles.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="test-updates-development-version">Test Updates<a class="anchor" aria-label="anchor" href="#test-updates-development-version"></a></h3>
+<ul><li>Remove <code>plan()</code> test on legacy <code>constant</code> backend.</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.7.0" id="version-070">Version 0.7.0<small>2023-05-22</small><a class="anchor" aria-label="anchor" href="#version-070"></a></h2>
 <div class="section level3">
@@ -174,14 +181,14 @@
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.5.0" id="version-050">Version 0.5.0<small>2022-12-16</small><a class="anchor" aria-label="anchor" href="#version-050"></a></h2>
 <div class="section level3">
-<h3 id="new-tests-0-5-0">New Tests<a class="anchor" aria-label="anchor" href="#new-tests-0-5-0"></a></h3>
+<h3 id="tests-updates-0-5-0">Tests Updates<a class="anchor" aria-label="anchor" href="#tests-updates-0-5-0"></a></h3>
 <ul><li>Assert that none of <code>future()</code>, <code>run()</code>, <code>result()</code> and <code>value()</code> update the RNG state.</li>
 </ul></div>
 </div>
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.4.0" id="version-040">Version 0.4.0<small>2022-11-22</small><a class="anchor" aria-label="anchor" href="#version-040"></a></h2>
 <div class="section level3">
-<h3 id="new-tests-0-4-0">New Tests<a class="anchor" aria-label="anchor" href="#new-tests-0-4-0"></a></h3>
+<h3 id="tests-updates-0-4-0">Tests Updates<a class="anchor" aria-label="anchor" href="#tests-updates-0-4-0"></a></h3>
 <ul><li><p>Assert that <code>rm(a)</code> in a future expression only removes a local variable <code>a</code>, but never a global variable <code>a</code>.</p></li>
 <li><p>Assert that packages <strong>data.table</strong> and <strong>ff</strong> are not affected when a future resets the R options on the worker when resolved.</p></li>
 <li><p>Assert that a global that is a copy of a non-exported package object (e.g. <code>utils:::str2logical()</code>) is not dropped because it belongs to a package namespace.</p></li>
@@ -201,7 +208,7 @@
     <div class="section level2">
 <h2 class="page-header" data-toc-text="0.3.0" id="version-030">Version 0.3.0<small>2021-10-10</small><a class="anchor" aria-label="anchor" href="#version-030"></a></h2>
 <div class="section level3">
-<h3 id="new-tests-0-3-0">New Tests<a class="anchor" aria-label="anchor" href="#new-tests-0-3-0"></a></h3>
+<h3 id="tests-updates-0-3-0">Tests Updates<a class="anchor" aria-label="anchor" href="#tests-updates-0-3-0"></a></h3>
 <ul><li><p>Assert that <code>future()</code> doesn’t change the RNG kind.</p></li>
 <li><p>Assert that <code>future(..., conditions = character(0L))</code> muffles all conditions.</p></li>
 </ul></div>
