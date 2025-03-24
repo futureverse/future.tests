@@ -1,4 +1,4 @@
-The **[future]** package defines the Future API which consists of a small number of functions for writing [R] code that can be evaluated either sequential or in parallel based a single setting without having to change anything in the code.  Parallelization can be done via one of many backends, e.g. via built-in multicore, multisession and cluster backends (based on the **parallel** package) or via third-party backends such as **[future.callr]** and **[future.batchtools]**.  The design motto of the Future API is:
+The **[future]** package defines the Future API which consists of a small number of functions for writing [R] code that can be evaluated either sequential or in parallel based a single setting without having to change anything in the code.  Parallelization can be done via one of many backends, e.g. via built-in multicore, multisession and cluster backends (based on the **parallel** package) or via third-party backends such as **[future.batchtools]**, **[future.callr]** and **[future.mirai]**. The design motto of the Future API is:
 
 > Write once, run anywhere
 
@@ -32,7 +32,8 @@ $ [[ exit_code -eq 0 ]] || { >&2 echo "One or more tests failed"; exit 1; }
 
 [R]: https://www.r-project.org
 [future]: https://future.futureverse.org
-[future.callr]: https://future.callr.futureverse.org
 [future.batchtools]: https://future.batchtools.futureverse.org
+[future.callr]: https://future.callr.futureverse.org
+[future.mirai]: https://future.mirai.futureverse.org
 [future.tests]: https://future.tests.futureverse.org
 [Future API Backend Specification]: https://future.futureverse.org/articles/future-6-future-api-backend-specification.html
