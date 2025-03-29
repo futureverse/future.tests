@@ -60,6 +60,7 @@ make_test(title = "resolved() - assert non-blocking while launching lazy futures
     if (inherits(fs[[kk]], "UniprocessFuture")) {
       stopifnot(nbrOfFinished == length(fs))
     } else {
+      utils::str(list(ff = ff, ss = ss, nbrOfFinished = nbrOfFinished))
       stopifnot(nbrOfFinished == ff)
     }
   } ## for (ff ...)
