@@ -5,8 +5,7 @@
 <a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.batchtools.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.batchtools.yaml/badge.svg" alt="future.batchtools compliance" border="0"/></a>
 <a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.callr.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.callr.yaml/badge.svg" alt="future.callr compliance" border="0"/></a>
 <a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.mirai.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.mirai.yaml/badge.svg" alt="future.mirai compliance" border="0"/></a>
-<a href="https://lifecycle.r-lib.org/articles/stages.html"><img border="0" src="man/figures/lifecycle-maturing-blue.svg" alt="Life cycle: maturing"/></a>
-<a href="https://www.r-consortium.org/projects/awarded-projects"><img border="0" src="man/figures/R_Consortium-logo-horizontal-white-purple-badge.svg" alt="R Consortium: ISC Project 2017-2"/></a>
+<a href="https://r-consortium.org/all-projects/funded-projects.html"><img border="0" src="man/figures/R_Consortium-logo-horizontal-white-purple-badge.svg" alt="R Consortium: ISC Project 2017-2"/></a>
 </div>
 
 # future.tests: Test Suite for 'Future API' Backends 
