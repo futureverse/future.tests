@@ -109,7 +109,9 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
   if (is.character(plan) && length(plan) >= 1L) {
     plan <- unique(plan)
     for (value in plan) {
-      if (!grepl("^plan(.*)$", value)) value <- sprintf("plan(%s)", value)
+      if (!grepl("plan(.*)$", value)) {
+        value <- sprintf("plan(%s)", value)
+      }
       expr <- parse(text = value)
       add_test_plan(expr, substitute = FALSE)
     }

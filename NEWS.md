@@ -5,6 +5,9 @@
  * Now `load_tests()` returns a named list, where the names
    corresponds to the test titles.
 
+ * Now `future.tests::check("mirai::daemons(2);
+   plan(future.mirai::mirai_cluster)")` works.
+
 ## Test Updates
 
  * Remove `plan()` test on legacy `constant` backend.
