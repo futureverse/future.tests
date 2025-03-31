@@ -106,26 +106,28 @@ check_plan <- function(tests = test_db(), defaults = list(), timeout = getOption
         args <- as.list(sets_of_args[aa, , drop = FALSE])
         args_tag <- paste(sprintf("%s=%s", names(args), unlist(args)), collapse = ", ")
         msg <- NULL
-	if (status[aa] == "OK") {
+        if (status[aa] == "OK") {
           cat(sprintf("  %s %s\n", ok, args_tag))
-	  total["OK"] <- total["OK"] + 1L
-	} else if (status[aa] == "ERROR") {
+          total["OK"] <- total["OK"] + 1L
+        } else if (status[aa] == "ERROR") {
           cat(sprintf("  %s %s\n", error, args_tag))
-	  total["ERROR"] <- total["ERROR"] + 1L
-	  result <- test_results[[tt]][[aa]]
-	  ex <- result$error
+          total["ERROR"] <- total["ERROR"] + 1L
+          result <- test_results[[tt]][[aa]]
+          ex <- result$error
           msg <- c(sprintf("Error of class %s with message:", sQuote(class(ex)[1])),
                    conditionMessage(ex))
           call <- conditionCall(ex)
-	  if (length(call) > 0) msg <- c(msg, "Call:", deparse(call))
-	  if (length(result$output) > 0) msg <- c(msg, "Output:", result$output)
-	} else if (status[aa] == "SKIP") {
+          if (length(call) > 0) msg <- c(msg, "Call:", deparse(call))
+          code <- paste(deparse(test$expr), collapse = "\n")
+          msg <- c(msg, "Test code:", code)
+          if (length(result$output) > 0) msg <- c(msg, "Output:", result$output)
+        } else if (status[aa] == "SKIP") {
           cat(sprintf("  %s %s\n", skip, args_tag))
-	  total["SKIP"] <- total["SKIP"] + 1L
+          total["SKIP"] <- total["SKIP"] + 1L
           msg <- conditionMessage(test_results[[tt]][[aa]]$skipped)
-	} else if (status[aa] == "TIMEOUT") {
+        } else if (status[aa] == "TIMEOUT") {
           cat(sprintf("  %s %s %s\n", timeout_error, args_tag, yellow(sprintf("(> %s)", pretty_sec(timeout)))))
-	  total["TIMEOUT"] <- total["TIMEOUT"] + 1L
+          total["TIMEOUT"] <- total["TIMEOUT"] + 1L
         }
 
         if (is.character(msg) && length(msg) > 0L && any(nzchar(msg) > 0L)) {

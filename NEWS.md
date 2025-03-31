@@ -1,6 +1,8 @@
 # Version (development version)
 
- * ...
+## New Features
+
+ * Now the test code is displayed if there is a check error.
 
 
 # Version 0.8.0 [2024-03-31]
