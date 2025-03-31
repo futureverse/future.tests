@@ -112,7 +112,7 @@ jobs:
           path: check
 ```
 
-For real-world examples, see the GitHub repositories of [**future**](https://github.com/futureverse/future), [**future.batchtools**](https://github.com/futureverse/future.batchtools), [**future.callr**](https://github.com/futureverse/future.callr), and [**future.callr**](https://github.com/futureverse/future.mirai).
+For real-world examples, see the GitHub repositories of [**future**](https://github.com/futureverse/future), [**future.batchtools**](https://github.com/futureverse/future.batchtools), [**future.callr**](https://github.com/futureverse/future.callr), and [**future.mirai**](https://github.com/futureverse/future.mirai).
 
 [R]: https://www.r-project.org
 [future]: https://future.futureverse.org
