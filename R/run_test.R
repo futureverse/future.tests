@@ -24,7 +24,7 @@ run_test <- function(test, envir = parent.frame(), local = TRUE, args = list(), 
   if (length(args) > 0) stopifnot(is.list(args), !is.null(names(args)))
   if (length(defaults) > 0) stopifnot(is.list(defaults), !is.null(names(defaults)))
   stopifnot(is.numeric(timeout), length(timeout) == 1L, timeout > 0)
-  
+
   if (local) envir <- new.env(parent = envir)
   for (name in names(defaults)) assign(name, defaults[[name]], envir = envir)
   for (name in names(args)) assign(name, args[[name]], envir = envir)
@@ -51,7 +51,11 @@ run_test <- function(test, envir = parent.frame(), local = TRUE, args = list(), 
     }
   }
 
+  ## Push test state, which includes setting the future strategy
   push_state(title = test$title)
+
+  ## Pop test state on exit, which includes resetting the future strategy,
+  ## which in turn will shut down the future backend used during test
   on.exit(pop_state())
 
   if (test$reset_workers) {
