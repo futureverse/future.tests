@@ -1,17 +1,20 @@
 
 
 <div id="badges"><!-- pkgdown markup -->
-<a href="https://CRAN.R-project.org/web/checks/check_results_future.tests.html"><img border="0" src="https://www.r-pkg.org/badges/version/future.tests" alt="CRAN check status"/></a> <a href="https://github.com/HenrikBengtsson/future.tests/actions?query=workflow%3AR-CMD-check"><img border="0" src="https://github.com/HenrikBengtsson/future.tests/actions/workflows/R-CMD-check.yaml/badge.svg?branch=develop" alt="R CMD check status"/></a>    <a href="https://codecov.io/gh/HenrikBengtsson/future.tests"><img border="0" src="https://codecov.io/gh/HenrikBengtsson/future.tests/branch/develop/graph/badge.svg" alt="Coverage Status"/></a> <a href="https://lifecycle.r-lib.org/articles/stages.html"><img border="0" src="man/figures/lifecycle-maturing-blue.svg" alt="Life cycle: maturing"/></a>
-<a href="https://www.r-consortium.org/projects/awarded-projects"><img border="0" src="man/figures/R_Consortium-logo-horizontal-white-purple-badge.svg" alt="R Consortium: ISC Project 2017-2"/></a>
+<a href="https://CRAN.R-project.org/web/checks/check_results_future.tests.html"><img border="0" src="https://www.r-pkg.org/badges/version/future.tests" alt="CRAN check status"/></a> <a href="https://github.com/futureverse/future.tests/actions?query=workflow%3AR-CMD-check"><img border="0" src="https://github.com/futureverse/future.tests/actions/workflows/R-CMD-check.yaml/badge.svg?branch=develop" alt="R CMD check status"/></a>     <a href="https://app.codecov.io/gh/futureverse/future.tests"><img border="0" src="https://codecov.io/gh/futureverse/future.tests/branch/develop/graph/badge.svg" alt="Coverage Status"/></a> <a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.yaml/badge.svg" alt="future compliance" border="0"/></a>
+<a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.batchtools.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.batchtools.yaml/badge.svg" alt="future.batchtools compliance" border="0"/></a>
+<a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.callr.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.callr.yaml/badge.svg" alt="future.callr compliance" border="0"/></a>
+<a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.mirai.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.mirai.yaml/badge.svg" alt="future.mirai compliance" border="0"/></a>
+<a href="https://r-consortium.org/all-projects/funded-projects.html"><img border="0" src="man/figures/R_Consortium-logo-horizontal-white-purple-badge.svg" alt="R Consortium: ISC Project 2017-2"/></a>
 </div>
 
 # future.tests: Test Suite for 'Future API' Backends 
 
-The **[future]** package defines the Future API which consists of a small number of functions for writing [R] code that can be evaluated either sequential or in parallel based a single setting without having to change anything in the code.  Parallelization can be done via one of many backends, e.g. via built-in multicore, multisession and cluster backends (based on the **parallel** package) or via third-party backends such as **[future.callr]** and **[future.batchtools]**.  The design motto of the Future API is:
+The **[future]** package defines the Future API which consists of a small number of functions for writing [R] code that can be evaluated either sequential or in parallel based a single setting without having to change anything in the code.  Parallelization can be done via one of many backends, e.g. via built-in multicore, multisession and cluster backends (based on the **parallel** package) or via third-party backends such as **[future.batchtools]**, **[future.callr]** and **[future.mirai]**. The design motto of the Future API is:
 
 > Write once, run anywhere
 
-In order for such code to work regardless of which future backend the end-user choose, it is critical that the backend fully complies with the [Future API Backend Specification].  A future backend with A 100% compliance rate guarantees that the code will work equally well there as in sequential mode.
+In order for such code to work regardless of which future backend the end-user choose, it is critical that the backend fully complies with the [Future API Backend Specification].  A future backend with a 100% compliance rate guarantees that the code will work equally well there as in sequential mode.
 
 This R package - **[future.tests]** - provides a test suite for validation that a future backend complies with the Future API.
 
@@ -33,17 +36,18 @@ All future backends implementing the Future API should validate that they confor
 ### From Outside R
 
 ```sh
-$ Rscript -e future.tests::check --args --test-plan="multisession"
+$ Rscript -e future.tests::check --test-plan="multisession"
 $ exit_code=$?
 $ [[ exit_code -eq 0 ]] || { >&2 echo "One or more tests failed"; exit 1; }
 ```
 
 
 [R]: https://www.r-project.org
-[future]: https://cran.r-project.org/package=future
-[future.callr]: https://cran.r-project.org/package=future.callr
-[future.batchtools]: https://cran.r-project.org/package=future.batchtools
-[future.tests]: https://cran.r-project.org/package=future.tests
+[future]: https://future.futureverse.org
+[future.batchtools]: https://future.batchtools.futureverse.org
+[future.callr]: https://future.callr.futureverse.org
+[future.mirai]: https://future.mirai.futureverse.org
+[future.tests]: https://future.tests.futureverse.org
 [Future API Backend Specification]: https://future.futureverse.org/articles/future-6-future-api-backend-specification.html
 
 ## Installation
@@ -57,7 +61,7 @@ install.packages("future.tests")
 
 To install the pre-release version that is available in Git branch `develop` on GitHub, use:
 ```r
-remotes::install_github("HenrikBengtsson/future.tests", ref="develop")
+remotes::install_github("futureverse/future.tests", ref="develop")
 ```
 This will install the package from source.  
 

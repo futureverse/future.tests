@@ -1,2 +1,5 @@
-<%=a("https://lifecycle.r-lib.org/articles/stages.html", body=img("man/figures/lifecycle-maturing-blue.svg", alt="Life cycle: maturing"))%>
-<%=a("https://www.r-consortium.org/projects/awarded-projects", body=img("man/figures/R_Consortium-logo-horizontal-white-purple-badge.svg", alt="R Consortium: ISC Project 2017-2"))%>
+<a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.yaml/badge.svg" alt="future compliance" border="0"/></a>
+<a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.batchtools.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.batchtools.yaml/badge.svg" alt="future.batchtools compliance" border="0"/></a>
+<a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.callr.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.callr.yaml/badge.svg" alt="future.callr compliance" border="0"/></a>
+<a href="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.mirai.yaml"><img src="https://github.com/futureverse/future.tests/actions/workflows/future_tests-future.mirai.yaml/badge.svg" alt="future.mirai compliance" border="0"/></a>
+<%=a("https://r-consortium.org/all-projects/funded-projects.html", body=img("man/figures/R_Consortium-logo-horizontal-white-purple-badge.svg", alt="R Consortium: ISC Project 2017-2"))%>

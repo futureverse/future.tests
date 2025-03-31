@@ -1,24 +1,6 @@
-<!--
-%\VignetteIndexEntry{future.tests: Continuous Integration on GitHub Actions}
-%\VignetteAuthor{Henrik Bengtsson}
-%\VignetteKeyword{R}
-%\VignetteKeyword{package}
-%\VignetteKeyword{vignette}
-%\VignetteKeyword{future}
-%\VignetteKeyword{continuous integration}
-%\VignetteKeyword{CI}
-%\VignetteKeyword{GitHub Actions}
-%\VignetteEngine{future.tests::selfonly}
--->
-
-We can use continuous integration (CI) services such as GitHub Action and Travis CI to automatically validate **[future]** backends via the **[future.tests]** test suite.
-
-Here is an example of a `.github/workflow/future.tests.yaml` file that configures GitHub Actions to check several backends via the **future.tests** test suite.
-
-```yaml
 on: [push, pull_request]
 
-name: future_tests
+name: future
 
 jobs:
   future_tests:
@@ -38,11 +20,6 @@ jobs:
           - { plan: 'multicore'                           }
           - { plan: 'multisession'                        }
           - { plan: 'sequential'                          }
-          - { plan: 'future.batchtools::batchtools_local' }
-          - { plan: 'future.batchtools::batchtools_bash'  }
-          - { plan: 'future.callr::callr'                 }
-          - { plan: 'future.mirai::mirai_multisession'    }
-          - { plan: 'future.mirai::mirai_cluster'         }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -68,7 +45,6 @@ jobs:
             any::rcmdcheck
             any::remotes
             any::sessioninfo
-            any::covr
           needs: check
 
       - name: Install dependencies
@@ -86,9 +62,10 @@ jobs:
           
       - name: Install 'future.tests' and any backend R packages
         run: |
-          remotes::install_cran("future.tests")
-          remotes::install_github("HenrikBengtsson/future.tests", ref="develop")
-          if (grepl("::", plan <- "${{ matrix.future.plan }}") && nzchar(pkg <- sub("::.*", "", plan))) install.packages(pkg)
+          if (grepl("::", plan <- "${{ matrix.future.plan }}") &&
+              nzchar(pkg <- sub("::.*", "", plan))) {
+            install.packages(pkg)
+          }
         shell: Rscript {0}
 
       - name: Session info
@@ -110,10 +87,3 @@ jobs:
         with:
           name: ${{ runner.os }}-r${{ matrix.future.plan }}-results
           path: check
-```
-
-For real-world examples, see the GitHub repositories of [**future**](https://github.com/futureverse/future), [**future.batchtools**](https://github.com/futureverse/future.batchtools), [**future.callr**](https://github.com/futureverse/future.callr), and [**future.callr**](https://github.com/futureverse/future.mirai).
-
-[R]: https://www.r-project.org
-[future]: https://future.futureverse.org
-[future.tests]: https://future.tests.futureverse.org

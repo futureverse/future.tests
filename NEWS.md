@@ -1,3 +1,18 @@
+# Version 0.8.0 [2024-03-31]
+
+## New Features
+
+ * Now `load_tests()` returns a named list, where the names
+   corresponds to the test titles.
+
+ * Now `future.tests::check("mirai::daemons(2);
+   plan(future.mirai::mirai_cluster)")` works.
+
+## Test Updates
+
+ * Remove `plan()` test on legacy `constant` backend.
+
+
 # Version 0.7.0 [2023-05-20]
 
 ## Bug Fixes
@@ -60,7 +75,7 @@
 
 # Version 0.5.0 [2022-12-15]
 
-## New Tests
+## Tests Updates
 
  * Assert that none of `future()`, `run()`, `result()` and `value()`
    update the RNG state.
@@ -68,7 +83,7 @@
 
 # Version 0.4.0 [2022-11-21]
 
-## New Tests
+## Tests Updates
 
  * Assert that `rm(a)` in a future expression only removes a local
    variable `a`, but never a global variable `a`.
@@ -106,7 +121,7 @@
 
 # Version 0.3.0 [2021-10-09]
 
-## New Tests
+## Tests Updates
 
  * Assert that `future()` doesn't change the RNG kind.
  

@@ -16,6 +16,7 @@
 #'
 #' @return Value of test expression and benchmark information.
 #'
+#' @importFrom future resetWorkers plan
 #' @export
 run_test <- function(test, envir = parent.frame(), local = TRUE, args = list(), defaults = list(), output = "stdout+stderr", timeout = getOption("future.tests.timeout", 30)) {
   stopifnot(inherits(test, "Test"))
@@ -54,7 +55,7 @@ run_test <- function(test, envir = parent.frame(), local = TRUE, args = list(), 
   on.exit(pop_state())
 
   if (test$reset_workers) {
-    future::resetWorkers(plan())
+    resetWorkers(plan())
   }
 
   res <- evaluate_expr(test$expr, envir = envir, local = FALSE, output = output, timeout = timeout)

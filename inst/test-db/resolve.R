@@ -4,6 +4,7 @@ make_test(title = "resolve()", args = list(lazy = c(FALSE, TRUE), result = c(FAL
     list(a = 1, b = 42L)
   }, lazy = lazy)
   res <- resolve(f, result = result, recursive = recursive)
+  
   stopifnot(identical(res, f))
 })
 

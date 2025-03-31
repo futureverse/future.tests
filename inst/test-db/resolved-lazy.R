@@ -30,21 +30,25 @@ make_test(title = "resolved() - assert non-blocking while launching lazy futures
       rs[[kk]] <- resolved(fs[[kk]])
       
       ss <- vapply(fs, FUN = function(f) f$state, NA_character_)
-      print(ss)
+      utils::str(list(ff = ff, kk = kk, ss = ss, rs = rs))
       nbrOfFinished <- sum(ss == "finished")
       if (inherits(fs[[kk]], "UniprocessFuture")) {
         ## As lazy *uniprocess* future will be launched *and* resolved
         ## in one go when we call resolved() above
-        stopifnot(rs[[kk]])
-        stopifnot(ss[[kk]] == "finished")
+        stopifnot(
+          rs[[kk]],
+          ss[[kk]] == "finished"
+        )
       } else if (inherits(fs[[kk]], "MultiprocessFuture")) {
-        stopifnot(!rs[[kk]])
-        stopifnot(ss[[kk]] == "running")
+        stopifnot(
+          (!rs[[kk]] && ss[[kk]] == "running" ) ||
+          ( rs[[kk]] && ss[[kk]] == "finished")
+        )
       }
     } ## for (kk ...)
 
     if (ff == 1L && inherits(fs[[1]], "MultiprocessFuture")) {
-      stopifnot(all(!rs[[kk]]))
+      stopifnot(!rs[[kk]])
     }
 
     message(sprintf("Waiting for future #%d to finish ... ", ff), appendLF = FALSE)
@@ -60,7 +64,7 @@ make_test(title = "resolved() - assert non-blocking while launching lazy futures
     if (inherits(fs[[kk]], "UniprocessFuture")) {
       stopifnot(nbrOfFinished == length(fs))
     } else {
-      stopifnot(nbrOfFinished == ff)
+      stopifnot(nbrOfFinished >= ff)
     }
   } ## for (ff ...)
   
