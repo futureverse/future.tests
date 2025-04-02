@@ -12,7 +12,11 @@ db_state <- local({
     plan  = NULL
   )
   stack <- list(state_empty)
-  
+
+  equal_strategy_stacks <- import_future("equal_strategy_stacks", default = function(...) {
+    TRUE
+  })
+
   function(action = c("reset", "list", "push", "pop"), title = NULL, envir = parent.frame()) {
     action <- match.arg(action)
 
@@ -207,7 +211,7 @@ db_state <- local({
 
         ## Assert that everything was properly undone
         ## FIXME: 'future' should guarantee this - just drop? /HB 2025-04-02
-        stop_if_not(future:::equal_strategy_stacks(plan("list"), state_plan))
+        stop_if_not(equal_strategy_stacks(plan("list"), state_plan))
       }
 
 #      message("*** ", state$title, " ... DONE")
