@@ -16,10 +16,10 @@ jobs:
       fail-fast: false
       matrix:
         future:
-          - { plan: 'cluster'                             }
-          - { plan: 'multicore'                           }
-          - { plan: 'multisession'                        }
-          - { plan: 'sequential'                          }
+          - { plan: 'cluster'      }
+          - { plan: 'multicore'    }
+          - { plan: 'multisession' }
+          - { plan: 'sequential'   }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
