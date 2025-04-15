@@ -208,10 +208,9 @@ db_state <- local({
         ## WORKAROUND: https://github.com/HenrikBengtsson/future/issues/320
         state_plan <- state$plan
         plan(state_plan)
-
-        ## Assert that everything was properly undone
+        
         ## FIXME: 'future' should guarantee this - just drop? /HB 2025-04-02
-        stop_if_not(equal_strategy_stacks(plan("list"), state_plan))
+        stop_if_not(all.equal(plan("list"), state_plan))
       }
 
 #      message("*** ", state$title, " ... DONE")
