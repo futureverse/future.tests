@@ -16,8 +16,8 @@ jobs:
       fail-fast: false
       matrix:
         future:
-          - { plan: 'future.mirai::mirai_multisession'    }
-          - { plan: 'future.mirai::mirai_cluster'         }
+          - { plan: 'future.mirai::mirai_multisession'                     }
+          - { plan: 'mirai::daemons(2); plan(future.mirai::mirai_cluster)' }
 
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
