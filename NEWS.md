@@ -4,7 +4,7 @@
 
  * Add logical R option `future.tests.devel`, which can be set by
    environment variable `R_FUTURE_TESTS_DEVEL`. This controls whether
-   tests "under developement" will be run.
+   tests with a `"devel"` ("under developement") tag will be included.
  
 ## Test Updates
 

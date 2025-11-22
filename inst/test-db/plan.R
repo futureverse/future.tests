@@ -111,7 +111,7 @@ make_test(title = "plan() - workers=<invalid>", args = list(), tags = c("plan", 
 })
 
 
-make_test(title = "plan() - interrupts = NA/FALSE/TRUE", args = list(), tags = c("plan"), register = getOption("future.tests.devel", FALSE), {
+make_test(title = "plan() - interrupts = NA/FALSE/TRUE", args = list(), tags = c("plan", "devel"), {
   current_plan <- plan()
   print(current_plan)
 

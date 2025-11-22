@@ -14,12 +14,13 @@
 #' futures.
 #'
 #' @param register If TRUE, the test is registered in the test database,
-#' otherwise not.
+#' otherwise not. The default is to register the test, unless `tags` contains
+#' `"devel"`.
 #'
 #' @return (invisibly) A Test.
 #'
 #' @export
-make_test <- function(expr, title = NA_character_, args = list(), tags = NULL, substitute = TRUE, reset_workers = FALSE, register = TRUE) {
+make_test <- function(expr, title = NA_character_, args = list(), tags = NULL, substitute = TRUE, reset_workers = FALSE, register = !("devel" %in% tags) || isTRUE(getOption("future.tests.devel"))) {
   title <- as.character(title)
   stopifnot(length(title) == 1L, nzchar(title))
   if (length(args) > 0) stopifnot(is.list(args), !is.null(names(args)))

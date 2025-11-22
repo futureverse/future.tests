@@ -11,7 +11,7 @@ make_test(
   tags = NULL,
   substitute = TRUE,
   reset_workers = FALSE,
-  register = TRUE
+  register = !getOption("future.tests.devel", ("devel" \%in\% tags))
 )
 }
 \arguments{
@@ -28,7 +28,8 @@ whether it is passes as an expression already or not.}
 futures.}
 
 \item{register}{If TRUE, the test is registered in the test database,
-otherwise not.}
+otherwise not. The default is to register the test, unless \code{tags} contains
+\code{"devel"}.}
 }
 \value{
 (invisibly) A Test.
