@@ -109,3 +109,22 @@ make_test(title = "plan() - workers=<invalid>", args = list(), tags = c("plan", 
   print(res)
   stopifnot(inherits(res, "error"))
 })
+
+
+make_test(title = "plan() - interrupts = NA/FALSE/TRUE", args = list(), tags = c("plan"), register = getOption("future.tests.devel", FALSE), {
+  current_plan <- plan()
+  print(current_plan)
+
+  for (interrupts in c(NA, FALSE, TRUE)) {
+    cat(sprintf("interrupts: %s\n", interrupts))
+    withCallingHandlers({
+      if (is.na(interrupts)) {
+        plan(current_plan)
+      } else {
+        plan(current_plan, interrupts = interrupts)
+      }
+    }, warning = function(w) {
+      stop(conditionMessage(w))
+    })
+  }
+})

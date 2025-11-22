@@ -1,6 +1,16 @@
 # Version (development version)
 
- * ...
+## New Features
+
+ * Add logical R option `future.tests.devel`, which can be set by
+   environment variable `R_FUTURE_TESTS_DEVEL`. This controls whether
+   tests "under developement" will be run.
+ 
+## Test Updates
+
+ * Under development:
+ 
+   - Assert that `plan()` accepts argument `interrupts`.
  
 
 # Version 0.9.0 [2025-04-14]
