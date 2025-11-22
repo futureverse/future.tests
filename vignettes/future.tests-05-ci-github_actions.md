@@ -87,8 +87,10 @@ jobs:
       - name: Install 'future.tests' and any backend R packages
         run: |
           remotes::install_cran("future.tests")
-          remotes::install_github("HenrikBengtsson/future.tests", ref="develop")
-          if (grepl("::", plan <- "${{ matrix.future.plan }}") && nzchar(pkg <- sub("::.*", "", plan))) install.packages(pkg)
+          ## Identify and install future backend package in 'plan' variable, if any
+          plan <- "${{ matrix.future.plan }}"
+          pattern <- ".*(future[.][[:alnum:]]+)::[[:alnum:]]+.*"
+          if (grepl(pattern, plan) && nzchar(pkg <- sub(pattern, "\\1", plan))) install.packages(pkg)
         shell: Rscript {0}
 
       - name: Session info
