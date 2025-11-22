@@ -1,3 +1,7 @@
+#' @tags Test-class
+#' @tags detritus-files
+#' @tags detritus-connections
+
 library(future.tests)
 library(future)
 
