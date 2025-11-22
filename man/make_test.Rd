@@ -11,7 +11,7 @@ make_test(
   tags = NULL,
   substitute = TRUE,
   reset_workers = FALSE,
-  register = !getOption("future.tests.devel", ("devel" \%in\% tags))
+  register = !("devel" \%in\% tags) || isTRUE(getOption("future.tests.devel"))
 )
 }
 \arguments{
