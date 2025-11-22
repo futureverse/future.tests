@@ -1,11 +1,11 @@
-make_test(title = "cancel()", args = list(lazy = c(FALSE, TRUE)), tags = c("cancel"), {
+make_test(title = "cancel()", args = list(lazy = c(FALSE, TRUE), interrupt = c(FALSE, TRUE)), tags = c("cancel"), {
+  f0 <- future(NULL)
+  v <- value(f0)
+  
   f <- future({
     Sys.sleep(0.5)
     list(a = 1, b = 42L)
   }, lazy = lazy)
-
-  f0 <- future(NULL)
-  v <- value(f0)
 
   cat(sprintf("state = %s\n", sQuote(f[["state"]])))
   if (lazy) {
@@ -14,7 +14,8 @@ make_test(title = "cancel()", args = list(lazy = c(FALSE, TRUE)), tags = c("canc
     stopifnot(f[["state"]] %in% c("submitted", "running", "finished"))
   }
   
-  f <- cancel(f)
+  cat(sprintf("interrupt = %s\n", sQuote(interrupt)))
+  f <- cancel(f, interrupt = interrupt)
   cat(sprintf("state = %s\n", sQuote(f[["state"]])))
   if (lazy) {
     stopifnot(f[["state"]] %in% "created")
