@@ -10,9 +10,7 @@
 
  * Add tests for `cancel()`.
 
- * Under development:
- 
-   - Assert that `plan()` accepts argument `interrupts`.
+ * Assert that `plan()` accepts argument `interrupts`.
 
 
 # Version 0.9.0 [2025-04-14]
