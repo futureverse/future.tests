@@ -4,12 +4,6 @@
 library(future.tests)
 library(future)
 
-lazy <- FALSE
-global <- TRUE
-stdout <- TRUE
-value <- TRUE
-recursive <- FALSE
-
 tests <- load_tests()
 message("Number of tests: ", length(tests))
 
@@ -19,7 +13,14 @@ print(df_tests)
 message("Run first three tests ...")
 
 library(future)
-results <- run_tests(head(tests, 3L))
+
+tests_3 <- head(tests, 3L)
+
+## Create default values
+defaults <- lapply(tests_3, FUN = function(test) test[["args"]])
+defaults <- do.call(c, unname(defaults))
+defaults <- lapply(defaults, FUN = function(arg) arg[[1]])
+results <- run_tests(tests_3, defaults = defaults)
 print(results)
 
 df_results <- do.call(rbind, results)
@@ -33,9 +34,6 @@ message("Run a few tests across different future plans ...")
 tests <- tests[seq(from = 1L, to = length(tests), length.out = 5L)]
 
 library(future)
-
-value <- TRUE
-recursive <- FALSE
 
 ntests <- length(tests)
 
