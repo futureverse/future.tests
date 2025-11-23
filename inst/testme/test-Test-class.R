@@ -2,7 +2,6 @@
 #' @tags detritus-files
 #' @tags detritus-connections
 library(future.tests)
-library(future)
 
 tests <- load_tests()
 message("Number of tests: ", length(tests))
@@ -10,12 +9,9 @@ message("Number of tests: ", length(tests))
 df_tests <- do.call(rbind, tests)
 print(df_tests)
 
+
 message("Run first three tests ...")
-
-library(future)
-
 tests_3 <- head(tests, 3L)
-
 ## Create default values
 defaults <- lapply(tests_3, FUN = function(test) test[["args"]])
 defaults <- do.call(c, unname(defaults))
