@@ -19,7 +19,7 @@ make_test(title = "cancel()", args = list(lazy = c(FALSE, TRUE), interrupt = c(F
   cat(sprintf("interrupt = %s\n", sQuote(interrupt)))
   f <- cancel(f, interrupt = interrupt)
   cat(sprintf("state = %s\n", sQuote(f[["state"]])))
-  if (lazy) {
+  if (lazy && packageVersion("future") < "1.68.0-9100") {
     stopifnot(f[["state"]] %in% "created")
   } else {
     stopifnot(f[["state"]] %in% c("canceled", "finished"))
