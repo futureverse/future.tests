@@ -12,6 +12,9 @@
 
  * Assert that `plan()` accepts argument `interrupts`.
 
+ * Remove tests on `future(..., earlySignal = FALSE/TRUE)`, because
+   that is about to be deprecated in the **future** package.
+   
 
 # Version 0.9.0 [2025-04-14]
 
