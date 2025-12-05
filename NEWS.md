@@ -5,7 +5,9 @@
  * Add logical R option `future.tests.devel`, which can be set by
    environment variable `R_FUTURE_TESTS_DEVEL`. This controls whether
    tests with a `"devel"` ("under developement") tag will be included.
- 
+
+ * check()` reports on **future** version.
+
 ## Test Updates
 
  * Add tests for `cancel()`.

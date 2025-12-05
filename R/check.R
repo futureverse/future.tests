@@ -150,6 +150,7 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
 
   if (settings) {
     print(rule(left = "Settings", col = "cyan"))
+    cat(sprintf("- future version            : %s\n", packageVersion("future")))
     cat(sprintf("- future.tests version      : %s\n", packageVersion("future.tests")))
     cat(sprintf("- R_FUTURE_TESTS_ROOT       : %s\n", Sys.getenv("R_FUTURE_TESTS_ROOT")))
     cat(sprintf("- Option 'future.tests.root': %s\n", getOption("future.tests.root", "NULL")))
