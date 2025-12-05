@@ -1,4 +1,4 @@
-make_test(title = "cancel()", args = list(lazy = c(FALSE, TRUE), interrupt = c(FALSE, TRUE)), tags = c("cancel"), {
+make_test(title = "cancel()", args = list(lazy = c(FALSE, TRUE), interrupt = c(FALSE, TRUE)), tags = c("cancel", "devel"), {
   f0 <- future(NULL)
   v <- value(f0)
   print(class(f0))
