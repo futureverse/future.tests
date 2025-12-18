@@ -12,7 +12,14 @@ make_test(title = "plan() - workers=<numeric>", args = list(), tags = c("plan", 
     future.tests::skip_test()
     return()
   }
-  
+
+  ## Is argument 'workers' already set?
+  current_tweaks <- attr(current_plan, "tweaks", exact = TRUE)
+  if ("workers" %in% names(current_tweaks)) {
+    future.tests::skip_test()
+    return()
+  }
+
   ## FIXME: These tests only work for backends where 'workers' take
   ##        numeric values.
   plan(current_plan, workers = 1L)
@@ -41,7 +48,14 @@ make_test(title = "plan() - workers=<function>", args = list(), tags = c("plan",
     future.tests::skip_test()
     return()
   }
-  
+
+  ## Is argument 'workers' already set?
+  current_tweaks <- attr(current_plan, "tweaks", exact = TRUE)
+  if ("workers" %in% names(current_tweaks)) {
+    future.tests::skip_test()
+    return()
+  }
+
   n0 <- nbrOfWorkers()
   cat(sprintf("Number of initial workers: %g\n", n0))
 
@@ -83,7 +97,14 @@ make_test(title = "plan() - workers=<invalid>", args = list(), tags = c("plan", 
     future.tests::skip_test()
     return()
   }
-  
+
+  ## Is argument 'workers' already set?
+  current_tweaks <- attr(current_plan, "tweaks", exact = TRUE)
+  if ("workers" %in% names(current_tweaks)) {
+    future.tests::skip_test()
+    return()
+  }
+
   ## Invalid number of workers or value on 'workers'
   res <- tryCatch({
     plan(current_plan, workers = 0L)

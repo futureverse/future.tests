@@ -18,6 +18,12 @@
    that is about to be deprecated in the **future** package.
 
  * Relax assertions in test of `resolved()` with lazy futures.
+
+## Bug Fixes
+
+ * Tests on `plan()` adjusting argument `workers` were not skipped if
+   the plan tested already sets argument `workers` to a fixed value,
+   e.g. `plan(cluster, workers = cl)`.
  
 
 # Version 0.9.0 [2025-04-14]
