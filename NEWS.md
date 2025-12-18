@@ -16,7 +16,9 @@
 
  * Remove tests on `future(..., earlySignal = FALSE/TRUE)`, because
    that is about to be deprecated in the **future** package.
-   
+
+ * Relax assertions in test of `resolved()` with lazy futures.
+ 
 
 # Version 0.9.0 [2025-04-14]
 
