@@ -1,0 +1,235 @@
+# Changelog
+
+## Version (development version)
+
+### New Features
+
+- Add logical R option `future.tests.devel`, which can be set by
+  environment variable `R_FUTURE_TESTS_DEVEL`. This controls whether
+  tests with a `"devel"` (“under developement”) tag will be included.
+
+- check()\` reports on **future** version.
+
+### Test Updates
+
+- Add tests for `cancel()`.
+
+- Assert that `plan()` accepts argument `interrupts`.
+
+- Remove tests on `future(..., earlySignal = FALSE/TRUE)`, because that
+  is about to be deprecated in the **future** package.
+
+- Relax assertions in test of `resolved()` with lazy futures.
+
+### Bug Fixes
+
+- Tests on `plan()` adjusting argument `workers` were not skipped if the
+  plan tested already sets argument `workers` to a fixed value,
+  e.g. `plan(cluster, workers = cl)`.
+
+## Version 0.9.0
+
+CRAN release: 2025-04-15
+
+### New Features
+
+- Now the test code is displayed if there is a check error.
+
+## Version 0.8.0
+
+CRAN release: 2025-03-31
+
+### New Features
+
+- Now
+  [`load_tests()`](https://future.tests.futureverse.org/reference/load_tests.md)
+  returns a named list, where the names corresponds to the test titles.
+
+- Now
+  `future.tests::check("mirai::daemons(2); plan(future.mirai::mirai_cluster)")`
+  works.
+
+### Test Updates
+
+- Remove `plan()` test on legacy `constant` backend.
+
+## Version 0.7.0
+
+CRAN release: 2023-05-22
+
+### Bug Fixes
+
+- Tests asserting correctness of `nbrOfWorkers()` could produce an
+  “invalid format ‘%d’; use format %f, %e, %g or %a for numeric objects”
+  error when trying to produce an assertion error on `nbrOfWorkers()`
+  having an incorrect value. This could happen if `nbrOfWorkers()`
+  returned a non-integer value, e.g. `+Inf`.
+
+- Test asserting that the `workers` argument can be a function would not
+  always work if testing with a hardcoded number of workers according to
+  `plan()`.
+
+- Test asserting that the `workers` argument can be a function would not
+  work if the backend’s default value was non-numeric, e.g. the
+  `cluster` backend defaults to the character vector
+  [`parallelly::availableWorkers()`](https://parallelly.futureverse.org/reference/availableWorkers.html).
+
+- Test asserting that lazy futures would be automatically launched and
+  resolved relied on a legacy version of the Future API, where calling
+  `resolved()` on a lazy future could leave it in a lazy state, which is
+  no longer correct. A lazy future will always be launched if one calls
+  `resolved()` on it.
+
+- Test asserting that the **ff** package worked across multiple futures
+  assumed that the package is loaded automatically by the future, which
+  it is not. The could cause the test to fail for some future backends.
+
+## Version 0.6.0
+
+CRAN release: 2023-03-11
+
+### New Features
+
+- Now tests can be formally skipped by calling
+  [`future.tests::skip_test()`](https://future.tests.futureverse.org/reference/skip_test.md)
+  from within the test. Skipped tests are counted and reported in the
+  summary.
+
+- Now
+  [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
+  outputs the reason for a test is being skipped.
+
+- Now
+  [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
+  outputs also the error message, error class, the call, and any
+  standard output, whenever there’s is a test error.
+
+- Now
+  [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
+  outputs also the test iteration index.
+
+- Add `Rscript -e future.tests::check --version`.
+
+### Bug Fixes
+
+- Some tests assume that the future strategy tested has a `workers`
+  argument, which is not true for all future backends. For example,
+  ‘sequential’ does not take argument `workers`. Previously, we avoided
+  this problem by only testing if the evaluator inherited
+  `multiprocess`, but that is not sufficient, e.g. upcoming
+  `future.redis::redis` inherits `multiprocess`, but still does not have
+  a `workers` argument. Now we check for the `workers` argument instead.
+
+## Version 0.5.0
+
+CRAN release: 2022-12-16
+
+### Tests Updates
+
+- Assert that none of `future()`, `run()`, `result()` and `value()`
+  update the RNG state.
+
+## Version 0.4.0
+
+CRAN release: 2022-11-22
+
+### Tests Updates
+
+- Assert that `rm(a)` in a future expression only removes a local
+  variable `a`, but never a global variable `a`.
+
+- Assert that packages **data.table** and **ff** are not affected when a
+  future resets the R options on the worker when resolved.
+
+- Assert that a global that is a copy of a non-exported package object
+  (e.g. `utils:::str2logical()`) is not dropped because it belongs to a
+  package namespace.
+
+- Assert that `...` can be exported as a global to a future, and used
+  as-is inside a function that does *not* have `...` arguments.
+
+### New Features
+
+- [`check()`](https://future.tests.futureverse.org/reference/check.md)
+  and
+  [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
+  gained argument `local`, which is passed down to
+  [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md).
+
+- [`check()`](https://future.tests.futureverse.org/reference/check.md)
+  gained argument `envir`, which is passed down to
+  [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md).
+
+### Bug Fixes
+
+- The TestResult class did not record whether the test was evaluated in
+  a local environment or not.
+
+- A too strict internal assertion would give
+  `Error in evaluate_expr(test$expr, envir = envir, local = FALSE, output = output, : identical(Sys.getenv(), old$envvars) is not TRUE`
+  for R 4.2.x and R-devel on MS Windows. This was because it is not
+  possible to remove environment variables on MS Windows; they can only
+  be set to an empty value.
+
+## Version 0.3.0
+
+CRAN release: 2021-10-10
+
+### Tests Updates
+
+- Assert that `future()` doesn’t change the RNG kind.
+
+- Assert that `future(..., conditions = character(0L))` muffles all
+  conditions.
+
+### New Features
+
+- For robustness, using explicit `stringsAsFactors = FALSE` internally.
+
+- [`evaluate_expr()`](https://future.tests.futureverse.org/reference/evaluate_expr.md),
+  which is used for running all tests, now reset options, environment
+  variables, the RNG kind, and the random seed afterward to what it was
+  before being called.
+
+- Added a package vignettes.
+
+### Bug Fixes
+
+- Tests on `resolve()` would use deprecated argument `value`.
+
+## Version 0.2.1
+
+CRAN release: 2020-03-20
+
+### CRAN Re-submission Requests
+
+- Update the package description to use single quotes.
+
+- Add example to
+  [`check()`](https://future.tests.futureverse.org/reference/check.md).
+
+## Version 0.2.0
+
+- First version released on CRAN.
+
+## Version 0.1.1
+
+### Bug Fixes
+
+- Assert that `resolved()` will launch lazy futures.
+
+## Version 0.1.0
+
+### New Features
+
+- In non-interactive mode,
+  [`check()`](https://future.tests.futureverse.org/reference/check.md)
+  will quit R with an exit code that reflects whether all tests
+  passed (0) or not (1).
+
+- [`check()`](https://future.tests.futureverse.org/reference/check.md)
+  gained arguments so that it can be easily called from R too.
+
+## Version 0.0.0-9000
+
+- Created package stub.

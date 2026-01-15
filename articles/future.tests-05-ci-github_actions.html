@@ -6,12 +6,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>future.tests: Continuous Integration on GitHub Actions • future.tests</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
@@ -33,7 +32,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">future.tests</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0-9014</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -204,29 +203,31 @@ GitHub Actions to check several backends via the
 <span id="cb1-69"><a href="#cb1-69" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install 'future.tests' and any backend R packages</span></span>
 <span id="cb1-70"><a href="#cb1-70" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
 <span id="cb1-71"><a href="#cb1-71" tabindex="-1"></a>          remotes::install_cran("future.tests")</span>
-<span id="cb1-72"><a href="#cb1-72" tabindex="-1"></a>          remotes::install_github("HenrikBengtsson/future.tests", ref="develop")</span>
-<span id="cb1-73"><a href="#cb1-73" tabindex="-1"></a>          if (grepl("::", plan &lt;- "${{ matrix.future.plan }}") &amp;&amp; nzchar(pkg &lt;- sub("::.*", "", plan))) install.packages(pkg)</span>
-<span id="cb1-74"><a href="#cb1-74" tabindex="-1"></a><span class="at">        </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
-<span id="cb1-75"><a href="#cb1-75" tabindex="-1"></a></span>
-<span id="cb1-76"><a href="#cb1-76" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Session info</span></span>
-<span id="cb1-77"><a href="#cb1-77" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb1-78"><a href="#cb1-78" tabindex="-1"></a>          options(width = 100)</span>
-<span id="cb1-79"><a href="#cb1-79" tabindex="-1"></a>          pkgs &lt;- installed.packages()[, "Package"]</span>
-<span id="cb1-80"><a href="#cb1-80" tabindex="-1"></a>          sessioninfo::session_info(pkgs, include_base = TRUE)</span>
-<span id="cb1-81"><a href="#cb1-81" tabindex="-1"></a><span class="at">        </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
-<span id="cb1-82"><a href="#cb1-82" tabindex="-1"></a><span class="at">    </span></span>
-<span id="cb1-83"><a href="#cb1-83" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check future backend '${{ matrix.future.plan }}'</span></span>
-<span id="cb1-84"><a href="#cb1-84" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb1-85"><a href="#cb1-85" tabindex="-1"></a>          R CMD build --no-build-vignettes --no-manual . </span>
-<span id="cb1-86"><a href="#cb1-86" tabindex="-1"></a>          R CMD INSTALL *.tar.gz </span>
-<span id="cb1-87"><a href="#cb1-87" tabindex="-1"></a>          Rscript -e future.tests::check --args --test-plan=${{ matrix.future.plan }}</span>
-<span id="cb1-88"><a href="#cb1-88" tabindex="-1"></a></span>
-<span id="cb1-89"><a href="#cb1-89" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Upload check results</span></span>
-<span id="cb1-90"><a href="#cb1-90" tabindex="-1"></a><span class="at">        </span><span class="fu">if</span><span class="kw">:</span><span class="at"> failure()</span></span>
-<span id="cb1-91"><a href="#cb1-91" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-artifact@v4</span></span>
-<span id="cb1-92"><a href="#cb1-92" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb1-93"><a href="#cb1-93" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at"> ${{ runner.os }}-r${{ matrix.future.plan }}-results</span></span>
-<span id="cb1-94"><a href="#cb1-94" tabindex="-1"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> check</span></span></code></pre></div>
+<span id="cb1-72"><a href="#cb1-72" tabindex="-1"></a>          ## Identify and install future backend package in 'plan' variable, if any</span>
+<span id="cb1-73"><a href="#cb1-73" tabindex="-1"></a>          plan &lt;- "${{ matrix.future.plan }}"</span>
+<span id="cb1-74"><a href="#cb1-74" tabindex="-1"></a>          pattern &lt;- ".*(future[.][[:alnum:]]+)::[[:alnum:]]+.*"</span>
+<span id="cb1-75"><a href="#cb1-75" tabindex="-1"></a>          if (grepl(pattern, plan) &amp;&amp; nzchar(pkg &lt;- sub(pattern, "\\1", plan))) install.packages(pkg)</span>
+<span id="cb1-76"><a href="#cb1-76" tabindex="-1"></a><span class="at">        </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
+<span id="cb1-77"><a href="#cb1-77" tabindex="-1"></a></span>
+<span id="cb1-78"><a href="#cb1-78" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Session info</span></span>
+<span id="cb1-79"><a href="#cb1-79" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-80"><a href="#cb1-80" tabindex="-1"></a>          options(width = 100)</span>
+<span id="cb1-81"><a href="#cb1-81" tabindex="-1"></a>          pkgs &lt;- installed.packages()[, "Package"]</span>
+<span id="cb1-82"><a href="#cb1-82" tabindex="-1"></a>          sessioninfo::session_info(pkgs, include_base = TRUE)</span>
+<span id="cb1-83"><a href="#cb1-83" tabindex="-1"></a><span class="at">        </span><span class="fu">shell</span><span class="kw">:</span><span class="at"> Rscript {0}</span></span>
+<span id="cb1-84"><a href="#cb1-84" tabindex="-1"></a><span class="at">    </span></span>
+<span id="cb1-85"><a href="#cb1-85" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Check future backend '${{ matrix.future.plan }}'</span></span>
+<span id="cb1-86"><a href="#cb1-86" tabindex="-1"></a><span class="fu">        run</span><span class="kw">: </span><span class="ch">|</span></span>
+<span id="cb1-87"><a href="#cb1-87" tabindex="-1"></a>          R CMD build --no-build-vignettes --no-manual . </span>
+<span id="cb1-88"><a href="#cb1-88" tabindex="-1"></a>          R CMD INSTALL *.tar.gz </span>
+<span id="cb1-89"><a href="#cb1-89" tabindex="-1"></a>          Rscript -e future.tests::check --args --test-plan=${{ matrix.future.plan }}</span>
+<span id="cb1-90"><a href="#cb1-90" tabindex="-1"></a></span>
+<span id="cb1-91"><a href="#cb1-91" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Upload check results</span></span>
+<span id="cb1-92"><a href="#cb1-92" tabindex="-1"></a><span class="at">        </span><span class="fu">if</span><span class="kw">:</span><span class="at"> failure()</span></span>
+<span id="cb1-93"><a href="#cb1-93" tabindex="-1"></a><span class="at">        </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/upload-artifact@v4</span></span>
+<span id="cb1-94"><a href="#cb1-94" tabindex="-1"></a><span class="at">        </span><span class="fu">with</span><span class="kw">:</span></span>
+<span id="cb1-95"><a href="#cb1-95" tabindex="-1"></a><span class="at">          </span><span class="fu">name</span><span class="kw">:</span><span class="at"> ${{ runner.os }}-r${{ matrix.future.plan }}-results</span></span>
+<span id="cb1-96"><a href="#cb1-96" tabindex="-1"></a><span class="at">          </span><span class="fu">path</span><span class="kw">:</span><span class="at"> check</span></span></code></pre></div>
 <p>For real-world examples, see the GitHub repositories of <a href="https://github.com/futureverse/future" class="external-link"><strong>future</strong></a>,
 <a href="https://github.com/futureverse/future.batchtools" class="external-link"><strong>future.batchtools</strong></a>,
 <a href="https://github.com/futureverse/future.callr" class="external-link"><strong>future.callr</strong></a>,
@@ -241,7 +242,7 @@ and <a href="https://github.com/futureverse/future.mirai" class="external-link">
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9007.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9007.</p>
 </div>
 
     </footer>
