@@ -22,7 +22,7 @@ load_tests(
 
 - recursive:
 
-  If TRUE, test-definition scripts are search recursively.
+  If TRUE, test-definition scripts are searched recursively.
 
 - pattern:
 

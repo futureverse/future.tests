@@ -20,4 +20,4 @@ test_db(action = c("list", "append", "reset"), test = NULL)
 
 ## Value
 
-(invisibly) the internal list of Test:s.
+(invisibly) the internal list of Tests.

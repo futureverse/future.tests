@@ -6,9 +6,10 @@
 
 - Add logical R option `future.tests.devel`, which can be set by
   environment variable `R_FUTURE_TESTS_DEVEL`. This controls whether
-  tests with a `"devel"` (“under developement”) tag will be included.
+  tests with a `"devel"` (“under development”) tag will be included.
 
-- check()\` reports on **future** version.
+- [`check()`](https://future.tests.futureverse.org/reference/check.md)
+  reports on **future** version.
 
 ### Test Updates
 
@@ -97,18 +98,18 @@ CRAN release: 2023-03-11
 
 - Now
   [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
-  outputs the reason for a test is being skipped.
+  outputs the reason for a test being skipped.
 
 - Now
   [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
   outputs also the error message, error class, the call, and any
-  standard output, whenever there’s is a test error.
+  standard output, whenever there is a test error.
 
 - Now
   [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
   outputs also the test iteration index.
 
-- Add `Rscript -e future.tests::check --version`.
+- Added `Rscript -e future.tests::check --version`.
 
 ### Bug Fixes
 
@@ -191,7 +192,7 @@ CRAN release: 2021-10-10
   variables, the RNG kind, and the random seed afterward to what it was
   before being called.
 
-- Added a package vignettes.
+- Added package vignettes.
 
 ### Bug Fixes
 

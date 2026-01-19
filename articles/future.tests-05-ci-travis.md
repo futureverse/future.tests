@@ -1,6 +1,6 @@
 # future.tests: Continuous Integration on Travis CI
 
-We can use continuous integration (CI) services such as GitHub Action
+We can use continuous integration (CI) services such as GitHub Actions
 and Travis CI to automatically validate
 **[future](https://cran.r-project.org/package=future)** backends via the
 **[future.tests](https://cran.r-project.org/package=future.tests)** test

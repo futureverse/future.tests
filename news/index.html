@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">future.tests</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0-9014</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0-9015</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,8 +75,8 @@
 <h2 class="pkg-version" data-toc-text="development version" id="version-development-version">Version (development version)<a class="anchor" aria-label="anchor" href="#version-development-version"></a></h2>
 <div class="section level3">
 <h3 id="new-features-development-version">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
-<ul><li><p>Add logical R option <code>future.tests.devel</code>, which can be set by environment variable <code>R_FUTURE_TESTS_DEVEL</code>. This controls whether tests with a <code>"devel"</code> (“under developement”) tag will be included.</p></li>
-<li><p>check()` reports on <strong>future</strong> version.</p></li>
+<ul><li><p>Add logical R option <code>future.tests.devel</code>, which can be set by environment variable <code>R_FUTURE_TESTS_DEVEL</code>. This controls whether tests with a <code>"devel"</code> (“under development”) tag will be included.</p></li>
+<li><p><code><a href="../reference/check.html">check()</a></code> reports on <strong>future</strong> version.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="test-updates-development-version">Test Updates<a class="anchor" aria-label="anchor" href="#test-updates-development-version"></a></h3>
@@ -125,10 +125,10 @@
 <div class="section level3">
 <h3 id="new-features-0-6-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-6-0"></a></h3>
 <ul><li><p>Now tests can be formally skipped by calling <code><a href="../reference/skip_test.html">future.tests::skip_test()</a></code> from within the test. Skipped tests are counted and reported in the summary.</p></li>
-<li><p>Now <code><a href="../reference/check_plan.html">check_plan()</a></code> outputs the reason for a test is being skipped.</p></li>
-<li><p>Now <code><a href="../reference/check_plan.html">check_plan()</a></code> outputs also the error message, error class, the call, and any standard output, whenever there’s is a test error.</p></li>
+<li><p>Now <code><a href="../reference/check_plan.html">check_plan()</a></code> outputs the reason for a test being skipped.</p></li>
+<li><p>Now <code><a href="../reference/check_plan.html">check_plan()</a></code> outputs also the error message, error class, the call, and any standard output, whenever there is a test error.</p></li>
 <li><p>Now <code><a href="../reference/check_plan.html">check_plan()</a></code> outputs also the test iteration index.</p></li>
-<li><p>Add <code>Rscript -e future.tests::check --version</code>.</p></li>
+<li><p>Added <code>Rscript -e future.tests::check --version</code>.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-0-6-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-6-0"></a></h3>
@@ -173,7 +173,7 @@
 <h3 id="new-features-0-3-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-0-3-0"></a></h3>
 <ul><li><p>For robustness, using explicit <code>stringsAsFactors = FALSE</code> internally.</p></li>
 <li><p><code><a href="../reference/evaluate_expr.html">evaluate_expr()</a></code>, which is used for running all tests, now reset options, environment variables, the RNG kind, and the random seed afterward to what it was before being called.</p></li>
-<li><p>Added a package vignettes.</p></li>
+<li><p>Added package vignettes.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-0-3-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-3-0"></a></h3>

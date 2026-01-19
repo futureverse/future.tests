@@ -27,7 +27,7 @@ check(
 
 - tags:
 
-  (character vector; optional) Filter test by tags. If NULL, all tests
+  (character vector; optional) Filter tests by tags. If NULL, all tests
   are performed.
 
 - timeout:
@@ -62,7 +62,7 @@ check(
   (logical) If TRUE, and in a non-interactive session, then use
   [`base::quit()`](https://rdrr.io/r/base/quit.html) to quit R with an
   exit code of 0 (zero) if all tests passed with all OKs and otherwise 1
-  (one) if one or more test failed.
+  (one) if one or more tests failed.
 
 - .args:
 

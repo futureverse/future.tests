@@ -1,11 +1,11 @@
 # future.tests: Continuous Integration on GitHub Actions
 
-We can use continuous integration (CI) services such as GitHub Action
+We can use continuous integration (CI) services such as GitHub Actions
 and Travis CI to automatically validate
 **[future](https://future.futureverse.org)** backends via the
 **[future.tests](https://future.tests.futureverse.org)** test suite.
 
-Here is an example of a `.github/workflow/future.tests.yaml` file that
+Here is an example of a `.github/workflows/future.tests.yaml` file that
 configures GitHub Actions to check several backends via the
 **future.tests** test suite.
 

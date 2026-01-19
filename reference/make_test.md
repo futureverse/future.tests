@@ -20,7 +20,7 @@ make_test(
 
 - expr, substitute:
 
-  The expression to be tested and whether it is passes as an expression
+  The expression to be tested and whether it is passed as an expression
   already or not.
 
 - title:

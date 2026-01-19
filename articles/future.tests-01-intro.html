@@ -32,7 +32,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">future.tests</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0-9014</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0-9015</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,7 +126,7 @@ Bengtsson</h4>
 <p>The <strong><a href="https://future.futureverse.org" class="external-link">future</a></strong> package
 defines the Future API which consists of a small number of functions for
 writing <a href="https://www.r-project.org" class="external-link">R</a> code that can be
-evaluated either sequential or in parallel based a single setting
+evaluated either sequentially or in parallel based on a single setting
 without having to change anything in the code. Parallelization can be
 done via one of many backends, e.g. via built-in multicore, multisession
 and cluster backends (based on the <strong>parallel</strong> package) or
@@ -138,8 +138,8 @@ The design motto of the Future API is:</p>
 <p>Write once, run anywhere</p>
 </blockquote>
 <p>In order for such code to work regardless of which future backend the
-end-user choose, it is critical that the backend fully complies with the
-<a href="https://future.futureverse.org/articles/future-6-future-api-backend-specification.html" class="external-link">Future
+end-user chooses, it is critical that the backend fully complies with
+the <a href="https://future.futureverse.org/articles/future-6-future-api-backend-specification.html" class="external-link">Future
 API Backend Specification</a>. A future backend with a 100% compliance
 rate guarantees that the code will work equally well there as in
 sequential mode.</p>
@@ -152,9 +152,9 @@ the Future API.</p>
 </h2>
 <p>All future backends implementing the Future API should validate that
 they conform to the Future API. This can be done using the <strong><a href="https://future.tests.futureverse.org">future.tests</a></strong>
-package, which provides two API for running the tests. The tests can be
+package, which provides two APIs for running the tests. The tests can be
 performed either from within R or from outside of R from the command
-line making it easy to include them package tests and in Continuous
+line making it easy to include them in package tests and in Continuous
 Integration (CI) pipelines.</p>
 <div class="section level3">
 <h3 id="from-within-r">From Within R<a class="anchor" aria-label="anchor" href="#from-within-r"></a>
