@@ -4,7 +4,7 @@
 #'
 #' @param test A Test.
 #'
-#' @return (invisibly) the internal list of Test:s.
+#' @return (invisibly) the internal list of Tests.
 #'
 #' @export
 #' @keywords internal
@@ -56,7 +56,7 @@ register_test <- function(test) {
 #' 
 #' @param path A character string specifying a test script folder or file.
 #'
-#' @param recursive If TRUE, test-definition scripts are search recursively.
+#' @param recursive If TRUE, test-definition scripts are searched recursively.
 #'
 #' @param pattern Regular expression matching filenames to include.
 #'

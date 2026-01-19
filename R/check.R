@@ -5,7 +5,7 @@
 #' @param plan (character vector) One or more future strategy plans to be
 #' validated.
 #'
-#' @param tags (character vector; optional) Filter test by tags. If NULL, all
+#' @param tags (character vector; optional) Filter tests by tags. If NULL, all
 #' tests are performed.
 #'
 #' @param timeout (numeric; optional) Maximum time (in seconds) each test may
@@ -21,7 +21,7 @@
 #'
 #' @param exit_value (logical) If TRUE, and in a non-interactive session,
 #' then use [base::quit()] to quit \R with an exit code of 0 (zero) if all
-#' tests passed with all OKs and otherwise 1 (one) if one or more test failed.
+#' tests passed with all OKs and otherwise 1 (one) if one or more tests failed.
 #'
 #' @param .args (character vector; optional) Command-line arguments.
 #'
@@ -182,7 +182,7 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
   has_errors <- lapply(test_results, FUN = function(results) {
     ## For each test, check if it produced an error
     lapply(results, FUN = function(sub_results) {
-      ## For each tessub t, check if it produced an error
+      ## For each test, check if it produced an error
       lapply(sub_results, FUN = function(res) inherits(res$error, "error"))
     })
   })

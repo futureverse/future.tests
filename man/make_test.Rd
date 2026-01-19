@@ -16,7 +16,7 @@ make_test(
 }
 \arguments{
 \item{expr, substitute}{The expression to be tested and
-whether it is passes as an expression already or not.}
+whether it is passed as an expression already or not.}
 
 \item{title}{(character) The title of the test.}
 

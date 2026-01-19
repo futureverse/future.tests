@@ -21,7 +21,7 @@ check(
 \item{plan}{(character vector) One or more future strategy plans to be
 validated.}
 
-\item{tags}{(character vector; optional) Filter test by tags. If NULL, all
+\item{tags}{(character vector; optional) Filter tests by tags. If NULL, all
 tests are performed.}
 
 \item{timeout}{(numeric; optional) Maximum time (in seconds) each test may
@@ -41,7 +41,7 @@ after the tests complete.}
 
 \item{exit_value}{(logical) If TRUE, and in a non-interactive session,
 then use \code{\link[base:quit]{base::quit()}} to quit \R with an exit code of 0 (zero) if all
-tests passed with all OKs and otherwise 1 (one) if one or more test failed.}
+tests passed with all OKs and otherwise 1 (one) if one or more tests failed.}
 
 \item{.args}{(character vector; optional) Command-line arguments.}
 }

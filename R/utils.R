@@ -116,8 +116,7 @@ parseCmdArgs <- function(cmdargs = getOption("future.tests.cmdargs", commandArgs
       msg <- sprintf("future: Ignoring invalid number of processes specified in command-line option: %s", cmdarg)
       warning(msg, call. = FALSE, immediate. = TRUE)
     } else if (value > max) {
-      msg <- sprintf("future: Ignoring requested number of processes, because it is greater than the number of cores/child processes avai
-lable (= %d) to this R process: %s", max, cmdarg)
+      msg <- sprintf("future: Ignoring requested number of processes, because it is greater than the number of cores/child processes available (= %d) to this R process: %s", max, cmdarg)
       warning(msg, call. = FALSE, immediate. = TRUE)
     } else {
       args$cores <- value

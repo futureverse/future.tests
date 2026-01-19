@@ -4,9 +4,9 @@
 
  * Add logical R option `future.tests.devel`, which can be set by
    environment variable `R_FUTURE_TESTS_DEVEL`. This controls whether
-   tests with a `"devel"` ("under developement") tag will be included.
+   tests with a `"devel"` ("under development") tag will be included.
 
- * check()` reports on **future** version.
+ * `check()` reports on **future** version.
 
 ## Test Updates
 
@@ -87,14 +87,14 @@
    `future.tests::skip_test()` from within the test.  Skipped tests
    are counted and reported in the summary.
    
- * Now `check_plan()` outputs the reason for a test is being skipped.
+ * Now `check_plan()` outputs the reason for a test being skipped.
 
  * Now `check_plan()` outputs also the error message, error class, the
-   call, and any standard output, whenever there's is a test error.
+   call, and any standard output, whenever there is a test error.
 
  * Now `check_plan()` outputs also the test iteration index.
 
- * Add `Rscript -e future.tests::check --version`.
+ * Added `Rscript -e future.tests::check --version`.
 
 ## Bug Fixes
 
@@ -172,7 +172,7 @@
    options, environment variables, the RNG kind, and the random seed
    afterward to what it was before being called.
 
- * Added a package vignettes.
+ * Added package vignettes.
  
 ## Bug Fixes
 

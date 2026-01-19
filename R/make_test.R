@@ -1,7 +1,7 @@
 #' Make a Test
 #'
 #' @param expr,substitute The expression to be tested and
-#' whether it is passes as an expression already or not.
+#' whether it is passed as an expression already or not.
 #'
 #' @param title (character) The title of the test.
 #'
@@ -10,7 +10,7 @@
 #' @param args (optional) Named arguments.
 #'
 #' @param reset_workers (optional) Specifies whether background workers should
-#  be reset or not.  Background workers are reset but resolving all active
+#  be reset or not.  Background workers are reset by resolving all active
 #' futures.
 #'
 #' @param register If TRUE, the test is registered in the test database,

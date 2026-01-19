@@ -15,7 +15,7 @@ load_tests(
 \arguments{
 \item{path}{A character string specifying a test script folder or file.}
 
-\item{recursive}{If TRUE, test-definition scripts are search recursively.}
+\item{recursive}{If TRUE, test-definition scripts are searched recursively.}
 
 \item{pattern}{Regular expression matching filenames to include.}
 

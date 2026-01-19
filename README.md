@@ -10,11 +10,11 @@
 
 # future.tests: Test Suite for 'Future API' Backends 
 
-The **[future]** package defines the Future API which consists of a small number of functions for writing [R] code that can be evaluated either sequential or in parallel based a single setting without having to change anything in the code.  Parallelization can be done via one of many backends, e.g. via built-in multicore, multisession and cluster backends (based on the **parallel** package) or via third-party backends such as **[future.batchtools]**, **[future.callr]** and **[future.mirai]**. The design motto of the Future API is:
+The **[future]** package defines the Future API which consists of a small number of functions for writing [R] code that can be evaluated either sequentially or in parallel based on a single setting without having to change anything in the code.  Parallelization can be done via one of many backends, e.g. via built-in multicore, multisession and cluster backends (based on the **parallel** package) or via third-party backends such as **[future.batchtools]**, **[future.callr]** and **[future.mirai]**. The design motto of the Future API is:
 
 > Write once, run anywhere
 
-In order for such code to work regardless of which future backend the end-user choose, it is critical that the backend fully complies with the [Future API Backend Specification].  A future backend with a 100% compliance rate guarantees that the code will work equally well there as in sequential mode.
+In order for such code to work regardless of which future backend the end-user chooses, it is critical that the backend fully complies with the [Future API Backend Specification].  A future backend with a 100% compliance rate guarantees that the code will work equally well there as in sequential mode.
 
 This R package - **[future.tests]** - provides a test suite for validation that a future backend complies with the Future API.
 
@@ -23,7 +23,7 @@ This R package - **[future.tests]** - provides a test suite for validation that 
 
 ## Validate a Future Backend
 
-All future backends implementing the Future API should validate that they conform to the Future API.  This can be done using the **[future.tests]** package, which provides two API for running the tests.  The tests can be performed either from within R or from outside of R from the command line making it easy to include them package tests and in Continuous Integration (CI) pipelines.
+All future backends implementing the Future API should validate that they conform to the Future API.  This can be done using the **[future.tests]** package, which provides two APIs for running the tests.  The tests can be performed either from within R or from outside of R from the command line making it easy to include them in package tests and in Continuous Integration (CI) pipelines.
 
 ### From Within R
 
