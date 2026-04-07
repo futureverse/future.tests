@@ -83,6 +83,7 @@ argument `tags=c("lazy", "rng")`.
 Here are some examples on how to call this function from the command
 line:
 
+
     Rscript -e future.tests::check --args --test-plan=sequential
     Rscript -e future.tests::check --args --test-plan=multicore,workers=2
     Rscript -e future.tests::check --args --test-plan=sequential --test-plan=multicore,workers=2

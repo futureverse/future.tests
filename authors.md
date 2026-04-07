@@ -4,9 +4,8 @@
 
 - **Henrik Bengtsson**. Author, maintainer, copyright holder.
 
-- **The R Consortium**. Funder.  
-  Project was awarded an Infrastructure Steering Committee (ISC) grant
-  in 2017
+- **R Consortium**. Funder.
+  [![ROR](https://raw.githubusercontent.com/ror-community/ror-logos/main/ror-icon-rgb.svg)](https://ror.org/01z833950)
 
 ## Citation
 

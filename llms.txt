@@ -61,6 +61,7 @@ R package future.tests is available on
 installed in R as:
 
 ``` r
+
 install.packages("future.tests")
 ```
 
@@ -70,6 +71,7 @@ To install the pre-release version that is available in Git branch
 `develop` on GitHub, use:
 
 ``` r
+
 remotes::install_github("futureverse/future.tests", ref="develop")
 ```
 
