@@ -15,7 +15,7 @@ skip_test(..., domain = NULL)
     not be translated, see also the note in \code{\link[base]{stop}}.}
 }
 \value{
-(invisible) A \link[base:conditions]{base::condition} of class \code{TestSkipped}.
+(invisible) A \link[base:condition]{base::condition} of class \code{TestSkipped}.
 }
 \description{
 Signals a \code{TestSkipped} condition.
