@@ -3,6 +3,7 @@
 ## Authors
 
 - **Henrik Bengtsson**. Author, maintainer, copyright holder.
+  [](https://orcid.org/0000-0002-7579-5165)
 
 - **R Consortium**. Funder.
   [![ROR](https://raw.githubusercontent.com/ror-community/ror-logos/main/ror-icon-rgb.svg)](https://ror.org/01z833950)
