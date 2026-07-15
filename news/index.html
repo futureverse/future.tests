@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">future.tests</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.9.0-9017</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -73,21 +73,25 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="version-development-version">Version (development version)<a class="anchor" aria-label="anchor" href="#version-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.0.0" id="version-100">Version 1.0.0<a class="anchor" aria-label="anchor" href="#version-100"></a></h2>
 <div class="section level3">
-<h3 id="new-features-development-version">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
+<h3 id="significant-changes-1-0-0">Significant Changes<a class="anchor" aria-label="anchor" href="#significant-changes-1-0-0"></a></h3>
+<ul><li>Changed the package license to permissive Apache License (&gt;= 2).</li>
+</ul></div>
+<div class="section level3">
+<h3 id="new-features-1-0-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-0-0"></a></h3>
 <ul><li><p>Add logical R option <code>future.tests.devel</code>, which can be set by environment variable <code>R_FUTURE_TESTS_DEVEL</code>. This controls whether tests with a <code>"devel"</code> (“under development”) tag will be included.</p></li>
 <li><p><code><a href="../reference/check.html">check()</a></code> reports on <strong>future</strong> version.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="test-updates-development-version">Test Updates<a class="anchor" aria-label="anchor" href="#test-updates-development-version"></a></h3>
+<h3 id="test-updates-1-0-0">Test Updates<a class="anchor" aria-label="anchor" href="#test-updates-1-0-0"></a></h3>
 <ul><li><p>Add tests for <code>cancel()</code>.</p></li>
 <li><p>Assert that <code>plan()</code> accepts argument <code>interrupts</code>.</p></li>
 <li><p>Remove tests on <code>future(..., earlySignal = FALSE/TRUE)</code>, because that is about to be deprecated in the <strong>future</strong> package.</p></li>
 <li><p>Relax assertions in test of <code>resolved()</code> with lazy futures.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="bug-fixes-development-version">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<h3 id="bug-fixes-1-0-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-1-0-0"></a></h3>
 <ul><li>Tests on <code>plan()</code> adjusting argument <code>workers</code> were not skipped if the plan tested already sets argument <code>workers</code> to a fixed value, e.g. <code>plan(cluster, workers = cl)</code>.</li>
 </ul></div>
 </div>
@@ -221,7 +225,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9007.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1</p> and <a href="https://github.com/HenrikBengtsson/pkgdown.extras/">pkgdown.extras</a> 0.0.0.9008.</p>
 </div>
 
     </footer></div>
