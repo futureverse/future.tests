@@ -11,7 +11,7 @@
 %\VignetteEngine{future.tests::selfonly}
 -->
 
-We can use continuous integration (CI) services such as GitHub Action and Travis CI to automatically validate **[future]** backends via the **[future.tests]** test suite.
+We can use continuous integration (CI) services such as GitHub Actions and Travis CI to automatically validate **[future]** backends via the **[future.tests]** test suite.
 
 Here's an example `.travis.yaml` file that configures Travis CI to check the `multisession` and the `future.callr::callr` backends via the **future.tests** test suite.
 

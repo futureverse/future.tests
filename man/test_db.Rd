@@ -12,7 +12,7 @@ test_db(action = c("list", "append", "reset"), test = NULL)
 \item{test}{A Test.}
 }
 \value{
-(invisibly) the internal list of Test:s.
+(invisibly) the internal list of Tests.
 }
 \description{
 Manage the Test Database

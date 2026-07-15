@@ -1,5 +1,4 @@
 library(future.tests)
-library(future)
 
 tests <- load_tests()
 message("Number of tests: ", length(tests))

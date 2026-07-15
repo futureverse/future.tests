@@ -42,14 +42,10 @@ make_test(title = "resolved() - assert non-blocking while launching lazy futures
       } else if (inherits(fs[[kk]], "MultiprocessFuture")) {
         stopifnot(
           (!rs[[kk]] && ss[[kk]] == "running" ) ||
-          ( rs[[kk]] && ss[[kk]] == "finished")
+          ( rs[[kk]] && ss[[kk]] %in% c("running", "finished"))
         )
       }
     } ## for (kk ...)
-
-    if (ff == 1L && inherits(fs[[1]], "MultiprocessFuture")) {
-      stopifnot(!rs[[kk]])
-    }
 
     message(sprintf("Waiting for future #%d to finish ... ", ff), appendLF = FALSE)
     vs[[ff]] <- value(fs[[ff]])

@@ -1,7 +1,7 @@
 #' Make a Test
 #'
 #' @param expr,substitute The expression to be tested and
-#' whether it is passes as an expression already or not.
+#' whether it is passed as an expression already or not.
 #'
 #' @param title (character) The title of the test.
 #'
@@ -10,16 +10,17 @@
 #' @param args (optional) Named arguments.
 #'
 #' @param reset_workers (optional) Specifies whether background workers should
-#  be reset or not.  Background workers are reset but resolving all active
+#  be reset or not.  Background workers are reset by resolving all active
 #' futures.
 #'
 #' @param register If TRUE, the test is registered in the test database,
-#' otherwise not.
+#' otherwise not. The default is to register the test, unless `tags` contains
+#' `"devel"`.
 #'
 #' @return (invisibly) A Test.
 #'
 #' @export
-make_test <- function(expr, title = NA_character_, args = list(), tags = NULL, substitute = TRUE, reset_workers = FALSE, register = TRUE) {
+make_test <- function(expr, title = NA_character_, args = list(), tags = NULL, substitute = TRUE, reset_workers = FALSE, register = !("devel" %in% tags) || isTRUE(getOption("future.tests.devel"))) {
   title <- as.character(title)
   stopifnot(length(title) == 1L, nzchar(title))
   if (length(args) > 0) stopifnot(is.list(args), !is.null(names(args)))

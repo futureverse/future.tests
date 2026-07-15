@@ -1,3 +1,35 @@
+# Version 1.0.0
+
+## Significant Changes
+
+ * Changed the package license to permissive Apache License (>= 2).
+
+## New Features
+
+ * Add logical R option `future.tests.devel`, which can be set by
+   environment variable `R_FUTURE_TESTS_DEVEL`. This controls whether
+   tests with a `"devel"` ("under development") tag will be included.
+
+ * `check()` reports on **future** version.
+
+## Test Updates
+
+ * Add tests for `cancel()`.
+
+ * Assert that `plan()` accepts argument `interrupts`.
+
+ * Remove tests on `future(..., earlySignal = FALSE/TRUE)`, because
+   that is about to be deprecated in the **future** package.
+
+ * Relax assertions in test of `resolved()` with lazy futures.
+
+## Bug Fixes
+
+ * Tests on `plan()` adjusting argument `workers` were not skipped if
+   the plan tested already sets argument `workers` to a fixed value,
+   e.g. `plan(cluster, workers = cl)`.
+ 
+
 # Version 0.9.0 [2025-04-14]
 
 ## New Features
@@ -59,14 +91,14 @@
    `future.tests::skip_test()` from within the test.  Skipped tests
    are counted and reported in the summary.
    
- * Now `check_plan()` outputs the reason for a test is being skipped.
+ * Now `check_plan()` outputs the reason for a test being skipped.
 
  * Now `check_plan()` outputs also the error message, error class, the
-   call, and any standard output, whenever there's is a test error.
+   call, and any standard output, whenever there is a test error.
 
  * Now `check_plan()` outputs also the test iteration index.
 
- * Add `Rscript -e future.tests::check --version`.
+ * Added `Rscript -e future.tests::check --version`.
 
 ## Bug Fixes
 
@@ -144,7 +176,7 @@
    options, environment variables, the RNG kind, and the random seed
    afterward to what it was before being called.
 
- * Added a package vignettes.
+ * Added package vignettes.
  
 ## Bug Fixes
 

@@ -1,8 +1,8 @@
-future.batchtools,batchtools_bash	1m 48.4s	[32m97 ok [32m✔[32m[39m	[34m3 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
-future.batchtools,batchtools_local	1m 49s	[32m97 ok [32m✔[32m[39m	[34m3 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
-future.callr,callr	46.4s	[32m100 ok [32m✔[32m[39m	[34m0 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
-future,cluster	36.3s	[32m100 ok [32m✔[32m[39m	[34m0 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
-future.mirai,mirai_multisession	23.1s	[32m100 ok [32m✔[32m[39m	[34m0 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
-future,multicore	12.9s	[32m100 ok [32m✔[32m[39m	[34m0 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
-future,multisession	34.6s	[32m100 ok [32m✔[32m[39m	[34m0 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
-future,sequential	9.3s	[32m97 ok [32m✔[32m[39m	[34m3 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
+future.batchtools,batchtools_bash	3m 4.7s	[32m86 ok [32m✔[32m[39m	[34m3 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
+future.batchtools,batchtools_local	2m 37.3s	[32m86 ok [32m✔[32m[39m	[34m3 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
+future.callr,callr	2m 10.3s	[32m89 ok [32m✔[32m[39m	[34m0 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
+future,cluster	24.6s	[32m89 ok [32m✔[32m[39m	[34m0 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
+future.mirai,mirai_multisession	46.2s	[32m89 ok [32m✔[32m[39m	[34m0 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
+future,multicore	13.6s	[32m89 ok [32m✔[32m[39m	[34m0 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
+future,multisession	23.4s	[32m89 ok [32m✔[32m[39m	[34m0 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
+future,sequential	10s	[32m86 ok [32m✔[32m[39m	[34m3 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m

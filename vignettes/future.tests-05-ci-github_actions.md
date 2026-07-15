@@ -11,9 +11,9 @@
 %\VignetteEngine{future.tests::selfonly}
 -->
 
-We can use continuous integration (CI) services such as GitHub Action and Travis CI to automatically validate **[future]** backends via the **[future.tests]** test suite.
+We can use continuous integration (CI) services such as GitHub Actions and Travis CI to automatically validate **[future]** backends via the **[future.tests]** test suite.
 
-Here is an example of a `.github/workflow/future.tests.yaml` file that configures GitHub Actions to check several backends via the **future.tests** test suite.
+Here is an example of a `.github/workflows/future.tests.yaml` file that configures GitHub Actions to check several backends via the **future.tests** test suite.
 
 ```yaml
 on: [push, pull_request]
@@ -87,8 +87,10 @@ jobs:
       - name: Install 'future.tests' and any backend R packages
         run: |
           remotes::install_cran("future.tests")
-          remotes::install_github("HenrikBengtsson/future.tests", ref="develop")
-          if (grepl("::", plan <- "${{ matrix.future.plan }}") && nzchar(pkg <- sub("::.*", "", plan))) install.packages(pkg)
+          ## Identify and install future backend package in 'plan' variable, if any
+          plan <- "${{ matrix.future.plan }}"
+          pattern <- ".*(future[.][[:alnum:]]+)::[[:alnum:]]+.*"
+          if (grepl(pattern, plan) && nzchar(pkg <- sub(pattern, "\\1", plan))) install.packages(pkg)
         shell: Rscript {0}
 
       - name: Session info

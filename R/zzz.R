@@ -12,6 +12,15 @@
     options(future.tests.undo = value)
   }
 
+  value <- getOption("future.tests.devel")
+  if (is.null(value)) {
+    value <- Sys.getenv("R_FUTURE_TESTS_DEVEL", NA_character_)
+    if (!is.na(value)) {
+      value <- isTRUE(as.logical(value))
+      options(future.tests.devel = value)
+    }
+  }
+
   args <- parseCmdArgs()
   cores <- args$cores
   if (is.null(cores)) {

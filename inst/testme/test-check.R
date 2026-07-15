@@ -1,3 +1,7 @@
+#' @tags check
+#' @tags detritus-files
+#' @tags detritus-connections
+
 check <- future.tests::check
 
 message("*** check() ...")
