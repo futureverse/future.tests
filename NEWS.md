@@ -1,5 +1,9 @@
 # Version (development version)
 
+## Significant Changes
+
+ * Changed the package license to permissive Apache License (>= 2).
+
 ## New Features
 
  * Add logical R option `future.tests.devel`, which can be set by

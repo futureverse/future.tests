@@ -1,6 +1,6 @@
 Package: future.tests
 Title: Test Suite for 'Future API' Backends
-Version: 0.9.0-9017
+Version: 0.9.0-9100
 Authors@R: c(
     person("Henrik", "Bengtsson", role = c("aut", "cre", "cph"), email = "henrikb@braju.com",
            comment = c(ORCID = "0000-0002-7579-5165")),
@@ -21,7 +21,7 @@ Suggests:
     data.table,
     ff
 VignetteBuilder: future.tests
-License: LGPL (>= 2.1)
+License: Apache License (>= 2)
 Encoding: UTF-8
 URL: https://future.tests.futureverse.org, https://github.com/futureverse/future.tests
 BugReports: https://github.com/futureverse/future.tests/issues
