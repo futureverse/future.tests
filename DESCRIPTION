@@ -1,6 +1,6 @@
 Package: future.tests
 Title: Test Suite for 'Future API' Backends
-Version: 1.0.0-9000
+Version: 1.0.0-9001
 Authors@R: c(
     person("Henrik", "Bengtsson", role = c("aut", "cre", "cph"), email = "henrikb@braju.com",
            comment = c(ORCID = "0000-0002-7579-5165")),
@@ -12,11 +12,11 @@ Imports:
     cli,
     crayon,
     prettyunits,
-    sessioninfo
+    sessioninfo,
+    utils
 Suggests:
     commonmark,
     base64enc,
-    utils,
     tools,
     data.table,
     ff

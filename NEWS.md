@@ -1,6 +1,9 @@
 # Version (development version)
 
- * ...
+## Miscellaneous
+
+ * Package **utils** is now declared as an imported package instead of
+   just a suggested package.
 
 
 # Version 1.0.0
