@@ -21,25 +21,37 @@ export(skip_test)
 export(subset_tests)
 export(test_db)
 export(test_plans)
-importFrom(cli,get_spinner)
-importFrom(cli,rule)
-importFrom(cli,symbol)
-importFrom(crayon,blue)
-importFrom(crayon,cyan)
-importFrom(crayon,green)
-importFrom(crayon,red)
-importFrom(crayon,silver)
-importFrom(crayon,yellow)
-importFrom(future,availableCores)
-importFrom(future,plan)
-importFrom(future,resetWorkers)
-importFrom(future,sequential)
-importFrom(grDevices,dev.list)
-importFrom(grDevices,dev.off)
-importFrom(prettyunits,pretty_dt)
-importFrom(prettyunits,pretty_sec)
+importFrom(cli,
+  get_spinner,
+  rule,
+  symbol
+)
+importFrom(crayon,
+  blue,
+  cyan,
+  green,
+  red,
+  silver,
+  yellow
+)
+importFrom(future,
+  availableCores,
+  plan,
+  resetWorkers,
+  sequential
+)
+importFrom(grDevices,
+  dev.list,
+  dev.off
+)
+importFrom(prettyunits,
+  pretty_dt,
+  pretty_sec
+)
 importFrom(sessioninfo,session_info)
-importFrom(utils,capture.output)
-importFrom(utils,file_test)
-importFrom(utils,packageVersion)
-importFrom(utils,str)
+importFrom(utils,
+  capture.output,
+  file_test,
+  packageVersion,
+  str
+)
