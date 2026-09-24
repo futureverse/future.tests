@@ -1,6 +1,15 @@
 # Changelog
 
+## Version (development version)
+
+### Miscellaneous
+
+- Package **utils** is now declared as an imported package instead of
+  just a suggested package.
+
 ## Version 1.0.0
+
+CRAN release: 2026-07-15
 
 ### Significant Changes
 
@@ -77,7 +86,7 @@ CRAN release: 2023-05-22
 - Test asserting that the `workers` argument can be a function would not
   work if the backend’s default value was non-numeric, e.g. the
   `cluster` backend defaults to the character vector
-  [`parallelly::availableWorkers()`](https://parallelly.futureverse.org/reference/availableWorkers.html).
+  `parallelly::availableWorkers()`.
 
 - Test asserting that lazy futures would be automatically launched and
   resolved relied on a legacy version of the Future API, where calling
