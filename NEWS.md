@@ -50,6 +50,12 @@
    `makeClusterFuture()` passing language objects as-is and supporting
    `clusterEvalQ()` that only attaches packages.
 
+ * Add tests for (i) `future(..., packages = "missing-package")`
+   signaling an error, (ii) `value(<listenv>, idxs)`, (iii)
+   `value(<list>, reduce = structure("+", init = 42))`, (iv) `result()`
+   on a canceled and interrupted future, and (v) errors from a
+   `makeClusterFuture()` cluster being signaled as by other clusters.
+
 ## Bug Fixes
 
  * `check()` produced garbled output with interleaved spinner frames
