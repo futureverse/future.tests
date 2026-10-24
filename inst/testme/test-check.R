@@ -55,4 +55,10 @@ res <- tryCatch(
 expr <- future.tests::test_plans()[[1]][[1]]
 stopifnot(is.call(expr), identical(expr[[1]], quote(plan)))
 
+## A plan specified as a statement(s) calling plan() is used as-is
+utils::capture.output({
+  results <- check(plan = "invisible(1); plan(sequential)", tags = "resolve", exit_value = FALSE)
+})
+stopifnot(length(results) == 1L)
+
 message("*** check() ... DONE")

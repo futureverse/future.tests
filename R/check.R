@@ -109,10 +109,11 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
   if (is.character(plan) && length(plan) >= 1L) {
     plan <- unique(plan)
     for (value in plan) {
-      if (!grepl("^plan\\(.*\\)$", value)) {
-        value <- sprintf("plan(%s)", value)
+      ## Use as-is if it is R code that calls plan(), otherwise wrap it
+      expr <- tryCatch(parse(text = value), error = function(e) NULL)
+      if (!"plan" %in% all.names(expr)) {
+        expr <- parse(text = sprintf("plan(%s)", value))
       }
-      expr <- parse(text = value)
       add_test_plan(expr, substitute = FALSE)
     }
   }
