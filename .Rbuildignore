@@ -15,3 +15,4 @@
 ^backend_results/
 ^screencast.json$
 
+^CITATION\.cff$
