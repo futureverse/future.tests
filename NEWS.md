@@ -17,6 +17,15 @@
    **future** package that does not yet include the corresponding bug
    fix.
 
+## Bug Fixes
+
+ * `check()` produced garbled output with interleaved spinner frames
+   and test titles when standard output or standard error was not a
+   terminal, e.g. when the output was piped or written to a log
+   file. The in-place progress is now only shown when both are
+   terminals, which can be overridden by option
+   `future.tests.progress`.
+
 ## Miscellaneous
 
  * Package **utils** is now declared as an imported package instead of
