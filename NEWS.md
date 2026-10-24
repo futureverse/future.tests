@@ -2,6 +2,8 @@
 
 ## Bug Fixes
 
+ * `make_test()` accepted a missing title (`NA`).
+
  * `check(timeout = <seconds>)` no longer leaves option
    `future.tests.timeout` set after returning.
 

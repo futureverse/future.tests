@@ -69,3 +69,11 @@ res <- along_test_plans({
 print(res)
 
 message("Run a few tests across different future plans ... DONE")
+
+
+message("make_test() requires a title ...")
+res <- tryCatch(make_test(1, register = FALSE), error = identity)
+stopifnot(inherits(res, "error"))
+res <- tryCatch(make_test(1, title = "", register = FALSE), error = identity)
+stopifnot(inherits(res, "error"))
+message("make_test() requires a title ... DONE")

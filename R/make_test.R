@@ -22,7 +22,7 @@
 #' @export
 make_test <- function(expr, title = NA_character_, args = list(), tags = NULL, substitute = TRUE, reset_workers = FALSE, register = !("devel" %in% tags) || isTRUE(getOption("future.tests.devel"))) {
   title <- as.character(title)
-  stopifnot(length(title) == 1L, nzchar(title))
+  stopifnot(length(title) == 1L, !is.na(title), nzchar(title))
   if (length(args) > 0) stopifnot(is.list(args), !is.null(names(args)))
   if (length(tags) > 0) stopifnot(is.character(tags))
   if (substitute) expr <- substitute(expr)
