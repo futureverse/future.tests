@@ -27,11 +27,18 @@ make_test(title = "value(<list>) - arguments 'stdout' and 'signal'", args = list
   }
 
   ## stdout = FALSE: Standard output is not relayed
-  f <- future({ cat("hello\n"); 42 })
-  out <- utils::capture.output({
-    v <- value(list(f), stdout = FALSE, inorder = inorder)
-  })
-  stopifnot(identical(v, list(42)), length(out) == 0L)
+  ## (for inorder = TRUE, this failed with "Cannot resignal future
+  ## conditions" for some backends, e.g. multicore; fixed in future
+  ## 1.80.0-9016)
+  if (inorder && packageVersion("future") < "1.80.0-9016") {
+    ## Skip this part
+  } else {
+    f <- future({ cat("hello\n"); 42 })
+    out <- utils::capture.output({
+      v <- value(list(f), stdout = FALSE, inorder = inorder)
+    })
+    stopifnot(identical(v, list(42)), length(out) == 0L)
+  }
 
   ## stdout = TRUE: Standard output is relayed
   f <- future({ cat("hello\n"); 42 })
