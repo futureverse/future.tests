@@ -47,4 +47,12 @@ stopifnot(
   grepl("RAN", results[[1]][[1]]$output, fixed = TRUE)
 )
 
+## A plan whose name contains 'plan' is still wrapped in plan()
+res <- tryCatch(
+  utils::capture.output(check(plan = "planned::foo", exit_value = FALSE)),
+  error = identity
+)
+expr <- future.tests::test_plans()[[1]][[1]]
+stopifnot(is.call(expr), identical(expr[[1]], quote(plan)))
+
 message("*** check() ... DONE")

@@ -2,6 +2,9 @@
 
 ## Bug Fixes
 
+ * `check()` failed to set the future plan when the specified plan
+   contained the word "plan", e.g. `--test-plan=planned::foo`.
+
  * `subset_tests(args, defaults)` ignored the arguments of the tests.
 
  * `along_test_plans()` dropped errors and `NULL` results. Errors are
