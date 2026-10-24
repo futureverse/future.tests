@@ -55,8 +55,8 @@ Run All or a Subset of the Tests Across Future Plans
 
 This function can be called from the shell. To specify an argument, use the
 format \verb{--test-<arg_name>=<value>}.  For example, \code{--test-timeout=600} will
-set argument \code{timeout=600}, and \verb{--tags=lazy,rng}, or equivalently,
-\code{--tags=lazy --tags=rng} will set argument \code{tags=c("lazy", "rng")}.
+set argument \code{timeout=600}, and \verb{--test-tags=lazy,rng}, or equivalently,
+\code{--test-tags=lazy --test-tags=rng} will set argument \code{tags=c("lazy", "rng")}.
 
 Here are some examples on how to call this function from the command line:
 \preformatted{

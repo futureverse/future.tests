@@ -30,8 +30,8 @@
 #' @section Command-line interface (CLI):
 #' This function can be called from the shell. To specify an argument, use the
 #' format `--test-<arg_name>=<value>`.  For example, `--test-timeout=600` will
-#' set argument `timeout=600`, and `--tags=lazy,rng`, or equivalently,
-#' `--tags=lazy --tags=rng` will set argument `tags=c("lazy", "rng")`.
+#' set argument `timeout=600`, and `--test-tags=lazy,rng`, or equivalently,
+#' `--test-tags=lazy --test-tags=rng` will set argument `tags=c("lazy", "rng")`.
 #'
 #' Here are some examples on how to call this function from the command line:
 #' \preformatted{
@@ -164,7 +164,10 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
   if (!is.null(tags)) tests <- subset_tests(tests, tags = tags)
 
   ## Set 'timeout'?
-  if (is.numeric(timeout)) options(future.tests.timeout = timeout)
+  if (is.numeric(timeout)) {
+    old_opts <- options(future.tests.timeout = timeout)
+    on.exit(options(old_opts), add = TRUE)
+  }
 
   test_results <- list()
   for (pp in seq_along(test_plans)) {

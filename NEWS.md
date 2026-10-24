@@ -2,6 +2,9 @@
 
 ## Bug Fixes
 
+ * `check(timeout = <seconds>)` no longer leaves option
+   `future.tests.timeout` set after returning.
+
  * `check()` ignored command-line options `--session-info` and
    `--debug`.
 

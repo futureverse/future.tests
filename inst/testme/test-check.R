@@ -27,4 +27,12 @@ stopifnot(
   any(grepl("Total number of errors:", out, fixed = TRUE))
 )
 
+## Option 'future.tests.timeout' is not left modified
+old <- options(future.tests.timeout = NULL)
+utils::capture.output({
+  results <- check(plan = "sequential", tags = "resolve", timeout = 60, exit_value = FALSE)
+})
+stopifnot(is.null(getOption("future.tests.timeout")))
+options(old)
+
 message("*** check() ... DONE")
