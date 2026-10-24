@@ -1,5 +1,22 @@
 # Version (development version)
 
+## Test Updates
+
+ * Add tests for `value()` on lists of futures asserting that (i)
+   argument `init` of `reduce`, and arguments `stdout` and `signal`,
+   are respected also with `inorder = FALSE`, (ii) an error cancels
+   and resolves the remaining futures, without launching lazy ones,
+   (iii) a future that returns an error object is not mistaken for a
+   failed future, and (iv) standard output and messages of all
+   futures are relayed in order also with `drop = TRUE`.
+
+ * Add test asserting that `futureCall()` passes language objects, e.g.
+   symbols and calls, in argument `args` as-is to `FUN`.
+
+ * The above tests are skipped when testing against a version of the
+   **future** package that does not yet include the corresponding bug
+   fix.
+
 ## Miscellaneous
 
  * Package **utils** is now declared as an imported package instead of
