@@ -25,6 +25,9 @@ along_test_plans(
 }
 \value{
 A list of results, one for each future plan tested against.
+If evaluating \code{expr} under a plan produces an error, then the
+corresponding element is the error \link[base:condition]{base::condition}, and evaluation
+continues with the next plan.
 }
 \description{
 Evaluate an Expression Across A Set of Future Plans

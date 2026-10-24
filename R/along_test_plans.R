@@ -11,6 +11,9 @@
 #' @param plans A list of future plans.
 #'
 #' @return A list of results, one for each future plan tested against.
+#' If evaluating `expr` under a plan produces an error, then the
+#' corresponding element is the error [base::condition], and evaluation
+#' continues with the next plan.
 #' 
 #' @importFrom future plan sequential
 #' @export
@@ -39,7 +42,8 @@ along_test_plans <- function(expr, substitute = TRUE, envir = parent.frame(), lo
 
     res_pp <- evaluate_expr(expr, envir = envir, local = local)
     
-    res[[pp]] <- res_pp$value
+    ## Preserve errors and NULL values, without dropping the element
+    res[pp] <- list(if (inherits(res_pp$error, "error")) res_pp$error else res_pp$value)
     
     res_pp <- NULL
     mprintf("Evaluating expression under future plan #%d of %d ... DONE", pp, length(plans))

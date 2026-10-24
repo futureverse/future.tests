@@ -2,6 +2,9 @@
 
 ## Bug Fixes
 
+ * `along_test_plans()` dropped errors and `NULL` results. Errors are
+   now returned as the result for the plan, and evaluation continues.
+
  * `check_plan(defaults = list())` silently skipped tests without
    arguments.
 
