@@ -40,6 +40,16 @@
    **future** package that does not yet include the corresponding bug
    fix.
 
+ * Add tests for (i) globals specified as a character vector with
+   attributes `add` and `ignore`, (ii) unused variables not being
+   exported as globals, (iii) a global `...` together with a global
+   `...future.FUN()`, (iv) switching plan while a future is running,
+   (v) repeated `value()` on an interrupted future, (vi) launching
+   many futures without leaving unused connections behind, (vii)
+   immediate conditions not being re-signaled, and (viii)
+   `makeClusterFuture()` passing language objects as-is and supporting
+   `clusterEvalQ()` that only attaches packages.
+
 ## Bug Fixes
 
  * `check()` produced garbled output with interleaved spinner frames
