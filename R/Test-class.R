@@ -73,7 +73,7 @@ as.data.frame.Test <- function(x, ..., expand = TRUE, arg_names = NULL) {
 #' @export
 rbind.Test <- function(...) {
   args <- list(...)
-  df <- lapply(args, FUN = as.data.frame, ..., stringsAsFactors = FALSE)
+  df <- lapply(args, FUN = as.data.frame, stringsAsFactors = FALSE)
   
   ## Intersection of all column names
   names <- unique(unlist(lapply(df, names)))

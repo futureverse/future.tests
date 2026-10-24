@@ -22,6 +22,8 @@ export(subset_tests)
 export(test_db)
 export(test_plans)
 importFrom(cli,
+  ansi_nchar,
+  ansi_substr,
   get_spinner,
   rule,
   symbol

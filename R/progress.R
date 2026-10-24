@@ -12,11 +12,12 @@ preset <- function(...) {
   cat("\r", ..., sep = "", file = stderr())
 }
 
+#' @importFrom cli ansi_nchar ansi_substr
 pcat <- function(..., indent = 2L, max_width = getOption("width")) {
   if (!progress_enabled()) return(invisible())
-  line <- paste0(..., sep = "", collapse = "")
-  if (indent + nchar(line) > max_width) {
-    line <- substring(line, first = 1L, last = max_width - 3L - indent)
+  line <- paste0(..., collapse = "")
+  if (indent + ansi_nchar(line) > max_width) {
+    line <- ansi_substr(line, start = 1L, stop = max_width - 3L - indent)
     line <- paste0(line, "...")
   }
   cat(line, file = stderr())
