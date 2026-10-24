@@ -117,7 +117,7 @@ subset_tests <- function(tests = test_db(), tags = NULL, args = NULL, defaults =
     test_args <- test$args
     if (length(defaults) > 0) {
       args_t <- defaults
-      for (name in names(args)) args_t[name] <- args[name]
+      for (name in names(test$args)) args_t[name] <- test$args[name]
       test_args <- args_t
     }
   

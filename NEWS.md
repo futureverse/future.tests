@@ -2,6 +2,8 @@
 
 ## Bug Fixes
 
+ * `subset_tests(args, defaults)` ignored the arguments of the tests.
+
  * `along_test_plans()` dropped errors and `NULL` results. Errors are
    now returned as the result for the plan, and evaluation continues.
 
