@@ -177,7 +177,7 @@ db_state <- local({
       ## - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
       if ("objects" %in% getOption("future.tests.undo")) local({
 	## If new objects were added, then remove them
-	added <- c(setdiff(ls(envir = state$envir), state$vars))
+	added <- setdiff(ls(envir = state$envir), names(state$vars))
 	if (length(added) > 0) {
 	  if (debug) {
 	    mdebug("Removing newly added variables: %s",
