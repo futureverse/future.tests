@@ -2,6 +2,11 @@
 
 ## Bug Fixes
 
+ * `check_plan(defaults = list())` silently skipped tests without
+   arguments.
+
+ * `run_tests(defaults = NULL)` failed with an error.
+
  * `make_test()` accepted a missing title (`NA`).
 
  * `check(timeout = <seconds>)` no longer leaves option

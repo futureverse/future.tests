@@ -35,4 +35,16 @@ utils::capture.output({
 stopifnot(is.null(getOption("future.tests.timeout")))
 options(old)
 
+## check_plan() runs tests without arguments also when there are no defaults
+out <- utils::capture.output({
+  results <- future.tests::check_plan(
+    list(make_test({ cat("RAN\n") }, title = "no args", register = FALSE)),
+    defaults = list()
+  )
+})
+stopifnot(
+  any(grepl("Number of test steps: 1", out, fixed = TRUE)),
+  grepl("RAN", results[[1]][[1]]$output, fixed = TRUE)
+)
+
 message("*** check() ... DONE")

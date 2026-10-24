@@ -77,3 +77,10 @@ stopifnot(inherits(res, "error"))
 res <- tryCatch(make_test(1, title = "", register = FALSE), error = identity)
 stopifnot(inherits(res, "error"))
 message("make_test() requires a title ... DONE")
+
+
+message("run_tests(defaults = NULL) ...")
+t <- make_test({ 42 }, title = "run_tests() with NULL defaults", register = FALSE)
+res <- run_tests(list(t), defaults = NULL)
+stopifnot(length(res) == 1L, identical(res[[1]]$value, 42))
+message("run_tests(defaults = NULL) ... DONE")
