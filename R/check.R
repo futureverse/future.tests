@@ -98,9 +98,9 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
       tags_kk <- gsub("^--test-tags=", "", arg)
       tags_kk <- unlist(strsplit(tags_kk, split = ",", fixed = TRUE))
       tags <- unique(c(tags, tags_kk))
-    } else if ("^--session-info" == arg) {
+    } else if (grepl("^--session-info$", arg)) {
       session_info <- TRUE
-    } else if ("^--debug" == arg) {
+    } else if (grepl("^--debug$", arg)) {
       debug <- TRUE
     }
   }

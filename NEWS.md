@@ -1,5 +1,10 @@
 # Version (development version)
 
+## Bug Fixes
+
+ * `check()` ignored command-line options `--session-info` and
+   `--debug`.
+
 ## Test Updates
 
  * Add tests for `value()` on lists of futures asserting that (i)

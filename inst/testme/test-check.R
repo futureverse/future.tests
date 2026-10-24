@@ -18,4 +18,13 @@ print(results)
 results <- check(.args = c("--debug", "--test-timeout=30", "--test-tags=resolve,rng", "--test-plan=sequential"))
 print(results)
 
+## Flags --session-info and --debug are respected
+out <- utils::capture.output({
+  results <- check(.args = c("--session-info", "--debug", "--test-tags=resolve", "--test-plan=sequential"), exit_value = FALSE)
+})
+stopifnot(
+  any(grepl("Session info", out, fixed = TRUE)),
+  any(grepl("Total number of errors:", out, fixed = TRUE))
+)
+
 message("*** check() ... DONE")
