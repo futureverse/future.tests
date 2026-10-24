@@ -84,3 +84,15 @@ t <- make_test({ 42 }, title = "run_tests() with NULL defaults", register = FALS
 res <- run_tests(list(t), defaults = NULL)
 stopifnot(length(res) == 1L, identical(res[[1]]$value, 42))
 message("run_tests(defaults = NULL) ... DONE")
+
+
+message("print() of TestResult for unsupported arguments ...")
+t <- make_test({ 42 }, title = "lazy = FALSE only", args = list(lazy = FALSE), register = FALSE)
+res <- run_test(t, args = list(lazy = TRUE))
+out <- utils::capture.output(print(res))
+stopifnot(
+  any(grepl("Not run", out, fixed = TRUE)),
+  any(grepl("Success: NA", out, fixed = TRUE)),
+  !any(grepl("Success: TRUE", out, fixed = TRUE))
+)
+message("print() of TestResult for unsupported arguments ... DONE")
