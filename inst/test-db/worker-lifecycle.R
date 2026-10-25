@@ -51,6 +51,13 @@ make_test(title = "future() - launching many futures leaves no unused connection
 
 
 make_test(title = "resolved() and value() - immediate conditions are not re-signaled", tags = c("future", "conditions", "immediateCondition", "devel"), {
+  if (inherits(f0, "BatchtoolsFuture") && packageVersion("future.batchtools") < "0.30.0-9001") {
+    future.tests::skip_test("Test requires future.batchtools (>= 0.30.0-9001)")
+  }
+
+  f0 <- future(NULL)
+  v <- value(f0)
+  
   cond <- structure(
     class = c("myImmediateCondition", "immediateCondition", "condition"),
     list(message = "hello", call = NULL)

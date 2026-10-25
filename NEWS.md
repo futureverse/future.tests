@@ -25,6 +25,8 @@
 
 ## Test Updates
 
+ * Now asserting that immediate conditions are relayed, where possible.
+
  * The test for `cancel()` and `value()` now asserts that `value()` on
    a canceled future signals a `FutureCanceledError`, which inherits
    from `FutureInterruptError`, also when canceled with
