@@ -25,6 +25,15 @@
 
 ## Test Updates
 
+ * The test for `cancel()` and `value()` now asserts that `value()` on
+   a canceled future signals a `FutureCanceledError`, which inherits
+   from `FutureInterruptError`, also when canceled with
+   `interrupt = FALSE`, when the backend does not support interrupts,
+   and for lazy futures. A new test asserts the same for a future that
+   has already been collected. The new assertions are skipped when
+   testing against a version of the **future** package that does not
+   yet include the corresponding bug fix.
+
  * Add tests for `value()` on lists of futures asserting that (i)
    argument `init` of `reduce`, and arguments `stdout` and `signal`,
    are respected also with `inorder = FALSE`, (ii) an error cancels

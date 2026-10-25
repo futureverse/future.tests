@@ -103,8 +103,9 @@ make_test(title = "value(<list>) - an error does not launch lazy futures", args 
   res <- tryCatch(value(list(f1, f2), inorder = inorder), error = identity)
   stopifnot(inherits(res, "error"), conditionMessage(res) == "boom")
 
-  ## The lazy future was never launched
-  stopifnot(f2[["state"]] %in% "created")
+  ## The lazy future was never launched. It is canceled, if value() cancels
+  ## the remaining futures (future >= 1.80.0-9024)
+  stopifnot(f2[["state"]] %in% c("created", "canceled"))
 })
 
 
