@@ -210,7 +210,7 @@ db_state <- local({
         plan(state_plan)
         
         ## FIXME: 'future' should guarantee this - just drop? /HB 2025-04-02
-        stop_if_not(all.equal(plan("list"), state_plan))
+        stop_if_not(isTRUE(all.equal(plan("list"), state_plan)))
       }
 
 #      message("*** ", state$title, " ... DONE")

@@ -50,6 +50,10 @@
 
 ## Bug Fixes
 
+ * When the future plan could not be restored after a test, an obscure
+   'invalid argument type' error message was produced instead of
+   reporting that the plan differed.
+
  * `run_test()` would use a function as the value of a missing test argument
    when a function of the same name existed, e.g. `stdout()`, instead of
    reporting the argument as missing.
