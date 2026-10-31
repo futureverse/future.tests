@@ -112,3 +112,13 @@ t <- make_test({ 42 }, title = "stdout argument", args = list(stdout = c(FALSE, 
 res <- tryCatch(run_test(t), error = identity)
 stopifnot(inherits(res, "error"), grepl("do not exist", conditionMessage(res), fixed = TRUE))
 message("run_test() - missing argument named after a function ... DONE")
+
+## Variables created by a test are removed from the evaluation environment
+message("run_test(local = FALSE) - objects are undone ...")
+t <- make_test({ leaked <- 42 }, title = "leaky", register = FALSE)
+envir <- new.env()
+assign("keep", 1, envir = envir)
+res <- run_test(t, envir = envir, local = FALSE)
+stopifnot(exists("keep", envir = envir, inherits = FALSE),
+          !exists("leaked", envir = envir, inherits = FALSE))
+message("run_test(local = FALSE) - objects are undone ... DONE")

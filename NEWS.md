@@ -50,6 +50,10 @@
 
 ## Bug Fixes
 
+ * `run_test()` recorded and restored the variables of its own call frame
+   instead of those of the environment where the test is evaluated, so
+   variables created by a test with `local = FALSE` were never removed.
+
  * When the future plan could not be restored after a test, an obscure
    'invalid argument type' error message was produced instead of
    reporting that the plan differed.

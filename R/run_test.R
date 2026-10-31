@@ -57,7 +57,7 @@ run_test <- function(test, envir = parent.frame(), local = TRUE, args = list(), 
   }
 
   ## Push test state, which includes setting the future strategy
-  push_state(title = test$title)
+  push_state(title = test$title, envir = envir)
 
   ## Pop test state on exit, which includes resetting the future strategy,
   ## which in turn will shut down the future backend used during test
