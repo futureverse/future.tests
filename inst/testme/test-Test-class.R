@@ -96,3 +96,12 @@ stopifnot(
   !any(grepl("Success: TRUE", out, fixed = TRUE))
 )
 message("print() of TestResult for unsupported arguments ... DONE")
+
+message("run_tests(timeout = <seconds>) ...")
+t <- make_test({
+  t0 <- Sys.time()
+  while (difftime(Sys.time(), t0, units = "secs") < 5) NULL
+}, title = "run_tests() with timeout", register = FALSE)
+res <- run_tests(list(t), timeout = 0.5)
+stopifnot(inherits(res[[1]]$error, "TimeoutError"))
+message("run_tests(timeout = <seconds>) ... DONE")

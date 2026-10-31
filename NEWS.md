@@ -44,6 +44,10 @@
    on a canceled and interrupted future, and (v) errors from a
    `makeClusterFuture()` cluster being signaled as by other clusters.
 
+## New Features
+
+ * `run_tests()` gained argument `timeout`.
+
 ## Bug Fixes
 
  * `check()` failed to set the future plan when the specified plan

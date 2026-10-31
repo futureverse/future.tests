@@ -9,7 +9,8 @@ run_tests(
   envir = parent.frame(),
   local = TRUE,
   defaults = list(),
-  output = "stdout+stderr"
+  output = "stdout+stderr",
+  timeout = getOption("future.tests.timeout", 30)
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ run_tests(
 \item{defaults}{(optional) Named list with default argument values.}
 
 \item{output}{If TRUE, standard output is captured, otherwise not.}
+
+\item{timeout}{Maximum time allowed for evaluation before a timeout error is produced.}
 }
 \value{
 List of test results.
