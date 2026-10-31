@@ -32,7 +32,12 @@ run_test <- function(test, envir = parent.frame(), local = TRUE, args = list(), 
   arg_names <- unique(c(names(test$args), names(defaults)))
   ## Record arguments used
   if (length(arg_names) > 0L) {
-    missing <- !sapply(arg_names, FUN = exists, envir = envir, inherits = TRUE)
+    ## Arguments are values, so ignore functions that happen to have the same
+    ## name, e.g. base::stdout(), which would otherwise be picked up
+    missing <- !vapply(arg_names, FUN = function(name) {
+      exists(name, envir = envir, inherits = TRUE) &&
+        !is.function(get(name, envir = envir, inherits = TRUE))
+    }, FUN.VALUE = NA)
     if (any(missing)) {
       names <- arg_names[missing]
       stop(sprintf("Cannot run test %s. One or more of the required arguments do not exist: %s", sQuote(test$title), paste(sQuote(names), collapse = ", ")))

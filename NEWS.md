@@ -50,6 +50,10 @@
 
 ## Bug Fixes
 
+ * `run_test()` would use a function as the value of a missing test argument
+   when a function of the same name existed, e.g. `stdout()`, instead of
+   reporting the argument as missing.
+
  * `evaluate_expr()` and `run_test()` would fail with a 'reached
    elapsed time limit' error when a test timed out.
 
