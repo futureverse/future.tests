@@ -58,7 +58,7 @@ check_plan <- function(tests = test_db(), defaults = list(), timeout = getOption
      ## No defaults? Run the test once, without arguments
      if (nrow(sets_of_args) == 0L) sets_of_args <- data.frame(row.names = 1L)
     } else {
-     sets_of_args <- do.call(expand.grid, test$args)
+     sets_of_args <- do.call(expand.grid, c(test$args, list(stringsAsFactors = FALSE)))
     }
     status <- rep("OK", times = nrow(sets_of_args))
     dts <- double(length = length(status))

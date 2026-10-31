@@ -74,6 +74,9 @@
    terminals, which can be overridden by option
    `future.tests.progress`.
 
+ * `check_plan()` and `as.data.frame()` for tests coerced character
+   test arguments to factors.
+
 ## Miscellaneous
 
  * Package **utils** is now declared as an imported package instead of

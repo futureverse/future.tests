@@ -54,7 +54,7 @@ as.data.frame.Test <- function(x, ..., expand = TRUE, arg_names = NULL) {
     if (nargs == 0) {
       args <- NULL
     } else {
-      args <- do.call(expand.grid, args)
+      args <- do.call(expand.grid, c(args, list(stringsAsFactors = FALSE)))
       n <- nrow(args)
       title <- rep(title, times = n)
       tags <- rep(tags, times = n)
