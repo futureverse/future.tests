@@ -1,28 +1,5 @@
 # Version (development version)
 
-## Bug Fixes
-
- * `check()` failed to set the future plan when the specified plan
-   contained the word "plan", e.g. `--test-plan=planned::foo`.
-
- * `subset_tests(args, defaults)` ignored the arguments of the tests.
-
- * `along_test_plans()` dropped errors and `NULL` results. Errors are
-   now returned as the result for the plan, and evaluation continues.
-
- * `check_plan(defaults = list())` silently skipped tests without
-   arguments.
-
- * `run_tests(defaults = NULL)` failed with an error.
-
- * `make_test()` accepted a missing title (`NA`).
-
- * `check(timeout = <seconds>)` no longer leaves option
-   `future.tests.timeout` set after returning.
-
- * `check()` ignored command-line options `--session-info` and
-   `--debug`.
-
 ## Test Updates
 
  * Now asserting that immediate conditions are relayed, where possible.
@@ -68,6 +45,27 @@
    `makeClusterFuture()` cluster being signaled as by other clusters.
 
 ## Bug Fixes
+
+ * `check()` failed to set the future plan when the specified plan
+   contained the word "plan", e.g. `--test-plan=planned::foo`.
+
+ * `subset_tests(args, defaults)` ignored the arguments of the tests.
+
+ * `along_test_plans()` dropped errors and `NULL` results. Errors are
+   now returned as the result for the plan, and evaluation continues.
+
+ * `check_plan(defaults = list())` silently skipped tests without
+   arguments.
+
+ * `run_tests(defaults = NULL)` failed with an error.
+
+ * `make_test()` accepted a missing title (`NA`).
+
+ * `check(timeout = <seconds>)` no longer leaves option
+   `future.tests.timeout` set after returning.
+
+ * `check()` ignored command-line options `--session-info` and
+   `--debug`.
 
  * `check()` produced garbled output with interleaved spinner frames
    and test titles when standard output or standard error was not a
