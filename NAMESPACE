@@ -54,6 +54,8 @@ importFrom(sessioninfo,session_info)
 importFrom(utils,
   capture.output,
   file_test,
+  head,
   packageVersion,
-  str
+  str,
+  tail
 )

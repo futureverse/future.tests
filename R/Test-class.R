@@ -1,3 +1,4 @@
+#' @importFrom utils head tail
 #' @export
 print.Test <- function(x, head = Inf, tail = head, ...) {
   s <- sprintf("%s:", class(x)[1])
