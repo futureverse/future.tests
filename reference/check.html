@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">future.tests</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9012</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -155,8 +155,8 @@ tests passed with all OKs and otherwise 1 (one) if one or more tests failed.</p>
 
 <p>This function can be called from the shell. To specify an argument, use the
 format <code>--test-&lt;arg_name&gt;=&lt;value&gt;</code>.  For example, <code>--test-timeout=600</code> will
-set argument <code>timeout=600</code>, and <code>--tags=lazy,rng</code>, or equivalently,
-<code>--tags=lazy --tags=rng</code> will set argument <code>tags=c("lazy", "rng")</code>.</p>
+set argument <code>timeout=600</code>, and <code>--test-tags=lazy,rng</code>, or equivalently,
+<code>--test-tags=lazy --test-tags=rng</code> will set argument <code>tags=c("lazy", "rng")</code>.</p>
 <p>Here are some examples on how to call this function from the command line:</p><div class="sourceCode"><pre><code>
 Rscript -e future.tests::check --args --test-plan=sequential
 Rscript -e future.tests::check --args --test-plan=multicore,workers=2

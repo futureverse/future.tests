@@ -77,12 +77,12 @@ check(
 This function can be called from the shell. To specify an argument, use
 the format `--test-<arg_name>=<value>`. For example,
 `--test-timeout=600` will set argument `timeout=600`, and
-`--tags=lazy,rng`, or equivalently, `--tags=lazy --tags=rng` will set
-argument `tags=c("lazy", "rng")`.
+`--test-tags=lazy,rng`, or equivalently,
+`--test-tags=lazy --test-tags=rng` will set argument
+`tags=c("lazy", "rng")`.
 
 Here are some examples on how to call this function from the command
 line:
-
 
     Rscript -e future.tests::check --args --test-plan=sequential
     Rscript -e future.tests::check --args --test-plan=multicore,workers=2

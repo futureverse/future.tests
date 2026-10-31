@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">future.tests</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9012</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,6 +76,34 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="version-development-version">Version (development version)<a class="anchor" aria-label="anchor" href="#version-development-version"></a></h2>
 <div class="section level3">
+<h3 id="test-updates-development-version">Test Updates<a class="anchor" aria-label="anchor" href="#test-updates-development-version"></a></h3>
+<ul><li><p>Now asserting that immediate conditions are relayed, where possible.</p></li>
+<li><p>The test for <code>cancel()</code> and <code>value()</code> now asserts that <code>value()</code> on a canceled future signals a <code>FutureCanceledError</code>, which inherits from <code>FutureInterruptError</code>, also when canceled with <code>interrupt = FALSE</code>, when the backend does not support interrupts, and for lazy futures. A new test asserts the same for a future that has already been collected. The new assertions are skipped when testing against a version of the <strong>future</strong> package that does not yet include the corresponding bug fix.</p></li>
+<li>
+<p>Add tests for <code>value()</code> on lists of futures asserting that (i) argument <code>init</code> of <code>reduce</code>, and arguments <code>stdout</code> and <code>signal</code>, are respected also with <code>inorder = FALSE</code>, (ii) an error cancels and resolves the remaining futures, without launching lazy ones,</p>
+<p>(iii) a future that returns an error object is not mistaken for a failed future, and (iv) standard output and messages of all futures are relayed in order also with <code>drop = TRUE</code>.</p>
+</li>
+<li><p>Add test asserting that <code>futureCall()</code> passes language objects, e.g. symbols and calls, in argument <code>args</code> as-is to <code>FUN</code>.</p></li>
+<li><p>The above tests are skipped when testing against a version of the <strong>future</strong> package that does not yet include the corresponding bug fix.</p></li>
+<li>
+<p>Add tests for (i) globals specified as a character vector with attributes <code>add</code> and <code>ignore</code>, (ii) unused variables not being exported as globals, (iii) a global <code>...</code> together with a global <code>...future.FUN()</code>, (iv) switching plan while a future is running,</p>
+<p>(v) repeated <code>value()</code> on an interrupted future, (vi) launching many futures without leaving unused connections behind, (vii) immediate conditions not being re-signaled, and (viii) <code>makeClusterFuture()</code> passing language objects as-is and supporting <code>clusterEvalQ()</code> that only attaches packages.</p>
+</li>
+<li><p>Add tests for (i) <code>future(..., packages = "missing-package")</code> signaling an error, (ii) <code>value(&lt;listenv&gt;, idxs)</code>, (iii) <code>value(&lt;list&gt;, reduce = structure("+", init = 42))</code>, (iv) <code>result()</code> on a canceled and interrupted future, and (v) errors from a <code>makeClusterFuture()</code> cluster being signaled as by other clusters.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-development-version">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<ul><li><p><code><a href="../reference/check.html">check()</a></code> failed to set the future plan when the specified plan contained the word “plan”, e.g. <code>--test-plan=planned::foo</code>.</p></li>
+<li><p><code>subset_tests(args, defaults)</code> ignored the arguments of the tests.</p></li>
+<li><p><code><a href="../reference/along_test_plans.html">along_test_plans()</a></code> dropped errors and <code>NULL</code> results. Errors are now returned as the result for the plan, and evaluation continues.</p></li>
+<li><p><code>check_plan(defaults = list())</code> silently skipped tests without arguments.</p></li>
+<li><p><code>run_tests(defaults = NULL)</code> failed with an error.</p></li>
+<li><p><code><a href="../reference/make_test.html">make_test()</a></code> accepted a missing title (<code>NA</code>).</p></li>
+<li><p><code>check(timeout = &lt;seconds&gt;)</code> no longer leaves option <code>future.tests.timeout</code> set after returning.</p></li>
+<li><p><code><a href="../reference/check.html">check()</a></code> ignored command-line options <code>--session-info</code> and <code>--debug</code>.</p></li>
+<li><p><code><a href="../reference/check.html">check()</a></code> produced garbled output with interleaved spinner frames and test titles when standard output or standard error was not a terminal, e.g. when the output was piped or written to a log file. The in-place progress is now only shown when both are terminals, which can be overridden by option <code>future.tests.progress</code>.</p></li>
+</ul></div>
+<div class="section level3">
 <h3 id="miscellaneous-development-version">Miscellaneous<a class="anchor" aria-label="anchor" href="#miscellaneous-development-version"></a></h3>
 <ul><li>Package <strong>utils</strong> is now declared as an imported package instead of just a suggested package.</li>
 </ul></div>
@@ -128,7 +156,7 @@
 <h3 id="bug-fixes-0-7-0">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-0-7-0"></a></h3>
 <ul><li><p>Tests asserting correctness of <code>nbrOfWorkers()</code> could produce an “invalid format ‘%d’; use format %f, %e, %g or %a for numeric objects” error when trying to produce an assertion error on <code>nbrOfWorkers()</code> having an incorrect value. This could happen if <code>nbrOfWorkers()</code> returned a non-integer value, e.g. <code>+Inf</code>.</p></li>
 <li><p>Test asserting that the <code>workers</code> argument can be a function would not always work if testing with a hardcoded number of workers according to <code>plan()</code>.</p></li>
-<li><p>Test asserting that the <code>workers</code> argument can be a function would not work if the backend’s default value was non-numeric, e.g. the <code>cluster</code> backend defaults to the character vector <code>parallelly::availableWorkers()</code>.</p></li>
+<li><p>Test asserting that the <code>workers</code> argument can be a function would not work if the backend’s default value was non-numeric, e.g. the <code>cluster</code> backend defaults to the character vector <code><a href="https://parallelly.futureverse.org/reference/availableWorkers.html" class="external-link">parallelly::availableWorkers()</a></code>.</p></li>
 <li><p>Test asserting that lazy futures would be automatically launched and resolved relied on a legacy version of the Future API, where calling <code>resolved()</code> on a lazy future could leave it in a lazy state, which is no longer correct. A lazy future will always be launched if one calls <code>resolved()</code> on it.</p></li>
 <li><p>Test asserting that the <strong>ff</strong> package worked across multiple futures assumed that the package is loaded automatically by the future, which it is not. The could cause the test to fail for some future backends.</p></li>
 </ul></div>

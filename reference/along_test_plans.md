@@ -38,4 +38,8 @@ along_test_plans(
 
 ## Value
 
-A list of results, one for each future plan tested against.
+A list of results, one for each future plan tested against. If
+evaluating `expr` under a plan produces an error, then the corresponding
+element is the error
+[base::condition](https://rdrr.io/r/base/conditions.html), and
+evaluation continues with the next plan.

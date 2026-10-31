@@ -2,6 +2,85 @@
 
 ## Version (development version)
 
+### Test Updates
+
+- Now asserting that immediate conditions are relayed, where possible.
+
+- The test for `cancel()` and `value()` now asserts that `value()` on a
+  canceled future signals a `FutureCanceledError`, which inherits from
+  `FutureInterruptError`, also when canceled with `interrupt = FALSE`,
+  when the backend does not support interrupts, and for lazy futures. A
+  new test asserts the same for a future that has already been
+  collected. The new assertions are skipped when testing against a
+  version of the **future** package that does not yet include the
+  corresponding bug fix.
+
+- Add tests for `value()` on lists of futures asserting that (i)
+  argument `init` of `reduce`, and arguments `stdout` and `signal`, are
+  respected also with `inorder = FALSE`, (ii) an error cancels and
+  resolves the remaining futures, without launching lazy ones,
+
+  \(iii\) a future that returns an error object is not mistaken for a
+  failed future, and (iv) standard output and messages of all futures
+  are relayed in order also with `drop = TRUE`.
+
+- Add test asserting that `futureCall()` passes language objects, e.g.
+  symbols and calls, in argument `args` as-is to `FUN`.
+
+- The above tests are skipped when testing against a version of the
+  **future** package that does not yet include the corresponding bug
+  fix.
+
+- Add tests for (i) globals specified as a character vector with
+  attributes `add` and `ignore`, (ii) unused variables not being
+  exported as globals, (iii) a global `...` together with a global
+  `...future.FUN()`, (iv) switching plan while a future is running,
+
+  \(v\) repeated `value()` on an interrupted future, (vi) launching many
+  futures without leaving unused connections behind, (vii) immediate
+  conditions not being re-signaled, and (viii) `makeClusterFuture()`
+  passing language objects as-is and supporting `clusterEvalQ()` that
+  only attaches packages.
+
+- Add tests for (i) `future(..., packages = "missing-package")`
+  signaling an error, (ii) `value(<listenv>, idxs)`, (iii)
+  `value(<list>, reduce = structure("+", init = 42))`, (iv) `result()`
+  on a canceled and interrupted future, and (v) errors from a
+  `makeClusterFuture()` cluster being signaled as by other clusters.
+
+### Bug Fixes
+
+- [`check()`](https://future.tests.futureverse.org/reference/check.md)
+  failed to set the future plan when the specified plan contained the
+  word “plan”, e.g. `--test-plan=planned::foo`.
+
+- `subset_tests(args, defaults)` ignored the arguments of the tests.
+
+- [`along_test_plans()`](https://future.tests.futureverse.org/reference/along_test_plans.md)
+  dropped errors and `NULL` results. Errors are now returned as the
+  result for the plan, and evaluation continues.
+
+- `check_plan(defaults = list())` silently skipped tests without
+  arguments.
+
+- `run_tests(defaults = NULL)` failed with an error.
+
+- [`make_test()`](https://future.tests.futureverse.org/reference/make_test.md)
+  accepted a missing title (`NA`).
+
+- `check(timeout = <seconds>)` no longer leaves option
+  `future.tests.timeout` set after returning.
+
+- [`check()`](https://future.tests.futureverse.org/reference/check.md)
+  ignored command-line options `--session-info` and `--debug`.
+
+- [`check()`](https://future.tests.futureverse.org/reference/check.md)
+  produced garbled output with interleaved spinner frames and test
+  titles when standard output or standard error was not a terminal,
+  e.g. when the output was piped or written to a log file. The in-place
+  progress is now only shown when both are terminals, which can be
+  overridden by option `future.tests.progress`.
+
 ### Miscellaneous
 
 - Package **utils** is now declared as an imported package instead of
@@ -86,7 +165,7 @@ CRAN release: 2023-05-22
 - Test asserting that the `workers` argument can be a function would not
   work if the backend’s default value was non-numeric, e.g. the
   `cluster` backend defaults to the character vector
-  `parallelly::availableWorkers()`.
+  [`parallelly::availableWorkers()`](https://parallelly.futureverse.org/reference/availableWorkers.html).
 
 - Test asserting that lazy futures would be automatically launched and
   resolved relied on a legacy version of the Future API, where calling
