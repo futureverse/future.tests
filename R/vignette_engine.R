@@ -1,7 +1,4 @@
 register_vignette_engine_during_build_only <- function(pkgname) {
-  # Are vignette engines supported?
-  if (getRversion() < "3.0.0") return() # Nope!
-
   ## HACK: Only register vignette engine 'selfonly' during R CMD build
   if (Sys.getenv("R_CMD") == "") return()
 
