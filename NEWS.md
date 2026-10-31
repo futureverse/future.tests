@@ -50,6 +50,9 @@
 
 ## Bug Fixes
 
+ * `evaluate_expr()` and `run_test()` would fail with a 'reached
+   elapsed time limit' error when a test timed out.
+
  * `check()` failed to set the future plan when the specified plan
    contained the word "plan", e.g. `--test-plan=planned::foo`.
 

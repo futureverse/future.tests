@@ -190,9 +190,10 @@ evaluate_expr <- function(expr, envir = parent.frame(), local = TRUE, output = c
 
   if (timeout < Inf) {
     setTimeLimit(cpu = timeout, elapsed = timeout, transient = TRUE)
+    ## Make sure to disable timeout *before* undoing handlers
     on.exit({
       setTimeLimit(cpu = Inf, elapsed = Inf, transient = FALSE)
-    }, add = TRUE)
+    }, add = TRUE, after = FALSE)
   }
 
   suppress_messages <- getOption("future.tests.suppress_messages", TRUE)
