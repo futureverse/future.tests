@@ -1,8 +1,4 @@
 make_test(title = "future(..., packages = 'missing-package') - signals an error", tags = c("future", "packages", "error"), {
-  if (packageVersion("future") < "1.69.0") {
-    future.tests::skip_test("Test requires future (>= 1.69.0)")
-  }
-
   res <- tryCatch({
     f <- future(42L, packages = "missing-package")
     value(f)
@@ -29,10 +25,6 @@ make_test(title = "value(<listenv>, idxs)", tags = c("value", "listenv"), {
 
 
 make_test(title = "value(<list>, reduce = structure('+', init = 42))", tags = c("value", "reduce"), {
-  if (packageVersion("future") < "1.68.0") {
-    future.tests::skip_test("Test requires future (>= 1.68.0)")
-  }
-
   fs <- lapply(1:3, function(kk) future(kk))
   v <- value(fs, reduce = structure("+", init = 42))
   stopifnot(identical(as.numeric(v), 48))
@@ -40,10 +32,6 @@ make_test(title = "value(<list>, reduce = structure('+', init = 42))", tags = c(
 
 
 make_test(title = "result() - on a canceled and interrupted future", tags = c("future", "cancel", "result", "devel"), {
-  if (packageVersion("future") < "1.68.0") {
-    future.tests::skip_test("Test requires future (>= 1.68.0)")
-  }
-
   f <- future({ Sys.sleep(3); 42L })
   f <- cancel(f, interrupt = TRUE)
   r <- tryCatch(result(f), error = identity)
@@ -56,10 +44,6 @@ make_test(title = "result() - on a canceled and interrupted future", tags = c("f
 
 
 make_test(title = "makeClusterFuture() - errors are signaled as by other clusters", tags = c("future", "makeClusterFuture", "error", "devel"), {
-  if (packageVersion("future") < "1.69.0") {
-    future.tests::skip_test("Test requires future (>= 1.69.0)")
-  }
-
   cl <- makeClusterFuture(nbrOfWorkers())
   on.exit(parallel::stopCluster(cl))
 
