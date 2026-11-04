@@ -8,6 +8,10 @@
 #' @param tags (character vector; optional) Filter tests by tags. If NULL, all
 #' tests are performed.
 #'
+#' @param index (integer vector; optional) Indices of the tests to run, after
+#' any filtering by `tags`. These are the test numbers reported in the output.
+#' If NULL, all tests are performed.
+#'
 #' @param timeout (numeric; optional) Maximum time (in seconds) each test may
 #' run before a timeout error is produced.
 #'
@@ -32,6 +36,8 @@
 #' format `--test-<arg_name>=<value>`.  For example, `--test-timeout=600` will
 #' set argument `timeout=600`, and `--test-tags=lazy,rng`, or equivalently,
 #' `--test-tags=lazy --test-tags=rng` will set argument `tags=c("lazy", "rng")`.
+#' Similarly, `--test-index=42` and `--test-index=2:13,14` select test 42 and
+#' tests 2, 3, ..., 13 and 14, respectively.
 #'
 #' Here are some examples on how to call this function from the command line:
 #' \preformatted{
@@ -57,7 +63,7 @@
 #' @importFrom utils packageVersion
 #' @importFrom future availableCores plan
 #' @export
-check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TRUE, session_info = FALSE, envir = parent.frame(), local = TRUE, debug = FALSE, exit_value = !interactive(), .args = commandArgs()) {
+check <- function(plan = NULL, tags = character(), index = NULL, timeout = NULL, settings = TRUE, session_info = FALSE, envir = parent.frame(), local = TRUE, debug = FALSE, exit_value = !interactive(), .args = commandArgs()) {
   pkg <- "future"
   suppressPackageStartupMessages(require(pkg, character.only = TRUE)) || stop("Package not found: ", sQuote(pkg))
 
@@ -69,6 +75,10 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
   if (is.null(tags)) {
   } else {
     stopifnot(is.character(tags), !anyNA(tags), all(nzchar(tags)))
+  }
+
+  if (!is.null(index)) {
+    stopifnot(is.numeric(index), !anyNA(index), all(index >= 1))
   }
 
   if (is.null(timeout)) {
@@ -98,6 +108,9 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
       tags_kk <- gsub("^--test-tags=", "", arg)
       tags_kk <- unlist(strsplit(tags_kk, split = ",", fixed = TRUE))
       tags <- unique(c(tags, tags_kk))
+    } else if (grepl("^--test-index=.*", arg)) {
+      value <- gsub("^--test-index=", "", arg)
+      index <- unique(c(index, parse_index(value)))
     } else if (grepl("^--session-info$", arg)) {
       session_info <- TRUE
     } else if (grepl("^--debug$", arg)) {
@@ -131,6 +144,7 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
     cat(" --help                   Display this help\n")
     cat(" --test-timeout=<seconds> Sets per-test timeout in seconds\n")
     cat(" --test-tags=<tags>       Comma-separated tags specifying tests to include\n")
+    cat(" --test-index=<index>     Comma-separated indices or ranges of tests to run, e.g. 42 or 2:13,14\n")
     cat(" --test-plan=<plan>       Future plan to test against\n")
     cat(" --session-info           Output session information at the end\n")
     cat("\n")
@@ -163,6 +177,16 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
 
   tests <- test_db()
   if (!is.null(tags)) tests <- subset_tests(tests, tags = tags)
+
+  ## Subset by test index?
+  if (!is.null(index)) {
+    index <- as.integer(index)
+    bad <- index[index > length(tests)]
+    if (length(bad) > 0L) {
+      stop(sprintf("Test index out of range [1, %d]: %s", length(tests), paste(bad, collapse = ", ")))
+    }
+    tests <- tests[sort(unique(index))]
+  }
 
   ## Set 'timeout'?
   if (is.numeric(timeout)) {
@@ -209,4 +233,24 @@ check <- function(plan = NULL, tags = character(), timeout = NULL, settings = TR
   }
   
   invisible(test_results)
+}
+
+
+## Parse a test-index specification, e.g. "42" and "2:13,14"
+parse_index <- function(value) {
+  parts <- trimws(unlist(strsplit(value, split = ",", fixed = TRUE)))
+  stopifnot(length(parts) > 0L)
+  index <- integer(0L)
+  for (part in parts) {
+    if (grepl("^[0-9]+$", part)) {
+      index <- c(index, as.integer(part))
+    } else if (grepl("^[0-9]+:[0-9]+$", part)) {
+      range <- as.integer(strsplit(part, split = ":", fixed = TRUE)[[1]])
+      index <- c(index, seq(from = range[1], to = range[2]))
+    } else {
+      stop("Invalid test index: ", sQuote(part))
+    }
+  }
+  stopifnot(!anyNA(index), all(index >= 1L))
+  index
 }

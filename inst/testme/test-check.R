@@ -62,3 +62,9 @@ utils::capture.output({
 stopifnot(length(results) == 1L)
 
 message("*** check() ... DONE")
+
+## --test-index
+stopifnot(identical(future.tests:::parse_index("42"), 42L))
+stopifnot(identical(future.tests:::parse_index("2:5,7"), c(2L, 3L, 4L, 5L, 7L)))
+results <- check(.args = c("--test-index=1:2,4", "--test-plan=sequential"), exit_value = FALSE)
+stopifnot(length(results[[1]]) == 3L)

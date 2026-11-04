@@ -7,6 +7,7 @@
 check(
   plan = NULL,
   tags = character(),
+  index = NULL,
   timeout = NULL,
   settings = TRUE,
   session_info = FALSE,
@@ -23,6 +24,10 @@ validated.}
 
 \item{tags}{(character vector; optional) Filter tests by tags. If NULL, all
 tests are performed.}
+
+\item{index}{(integer vector; optional) Indices of the tests to run, after
+any filtering by \code{tags}. These are the test numbers reported in the output.
+If NULL, all tests are performed.}
 
 \item{timeout}{(numeric; optional) Maximum time (in seconds) each test may
 run before a timeout error is produced.}
@@ -57,6 +62,8 @@ This function can be called from the shell. To specify an argument, use the
 format \verb{--test-<arg_name>=<value>}.  For example, \code{--test-timeout=600} will
 set argument \code{timeout=600}, and \verb{--test-tags=lazy,rng}, or equivalently,
 \code{--test-tags=lazy --test-tags=rng} will set argument \code{tags=c("lazy", "rng")}.
+Similarly, \code{--test-index=42} and \verb{--test-index=2:13,14} select test 42 and
+tests 2, 3, ..., 13 and 14, respectively.
 
 Here are some examples on how to call this function from the command line:
 \preformatted{
