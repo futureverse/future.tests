@@ -2,6 +2,13 @@
 
 ## Version (development version)
 
+### New Features
+
+- [`check()`](https://future.tests.futureverse.org/reference/check.md)
+  gained argument `index` and command-line option `--test-index=<index>`
+  for running a subset of the tests by their numbers,
+  e.g. `--test-index=42` and `--test-index=2:13,14`.
+
 ### Test Updates
 
 - Now asserting that immediate conditions are relayed, where possible.
@@ -48,7 +55,33 @@
   on a canceled and interrupted future, and (v) errors from a
   `makeClusterFuture()` cluster being signaled as by other clusters.
 
+### New Features
+
+- [`run_tests()`](https://future.tests.futureverse.org/reference/run_tests.md)
+  gained argument `timeout`.
+
 ### Bug Fixes
+
+- [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md)
+  recorded and restored the variables of its own call frame instead of
+  those of the environment where the test is evaluated, so variables
+  created by a test with `local = FALSE` were never removed.
+
+- When the future plan could not be restored after a test, an obscure
+  ‘invalid argument type’ error message was produced instead of
+  reporting that the plan differed.
+
+- [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md)
+  would use a function as the value of a missing test argument when a
+  function of the same name existed,
+  e.g. [`stdout()`](https://rdrr.io/r/base/showConnections.html),
+  instead of reporting the argument as missing.
+
+- [`evaluate_expr()`](https://future.tests.futureverse.org/reference/evaluate_expr.md)
+  and
+  [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md)
+  would fail with a ‘reached elapsed time limit’ error when a test timed
+  out.
 
 - [`check()`](https://future.tests.futureverse.org/reference/check.md)
   failed to set the future plan when the specified plan contained the
@@ -81,10 +114,18 @@
   progress is now only shown when both are terminals, which can be
   overridden by option `future.tests.progress`.
 
+- [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
+  and [`as.data.frame()`](https://rdrr.io/r/base/as.data.frame.html) for
+  tests coerced character test arguments to factors.
+
 ### Miscellaneous
 
 - Package **utils** is now declared as an imported package instead of
   just a suggested package.
+
+- Now requires **future** (\>= 1.80.0). Removed the tests’ version
+  checks and skips for earlier **future** versions, which are no longer
+  needed.
 
 ## Version 1.0.0
 

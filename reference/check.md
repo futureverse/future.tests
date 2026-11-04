@@ -8,6 +8,7 @@ Run All or a Subset of the Tests Across Future Plans
 check(
   plan = NULL,
   tags = character(),
+  index = NULL,
   timeout = NULL,
   settings = TRUE,
   session_info = FALSE,
@@ -29,6 +30,12 @@ check(
 
   (character vector; optional) Filter tests by tags. If NULL, all tests
   are performed.
+
+- index:
+
+  (integer vector; optional) Indices of the tests to run, after any
+  filtering by `tags`. These are the test numbers reported in the
+  output. If NULL, all tests are performed.
 
 - timeout:
 
@@ -79,7 +86,9 @@ the format `--test-<arg_name>=<value>`. For example,
 `--test-timeout=600` will set argument `timeout=600`, and
 `--test-tags=lazy,rng`, or equivalently,
 `--test-tags=lazy --test-tags=rng` will set argument
-`tags=c("lazy", "rng")`.
+`tags=c("lazy", "rng")`. Similarly, `--test-index=42` and
+`--test-index=2:13,14` select test 42 and tests 2, 3, ..., 13 and 14,
+respectively.
 
 Here are some examples on how to call this function from the command
 line:

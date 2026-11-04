@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">future.tests</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9012</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9023</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,6 +76,11 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="version-development-version">Version (development version)<a class="anchor" aria-label="anchor" href="#version-development-version"></a></h2>
 <div class="section level3">
+<h3 id="new-features-development-version">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
+<ul><li>
+<code><a href="../reference/check.html">check()</a></code> gained argument <code>index</code> and command-line option <code>--test-index=&lt;index&gt;</code> for running a subset of the tests by their numbers, e.g. <code>--test-index=42</code> and <code>--test-index=2:13,14</code>.</li>
+</ul></div>
+<div class="section level3">
 <h3 id="test-updates-development-version">Test Updates<a class="anchor" aria-label="anchor" href="#test-updates-development-version"></a></h3>
 <ul><li><p>Now asserting that immediate conditions are relayed, where possible.</p></li>
 <li><p>The test for <code>cancel()</code> and <code>value()</code> now asserts that <code>value()</code> on a canceled future signals a <code>FutureCanceledError</code>, which inherits from <code>FutureInterruptError</code>, also when canceled with <code>interrupt = FALSE</code>, when the backend does not support interrupts, and for lazy futures. A new test asserts the same for a future that has already been collected. The new assertions are skipped when testing against a version of the <strong>future</strong> package that does not yet include the corresponding bug fix.</p></li>
@@ -92,8 +97,17 @@
 <li><p>Add tests for (i) <code>future(..., packages = "missing-package")</code> signaling an error, (ii) <code>value(&lt;listenv&gt;, idxs)</code>, (iii) <code>value(&lt;list&gt;, reduce = structure("+", init = 42))</code>, (iv) <code>result()</code> on a canceled and interrupted future, and (v) errors from a <code>makeClusterFuture()</code> cluster being signaled as by other clusters.</p></li>
 </ul></div>
 <div class="section level3">
+<h3 id="new-features-development-version-1">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version-1"></a></h3>
+<ul><li>
+<code><a href="../reference/run_tests.html">run_tests()</a></code> gained argument <code>timeout</code>.</li>
+</ul></div>
+<div class="section level3">
 <h3 id="bug-fixes-development-version">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
-<ul><li><p><code><a href="../reference/check.html">check()</a></code> failed to set the future plan when the specified plan contained the word “plan”, e.g. <code>--test-plan=planned::foo</code>.</p></li>
+<ul><li><p><code><a href="../reference/run_test.html">run_test()</a></code> recorded and restored the variables of its own call frame instead of those of the environment where the test is evaluated, so variables created by a test with <code>local = FALSE</code> were never removed.</p></li>
+<li><p>When the future plan could not be restored after a test, an obscure ‘invalid argument type’ error message was produced instead of reporting that the plan differed.</p></li>
+<li><p><code><a href="../reference/run_test.html">run_test()</a></code> would use a function as the value of a missing test argument when a function of the same name existed, e.g. <code><a href="https://rdrr.io/r/base/showConnections.html" class="external-link">stdout()</a></code>, instead of reporting the argument as missing.</p></li>
+<li><p><code><a href="../reference/evaluate_expr.html">evaluate_expr()</a></code> and <code><a href="../reference/run_test.html">run_test()</a></code> would fail with a ‘reached elapsed time limit’ error when a test timed out.</p></li>
+<li><p><code><a href="../reference/check.html">check()</a></code> failed to set the future plan when the specified plan contained the word “plan”, e.g. <code>--test-plan=planned::foo</code>.</p></li>
 <li><p><code>subset_tests(args, defaults)</code> ignored the arguments of the tests.</p></li>
 <li><p><code><a href="../reference/along_test_plans.html">along_test_plans()</a></code> dropped errors and <code>NULL</code> results. Errors are now returned as the result for the plan, and evaluation continues.</p></li>
 <li><p><code>check_plan(defaults = list())</code> silently skipped tests without arguments.</p></li>
@@ -102,10 +116,12 @@
 <li><p><code>check(timeout = &lt;seconds&gt;)</code> no longer leaves option <code>future.tests.timeout</code> set after returning.</p></li>
 <li><p><code><a href="../reference/check.html">check()</a></code> ignored command-line options <code>--session-info</code> and <code>--debug</code>.</p></li>
 <li><p><code><a href="../reference/check.html">check()</a></code> produced garbled output with interleaved spinner frames and test titles when standard output or standard error was not a terminal, e.g. when the output was piped or written to a log file. The in-place progress is now only shown when both are terminals, which can be overridden by option <code>future.tests.progress</code>.</p></li>
+<li><p><code><a href="../reference/check_plan.html">check_plan()</a></code> and <code><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame()</a></code> for tests coerced character test arguments to factors.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="miscellaneous-development-version">Miscellaneous<a class="anchor" aria-label="anchor" href="#miscellaneous-development-version"></a></h3>
-<ul><li>Package <strong>utils</strong> is now declared as an imported package instead of just a suggested package.</li>
+<ul><li><p>Package <strong>utils</strong> is now declared as an imported package instead of just a suggested package.</p></li>
+<li><p>Now requires <strong>future</strong> (&gt;= 1.80.0). Removed the tests’ version checks and skips for earlier <strong>future</strong> versions, which are no longer needed.</p></li>
 </ul></div>
 </div>
     <div class="section level2">

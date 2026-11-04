@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">future.tests</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9012</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9023</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,6 +83,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">check</span><span class="op">(</span></span>
 <span>  plan <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  tags <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">character</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  index <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  timeout <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  settings <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>  session_info <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -106,6 +107,12 @@ validated.</p></dd>
 <dt id="arg-tags">tags<a class="anchor" aria-label="anchor" href="#arg-tags"></a></dt>
 <dd><p>(character vector; optional) Filter tests by tags. If NULL, all
 tests are performed.</p></dd>
+
+
+<dt id="arg-index">index<a class="anchor" aria-label="anchor" href="#arg-index"></a></dt>
+<dd><p>(integer vector; optional) Indices of the tests to run, after
+any filtering by <code>tags</code>. These are the test numbers reported in the output.
+If NULL, all tests are performed.</p></dd>
 
 
 <dt id="arg-timeout">timeout<a class="anchor" aria-label="anchor" href="#arg-timeout"></a></dt>
@@ -156,7 +163,9 @@ tests passed with all OKs and otherwise 1 (one) if one or more tests failed.</p>
 <p>This function can be called from the shell. To specify an argument, use the
 format <code>--test-&lt;arg_name&gt;=&lt;value&gt;</code>.  For example, <code>--test-timeout=600</code> will
 set argument <code>timeout=600</code>, and <code>--test-tags=lazy,rng</code>, or equivalently,
-<code>--test-tags=lazy --test-tags=rng</code> will set argument <code>tags=c("lazy", "rng")</code>.</p>
+<code>--test-tags=lazy --test-tags=rng</code> will set argument <code>tags=c("lazy", "rng")</code>.
+Similarly, <code>--test-index=42</code> and <code>--test-index=2:13,14</code> select test 42 and
+tests 2, 3, ..., 13 and 14, respectively.</p>
 <p>Here are some examples on how to call this function from the command line:</p><div class="sourceCode"><pre><code>
 Rscript -e future.tests::check --args --test-plan=sequential
 Rscript -e future.tests::check --args --test-plan=multicore,workers=2

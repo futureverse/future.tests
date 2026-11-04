@@ -10,7 +10,8 @@ run_tests(
   envir = parent.frame(),
   local = TRUE,
   defaults = list(),
-  output = "stdout+stderr"
+  output = "stdout+stderr",
+  timeout = getOption("future.tests.timeout", 30)
 )
 ```
 
@@ -35,6 +36,11 @@ run_tests(
 - output:
 
   If TRUE, standard output is captured, otherwise not.
+
+- timeout:
+
+  Maximum time allowed for evaluation before a timeout error is
+  produced.
 
 ## Value
 
