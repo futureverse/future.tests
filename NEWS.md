@@ -101,6 +101,10 @@
  * Package **utils** is now declared as an imported package instead of
    just a suggested package.
 
+ * Now requires **future** (>= 1.80.0). Removed the tests' version
+   checks and skips for earlier **future** versions, which are no
+   longer needed.
+
 
 # Version 1.0.0
 

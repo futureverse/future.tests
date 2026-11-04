@@ -55,10 +55,6 @@ make_test(title = "future() - NSE '...'", tags = c("future", "globals", "..."), 
 
 
 make_test(title = "future() - globals specified as character vector with attributes 'add' and 'ignore'", tags = c("future", "globals"), {
-  if (packageVersion("future") < "1.80.0") {
-    future.tests::skip_test("Test requires future (>= 1.80.0)")
-  }
-
   a <- 1
   b <- 2
   c <- 3
@@ -91,10 +87,6 @@ make_test(title = "future() - unused variables are not exported as globals", tag
 
 ## The pattern used by future.apply
 make_test(title = "future() - global '...' together with global '...future.FUN'", tags = c("future", "globals", "..."), {
-  if (packageVersion("future") < "1.80.0") {
-    future.tests::skip_test("Test requires future (>= 1.80.0)")
-  }
-
   FUN <- function(x, y = 0) x + y
   env_FUN <- environment(FUN)
   parent_FUN <- parent.env(env_FUN)

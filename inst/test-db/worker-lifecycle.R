@@ -85,10 +85,6 @@ make_test(title = "resolved() and value() - immediate conditions are not re-sign
 
 
 make_test(title = "makeClusterFuture() - language objects are passed as-is", tags = c("future", "makeClusterFuture", "devel"), {
-  if (packageVersion("future") < "1.80.0-9016") {
-    future.tests::skip_test("Test requires future (>= 1.80.0-9016)")
-  }
-
   cl <- makeClusterFuture(nbrOfWorkers())
   on.exit(parallel::stopCluster(cl))
 
@@ -102,10 +98,6 @@ make_test(title = "makeClusterFuture() - language objects are passed as-is", tag
 
 
 make_test(title = "makeClusterFuture() - clusterEvalQ() that only attaches packages", tags = c("future", "makeClusterFuture", "devel"), {
-  if (packageVersion("future") < "1.76.0") {
-    future.tests::skip_test("Test requires future (>= 1.76.0)")
-  }
-
   cl <- makeClusterFuture(nbrOfWorkers())
   on.exit(parallel::stopCluster(cl))
 

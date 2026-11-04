@@ -54,13 +54,7 @@ make_test(title = "cancel() and value()", args = list(lazy = c(FALSE, TRUE), int
   cat(sprintf("interrupt = %s\n", sQuote(interrupt)))
   f <- cancel(f, interrupt = interrupt)
   cat(sprintf("state = %s\n", sQuote(f[["state"]])))
-  ## Canceling lazy futures, which are never launched, requires future >= 1.80.0-9024
-  new <- (packageVersion("future") >= "1.80.0-9024")
-  if (lazy && !new) {
-    stopifnot(f[["state"]] %in% "created")
-  } else {
-    stopifnot(f[["state"]] %in% c("canceled", "finished"))
-  }
+  stopifnot(f[["state"]] %in% c("canceled", "finished"))
 
   ## A canceled future may be resolved or not, which
   ## depends on future been interrupted or not
@@ -72,39 +66,12 @@ make_test(title = "cancel() and value()", args = list(lazy = c(FALSE, TRUE), int
   }, FutureInterruptError = identity)
   print(v)
 
-  if (!new && (lazy || inherits(f0, "BatchtoolsUniprocessFuture"))) {
-    ## Older versions did not cancel lazy futures, nor futures that were
-    ## resolved when created
-    stopifnot(
-      !inherits(v, "FutureInterruptError"),
-      v == 42L
-    )
-  } else if (new) {
-    ## A canceled future is invalid, whether it was interrupted or not,
-    ## the backend supports interrupts or not, the future was lazy or
-    ## not, and was resolved when created or not. It is always reported
-    ## as a FutureCanceledError, which inherits from FutureInterruptError,
-    ## because it was actively canceled.
-    stopifnot(inherits(v, "FutureCanceledError"))
-  } else if (inherits(f0, "UniprocessFuture")) {
-    ## Uniprocess futures are resolved already when created, so there
-    ## was nothing left to cancel
-    stopifnot(
-      !inherits(v, "FutureInterruptError"),
-      v == 42L
-    )
-  } else {
-    ## Did we require an interrupt and does the backend support it?
-    interrupt2 <- interrupt && plan("backend")[["interrupts"]]
-    if (interrupt2) {
-      stopifnot(inherits(v, "FutureInterruptError"))
-    } else {
-      stopifnot(
-        !inherits(v, "FutureInterruptError"),
-        v == 42L
-      )
-    }
-  }
+  ## A canceled future is invalid, whether it was interrupted or not,
+  ## the backend supports interrupts or not, the future was lazy or
+  ## not, and was resolved when created or not. It is always reported
+  ## as a FutureCanceledError, which inherits from FutureInterruptError,
+  ## because it was actively canceled.
+  stopifnot(inherits(v, "FutureCanceledError"))
 })
 
 
@@ -129,8 +96,6 @@ make_test(title = "cancel() - a future that has already been collected", args = 
   print(v)
 
   ## A canceled future is invalid, also when it has already been resolved
-  ## and collected. Skipped for 'future' versions without this behavior.
-  if (packageVersion("future") >= "1.80.0-9024") {
-    stopifnot(inherits(v, "FutureCanceledError"))
-  }
+  ## and collected.
+  stopifnot(inherits(v, "FutureCanceledError"))
 })

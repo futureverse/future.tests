@@ -9,10 +9,6 @@ make_test(title = "future(..., packages = 'missing-package') - signals an error"
 
 
 make_test(title = "value(<listenv>, idxs)", tags = c("value", "listenv"), {
-  if (packageVersion("future") < "1.75.0") {
-    future.tests::skip_test("Test requires future (>= 1.75.0)")
-  }
-
   x <- listenv::listenv()
   for (kk in 1:3) x[[kk]] <- future(kk * 10L)
 
