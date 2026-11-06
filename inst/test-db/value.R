@@ -1,6 +1,4 @@
-## Tests on value() for lists of futures. Several of these assert behavior
-## that was fixed in the 'future' package, which is why they are skipped
-## when testing against an older version of 'future'.
+## Tests on value() for lists of futures
 
 make_test(title = "value(<list>) - reduce with 'init' attribute", args = list(inorder = c(TRUE, FALSE)), tags = c("value", "reduce"), {
   fs <- list(
