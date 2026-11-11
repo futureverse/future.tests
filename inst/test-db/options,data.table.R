@@ -1,4 +1,4 @@
-## https://github.com/HenrikBengtsson/future.tests/issues/20
+## https://github.com/futureverse/future.tests/issues/20
 make_test(title = "future() - preserve R options (data.table)", tags = c("future", "options", "reset", "data.table"), {
   if (requireNamespace("data.table")) {
     data.table <- data.table::data.table

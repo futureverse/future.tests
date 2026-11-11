@@ -1,4 +1,4 @@
-## https://github.com/HenrikBengtsson/future.tests/issues/14
+## https://github.com/futureverse/future.tests/issues/14
 make_test(title = "future() - non-exported package objects", tags = c("future", "globals"), {
   if (requireNamespace("utils") && require("utils")) {
     ## Find a non-exported 'utils' function
@@ -28,7 +28,7 @@ make_test(title = "future() - non-exported package objects", tags = c("future", 
 
 
 
-## https://github.com/HenrikBengtsson/future.tests/issues/15
+## https://github.com/futureverse/future.tests/issues/15
 make_test(title = "future() - NSE '...'", tags = c("future", "globals", "..."), {
   my_fcn <- function(...) {
     ## Grab '...' into a Globals object

@@ -1,4 +1,4 @@
-## https://github.com/HenrikBengtsson/future.tests/issues/20
+## https://github.com/futureverse/future.tests/issues/20
 make_test(title = "future() - 'data.table' inject", tags = c("future", "options", "reset", "ff"), {
   if (!requireNamespace("data.table")) {
     future.tests::skip_test("Test requires the 'data.table' package")
@@ -9,7 +9,7 @@ make_test(title = "future() - 'data.table' inject", tags = c("future", "options"
   r <- result(f)
 })
 
-## https://github.com/HenrikBengtsson/future.tests/issues/20
+## https://github.com/futureverse/future.tests/issues/20
 make_test(title = "future() - can load 'ff' package", tags = c("future", "options", "reset", "ff"), {
   if (!requireNamespace("ff")) {
     future.tests::skip_test("Test requires the 'ff' package")
@@ -21,7 +21,7 @@ make_test(title = "future() - can load 'ff' package", tags = c("future", "option
   if (!isTRUE(v)) stop("Failed to load 'ff' package")
 })
 
-## https://github.com/HenrikBengtsson/future.tests/issues/20
+## https://github.com/futureverse/future.tests/issues/20
 make_test(title = "future() - can attach 'ff' package", tags = c("future", "options", "reset", "ff"), {
   if (!requireNamespace("ff")) {
     future.tests::skip_test("Test requires the 'ff' package")
@@ -34,7 +34,7 @@ make_test(title = "future() - can attach 'ff' package", tags = c("future", "opti
 })
 
 
-## https://github.com/HenrikBengtsson/future.tests/issues/20
+## https://github.com/futureverse/future.tests/issues/20
 make_test(title = "future() - preserve R options (ff)", tags = c("future", "options", "reset", "ff"), {
   if (!requireNamespace("ff")) {
     future.tests::skip_test("Test requires the 'ff' package")
