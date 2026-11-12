@@ -16,9 +16,9 @@ All future backends implementing the Future API should validate that they confor
 ### From Within R
 
 ```r
-> results <- future.tests::check(plan = "multisession")
-> exit_code <- attr(results, "exit_code")
-> if (exit_code != 0) stop("One or more tests failed")
+results <- future.tests::check(plan = "multisession")
+exit_code <- attr(results, "exit_code")
+if (exit_code != 0) stop("One or more tests failed")
 ```
 
 ### From Outside R
