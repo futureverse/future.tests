@@ -40,11 +40,10 @@ it easy to include them in package tests and in Continuous Integration
 
 ### From Within R
 
-``` r
-> results <- future.tests::check(plan = "multisession")
-> exit_code <- attr(results, "exit_code")
-> if (exit_code != 0) stop("One or more tests failed")
-```
+\
+`results`` ``<-`` ``future.tests``::`[`check`](https://future.tests.futureverse.org/reference/check.md)`(``plan ``=`` ``"multisession"``)`\
+`exit_code`` ``<-`` `[`attr`](https://rdrr.io/r/base/attr.html)`(``results``, ``"exit_code"``)`\
+`if`` ``(``exit_code`` ``!=`` ``0``)`` `[`stop`](https://rdrr.io/r/base/stop.html)`(``"One or more tests failed"``)`
 
 ### From Outside R
 
