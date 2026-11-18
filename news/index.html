@@ -76,11 +76,6 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="version-development-version">Version (development version)<a class="anchor" aria-label="anchor" href="#version-development-version"></a></h2>
 <div class="section level3">
-<h3 id="new-features-development-version">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
-<ul><li>
-<code><a href="../reference/check.html">check()</a></code> gained argument <code>index</code> and command-line option <code>--test-index=&lt;index&gt;</code> for running a subset of the tests by their numbers, e.g. <code>--test-index=42</code> and <code>--test-index=2:13,14</code>.</li>
-</ul></div>
-<div class="section level3">
 <h3 id="test-updates-development-version">Test Updates<a class="anchor" aria-label="anchor" href="#test-updates-development-version"></a></h3>
 <ul><li><p>Now asserting that immediate conditions are relayed, where possible.</p></li>
 <li><p>The test for <code>cancel()</code> and <code>value()</code> now asserts that <code>value()</code> on a canceled future signals a <code>FutureCanceledError</code>, which inherits from <code>FutureInterruptError</code>, also when canceled with <code>interrupt = FALSE</code>, when the backend does not support interrupts, and for lazy futures. A new test asserts the same for a future that has already been collected. The new assertions are skipped when testing against a version of the <strong>future</strong> package that does not yet include the corresponding bug fix.</p></li>
@@ -97,9 +92,9 @@
 <li><p>Add tests for (i) <code>future(..., packages = "missing-package")</code> signaling an error, (ii) <code>value(&lt;listenv&gt;, idxs)</code>, (iii) <code>value(&lt;list&gt;, reduce = structure("+", init = 42))</code>, (iv) <code>result()</code> on a canceled and interrupted future, and (v) errors from a <code>makeClusterFuture()</code> cluster being signaled as by other clusters.</p></li>
 </ul></div>
 <div class="section level3">
-<h3 id="new-features-development-version-1">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version-1"></a></h3>
-<ul><li>
-<code><a href="../reference/run_tests.html">run_tests()</a></code> gained argument <code>timeout</code>.</li>
+<h3 id="new-features-development-version">New Features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
+<ul><li><p><code><a href="../reference/check.html">check()</a></code> gained argument <code>index</code> and command-line option <code>--test-index=&lt;index&gt;</code> for running a subset of the tests by their numbers, e.g. <code>--test-index=42</code> and <code>--test-index=2:13,14</code>.</p></li>
+<li><p><code><a href="../reference/run_tests.html">run_tests()</a></code> gained argument <code>timeout</code>.</p></li>
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-development-version">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
