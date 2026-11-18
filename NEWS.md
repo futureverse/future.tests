@@ -1,11 +1,5 @@
 # Version (development version)
 
-## New Features
-
- * `check()` gained argument `index` and command-line option
-   `--test-index=<index>` for running a subset of the tests by their
-   numbers, e.g. `--test-index=42` and `--test-index=2:13,14`.
-
 ## Test Updates
 
  * Now asserting that immediate conditions are relayed, where possible.
@@ -51,6 +45,10 @@
    `makeClusterFuture()` cluster being signaled as by other clusters.
 
 ## New Features
+
+ * `check()` gained argument `index` and command-line option
+   `--test-index=<index>` for running a subset of the tests by their
+   numbers, e.g. `--test-index=42` and `--test-index=2:13,14`.
 
  * `run_tests()` gained argument `timeout`.
 
