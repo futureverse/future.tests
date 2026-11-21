@@ -26,7 +26,8 @@ check_plan <- function(tests = test_db(), defaults = list(), timeout = getOption
   note <- yellow("N")
 
   plan <- plan("next")
-  plan_str <- deparse(attr(plan, "call"))
+  ## deparse() may split a long call into multiple strings
+  plan_str <- paste(trimws(deparse(attr(plan, "call"))), collapse = " ")
 
   test_results <- list()
   attr(test_results, "plan") <- plan

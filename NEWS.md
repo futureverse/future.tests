@@ -54,6 +54,10 @@
 
 ## Bug Fixes
 
+ * `check_plan()` failed with error 'is_string(left) is not TRUE' when
+   the call of the current future plan was long, e.g. when using
+   `--test-plan=` with a cluster of several workers.
+
  * `run_test()` recorded and restored the variables of its own call frame
    instead of those of the environment where the test is evaluated, so
    variables created by a test with `local = FALSE` were never removed.
