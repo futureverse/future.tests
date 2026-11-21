@@ -15,8 +15,10 @@ results <- check(plan = "sequential", session_info = TRUE, debug = TRUE, exit_va
 print(results)
 
 ## Run checks with plan(sequential) from CLI
-results <- check(.args = c("--debug", "--test-timeout=30", "--test-tags=resolve,rng", "--test-plan=sequential"), exit_value = FALSE)
+## Tests must have all tags, i.e. 'rng' and 'lazy'
+results <- check(.args = c("--debug", "--test-timeout=30", "--test-tags=rng,lazy", "--test-plan=sequential"), exit_value = FALSE)
 print(results)
+stopifnot(length(results[[1]]) == 2L)
 
 ## Flags --session-info and --debug are respected
 out <- utils::capture.output({

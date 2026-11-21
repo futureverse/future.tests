@@ -22,8 +22,9 @@ check(
 \item{plan}{(character vector) One or more future strategy plans to be
 validated.}
 
-\item{tags}{(character vector; optional) Filter tests by tags. If NULL, all
-tests are performed.}
+\item{tags}{(character vector; optional) Filter tests by tags. Only tests
+that have all of the specified tags are performed. If NULL, all tests are
+performed.}
 
 \item{index}{(integer vector; optional) Indices of the tests to run, after
 any filtering by \code{tags}. These are the test numbers reported in the output.
