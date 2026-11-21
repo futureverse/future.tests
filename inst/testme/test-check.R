@@ -11,11 +11,11 @@ check()
 check(.args = c("--debug", "--help"))
 
 ## Run checks with plan(sequential)
-results <- check(plan = "sequential", session_info = TRUE, debug = TRUE)
+results <- check(plan = "sequential", session_info = TRUE, debug = TRUE, exit_value = FALSE)
 print(results)
 
 ## Run checks with plan(sequential) from CLI
-results <- check(.args = c("--debug", "--test-timeout=30", "--test-tags=resolve,rng", "--test-plan=sequential"))
+results <- check(.args = c("--debug", "--test-timeout=30", "--test-tags=resolve,rng", "--test-plan=sequential"), exit_value = FALSE)
 print(results)
 
 ## Flags --session-info and --debug are respected
@@ -38,7 +38,7 @@ options(old)
 ## check_plan() runs tests without arguments also when there are no defaults
 out <- utils::capture.output({
   results <- future.tests::check_plan(
-    list(make_test({ cat("RAN\n") }, title = "no args", register = FALSE)),
+    list(future.tests::make_test({ cat("RAN\n") }, title = "no args", register = FALSE)),
     defaults = list()
   )
 })
