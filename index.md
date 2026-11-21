@@ -64,10 +64,7 @@ installed in R as:
 
 ### Pre-release version
 
-To install the pre-release version that is available in Git branch
-`develop` on GitHub, use:
+To install the pre-release version, use:
 
 \
-`remotes``::`[`install_github`](https://remotes.r-lib.org/reference/install_github.html)`(``"futureverse/future.tests"``, ref``=``"develop"``)`
-
-This will install the package from source.
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"future.tests"``, repos ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"https://futureverse-devel.r-universe.dev"``, ``"https://cloud.r-project.org"``)``)`
