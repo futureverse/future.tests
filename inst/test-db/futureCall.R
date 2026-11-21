@@ -63,17 +63,11 @@ make_test(title = 'futureCall() - globals = list(a = 3)', args = list(lazy = c(F
   f <- futureCall(function(x, y) a * (x - y), args = args, globals = list(a = 3), lazy = lazy)
   rm(list = "args")
   print(f)
-  
-  res <- tryCatch({
-    v <- value(f)
-  }, error = identity)
-  stopifnot(!inherits(res, "FutureError"))
-  if (!inherits(res, "error")) {
-    str(list(globals = globals, lazy = lazy, v0 = v0, v = v))
-    stopifnot(all.equal(v, v0))
-  } else {
-    stopifnot(!globals)
-  }
+
+  ## Global 'a' is passed explicitly, so this must always work
+  v <- value(f)
+  str(list(lazy = lazy, v0 = v0, v = v))
+  stopifnot(all.equal(v, v0))
 })
 
 

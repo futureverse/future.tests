@@ -30,3 +30,18 @@ stopifnot(length(subset_tests(list(t_lazy), args = list(lazy = FALSE), defaults 
 stopifnot(length(subset_tests(list(t_none), args = list(lazy = TRUE), defaults = defaults)) == 0L)
 stopifnot(length(subset_tests(list(t_none), args = list(lazy = FALSE), defaults = defaults)) == 1L)
 message("subset_tests(args, defaults) ... DONE")
+
+
+message("Tests only use the arguments they declare ...")
+library(future)
+## Test 'futureCall() - globals = list(a = 3)' used variable 'globals'
+## without declaring it as an argument
+titles <- vapply(tests, FUN = function(t) t$title, FUN.VALUE = NA_character_)
+t <- tests[[which(titles == "futureCall() - globals = list(a = 3)")]]
+stopifnot(identical(names(t$args), "lazy"))
+for (lazy in t$args$lazy) {
+  res <- run_test(t, args = list(lazy = lazy))
+  print(res)
+  stopifnot(!inherits(res$error, "error"))
+}
+message("Tests only use the arguments they declare ... DONE")

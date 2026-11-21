@@ -54,6 +54,11 @@
 
 ## Bug Fixes
 
+ * Test 'futureCall() - globals = list(a = 3)' used variable `globals`
+   without declaring it as a test argument, which caused it to fail
+   when run without `globals` among the default arguments, e.g. via
+   `run_tests()`.
+
  * Popping the internal test-state stack when it was empty, e.g. after
    resetting it, removed all environment variables and options. Now
    it produces an error instead.
