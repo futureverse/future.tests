@@ -54,7 +54,12 @@ db_state <- local({
       if (debug) str(stack)
       stop_if_not(length(stack) == old_depth + 1L)
     } else if (action == "pop") {
-      stop_if_not(length(stack) >= 1L)
+      ## The last element is the empty, initial state, which must never
+      ## be popped, because undoing it would remove all environment
+      ## variables and options
+      if (length(stack) <= 1L) {
+        stop("Cannot pop state, because the state stack is empty")
+      }
 
       old_depth <- length(stack)
       state <- stack[[1L]]

@@ -54,6 +54,10 @@
 
 ## Bug Fixes
 
+ * Popping the internal test-state stack when it was empty, e.g. after
+   resetting it, removed all environment variables and options. Now
+   it produces an error instead.
+
  * `as.data.frame()` for a `TestResult` reported a skipped test as
    successful, i.e. `success = TRUE`, whereas `print()` reports it as
    `Success: NA`. Now `success` is `NA` also for skipped tests.
