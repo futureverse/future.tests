@@ -28,8 +28,9 @@ check(
 
 - tags:
 
-  (character vector; optional) Filter tests by tags. If NULL, all tests
-  are performed.
+  (character vector; optional) Filter tests by tags. Only tests that
+  have all of the specified tags are performed. If NULL, all tests are
+  performed.
 
 - index:
 
@@ -40,7 +41,8 @@ check(
 - timeout:
 
   (numeric; optional) Maximum time (in seconds) each test may run before
-  a timeout error is produced.
+  a timeout error is produced. If NULL, option `future.tests.timeout` is
+  used, which defaults to 30 seconds.
 
 - settings:
 

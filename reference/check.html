@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">future.tests</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9024</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9032</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -105,8 +105,9 @@ validated.</p></dd>
 
 
 <dt id="arg-tags">tags<a class="anchor" aria-label="anchor" href="#arg-tags"></a></dt>
-<dd><p>(character vector; optional) Filter tests by tags. If NULL, all
-tests are performed.</p></dd>
+<dd><p>(character vector; optional) Filter tests by tags. Only tests
+that have all of the specified tags are performed. If NULL, all tests are
+performed.</p></dd>
 
 
 <dt id="arg-index">index<a class="anchor" aria-label="anchor" href="#arg-index"></a></dt>
@@ -117,7 +118,8 @@ If NULL, all tests are performed.</p></dd>
 
 <dt id="arg-timeout">timeout<a class="anchor" aria-label="anchor" href="#arg-timeout"></a></dt>
 <dd><p>(numeric; optional) Maximum time (in seconds) each test may
-run before a timeout error is produced.</p></dd>
+run before a timeout error is produced. If NULL, option
+<code>future.tests.timeout</code> is used, which defaults to 30 seconds.</p></dd>
 
 
 <dt id="arg-settings">settings<a class="anchor" aria-label="anchor" href="#arg-settings"></a></dt>

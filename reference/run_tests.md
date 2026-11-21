@@ -45,3 +45,10 @@ run_tests(
 ## Value
 
 List of test results.
+
+## Details
+
+Test arguments, declared by `args` of
+[`make_test()`](https://future.tests.futureverse.org/reference/make_test.md),
+that are neither specified via `defaults` nor exist in `envir`, are set
+to the first of the values declared by the test.

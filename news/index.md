@@ -60,47 +60,31 @@
 
 ### Bug Fixes
 
-- [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md)
-  recorded and restored the variables of its own call frame instead of
-  those of the environment where the test is evaluated, so variables
-  created by a test with `local = FALSE` were never removed.
+- Test ‘futureCall() - globals = list(a = 3)’ used variable `globals`
+  without declaring it as a test argument, which caused it to fail when
+  run without `globals` among the default arguments, e.g. via
+  [`run_tests()`](https://future.tests.futureverse.org/reference/run_tests.md).
+
+- Popping the internal test-state stack when it was empty, e.g. after
+  resetting it, removed all environment variables and options. Now it
+  produces an error instead.
+
+- [`as.data.frame()`](https://rdrr.io/r/base/as.data.frame.html) for a
+  `TestResult` reported a skipped test as successful,
+  i.e. `success = TRUE`, whereas
+  [`print()`](https://rdrr.io/r/base/print.html) reports it as
+  `Success: NA`. Now `success` is `NA` also for skipped tests.
 
 - When the future plan could not be restored after a test, an obscure
   ‘invalid argument type’ error message was produced instead of
   reporting that the plan differed.
 
-- [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md)
-  would use a function as the value of a missing test argument when a
-  function of the same name existed,
-  e.g. [`stdout()`](https://rdrr.io/r/base/showConnections.html),
-  instead of reporting the argument as missing.
-
-- [`evaluate_expr()`](https://future.tests.futureverse.org/reference/evaluate_expr.md)
-  and
-  [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md)
-  would fail with a ‘reached elapsed time limit’ error when a test timed
-  out.
+- `check(timeout = <seconds>)` no longer leaves option
+  `future.tests.timeout` set after returning.
 
 - [`check()`](https://future.tests.futureverse.org/reference/check.md)
   failed to set the future plan when the specified plan contained the
   word “plan”, e.g. `--test-plan=planned::foo`.
-
-- `subset_tests(args, defaults)` ignored the arguments of the tests.
-
-- [`along_test_plans()`](https://future.tests.futureverse.org/reference/along_test_plans.md)
-  dropped errors and `NULL` results. Errors are now returned as the
-  result for the plan, and evaluation continues.
-
-- `check_plan(defaults = list())` silently skipped tests without
-  arguments.
-
-- `run_tests(defaults = NULL)` failed with an error.
-
-- [`make_test()`](https://future.tests.futureverse.org/reference/make_test.md)
-  accepted a missing title (`NA`).
-
-- `check(timeout = <seconds>)` no longer leaves option
-  `future.tests.timeout` set after returning.
 
 - [`check()`](https://future.tests.futureverse.org/reference/check.md)
   ignored command-line options `--session-info` and `--debug`.
@@ -115,6 +99,48 @@
 - [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
   and [`as.data.frame()`](https://rdrr.io/r/base/as.data.frame.html) for
   tests coerced character test arguments to factors.
+
+- [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
+  failed with error ‘is_string(left) is not TRUE’ when the call of the
+  current future plan was long, e.g. when using `--test-plan=` with a
+  cluster of several workers.
+
+- `check_plan(defaults = list())` silently skipped tests without
+  arguments.
+
+- `run_tests(defaults = NULL)` failed with an error.
+
+- [`run_tests()`](https://future.tests.futureverse.org/reference/run_tests.md)
+  failed with its default arguments, because tests that declare
+  arguments, e.g. `lazy`, required those to be specified via `defaults`
+  or to exist in `envir`. Now such arguments default to the first value
+  declared by the test.
+
+- [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md)
+  recorded and restored the variables of its own call frame instead of
+  those of the environment where the test is evaluated, so variables
+  created by a test with `local = FALSE` were never removed.
+
+- [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md)
+  would use a function as the value of a missing test argument when a
+  function of the same name existed,
+  e.g. [`stdout()`](https://rdrr.io/r/base/showConnections.html),
+  instead of reporting the argument as missing.
+
+- [`make_test()`](https://future.tests.futureverse.org/reference/make_test.md)
+  accepted a missing title (`NA`).
+
+- [`evaluate_expr()`](https://future.tests.futureverse.org/reference/evaluate_expr.md)
+  and
+  [`run_test()`](https://future.tests.futureverse.org/reference/run_test.md)
+  would fail with a ‘reached elapsed time limit’ error when a test timed
+  out.
+
+- `subset_tests(args, defaults)` ignored the arguments of the tests.
+
+- [`along_test_plans()`](https://future.tests.futureverse.org/reference/along_test_plans.md)
+  dropped errors and `NULL` results. Errors are now returned as the
+  result for the plan, and evaluation continues.
 
 ### Miscellaneous
 
