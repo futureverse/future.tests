@@ -71,14 +71,20 @@ check_plan <- function(tests = test_db(), defaults = list(), timeout = getOption
       result <- suppressWarnings({
         run_test(test, args = args, defaults = defaults, timeout = timeout, envir = envir, local = local)
       })
-      if (inherits(result$skipped, "TestSkipped")) {
+      ## Not run, e.g. because the test does not support the arguments?
+      not_run <- (length(result$time) < 2L)
+      if (not_run || inherits(result$skipped, "TestSkipped")) {
         status[[aa]] <- "SKIP"
       } else if (inherits(result$error, "TimeoutError")) {
         status[[aa]] <- "TIMEOUT"
       } else if (inherits(result$error, "error")) {
         status[[aa]] <- "ERROR"
       }
-      dts[aa] <- difftime(result$time[length(result$time)], result$time[1], units = "secs")
+      dts[aa] <- if (not_run) {
+        NA_real_
+      } else {
+        difftime(result$time[length(result$time)], result$time[1], units = "secs")
+      }
 
       test_results[[tt]][[aa]] <- result
     } ## for (aa ...)
@@ -127,7 +133,12 @@ check_plan <- function(tests = test_db(), defaults = list(), timeout = getOption
         } else if (status[aa] == "SKIP") {
           cat(sprintf("  %s %s\n", skip, args_tag))
           total["SKIP"] <- total["SKIP"] + 1L
-          msg <- conditionMessage(test_results[[tt]][[aa]]$skipped)
+          skipped <- test_results[[tt]][[aa]]$skipped
+          msg <- if (inherits(skipped, "TestSkipped")) {
+            conditionMessage(skipped)
+          } else {
+            "Not run (unsupported arguments)"
+          }
         } else if (status[aa] == "TIMEOUT") {
           cat(sprintf("  %s %s %s\n", timeout_error, args_tag, yellow(sprintf("(> %s)", pretty_sec(timeout)))))
           total["TIMEOUT"] <- total["TIMEOUT"] + 1L
