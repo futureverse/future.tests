@@ -54,6 +54,10 @@
 
 ## Bug Fixes
 
+ * `as.data.frame()` for a `TestResult` reported a skipped test as
+   successful, i.e. `success = TRUE`, whereas `print()` reports it as
+   `Success: NA`. Now `success` is `NA` also for skipped tests.
+
  * When the future plan could not be restored after a test, an obscure
    'invalid argument type' error message was produced instead of
    reporting that the plan differed.

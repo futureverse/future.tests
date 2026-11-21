@@ -8,7 +8,8 @@ as.data.frame.TestResult <- function(x, ..., arg_names = NULL) {
     res$success <- NA
   } else {
     res$time <- difftime(x$time[length(x$time)], x$time[1], units = "secs")
-    res$success <- !inherits(x$error, "error")
+    ## A skipped test is neither a success nor a failure
+    res$success <- if (inherits(x$skipped, "TestSkipped")) NA else !inherits(x$error, "error")
   }
   as.data.frame(res, check.names = FALSE, stringsAsFactors = FALSE)
 }

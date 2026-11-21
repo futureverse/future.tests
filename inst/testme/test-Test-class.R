@@ -113,6 +113,17 @@ stopifnot(
 )
 message("print() of TestResult for unsupported arguments ... DONE")
 
+message("as.data.frame() of TestResult for skipped test ...")
+t <- make_test({ future.tests::skip_test("skipping") }, title = "skip me", register = FALSE)
+res <- run_test(t)
+stopifnot(inherits(res$skipped, "TestSkipped"))
+out <- utils::capture.output(print(res))
+stopifnot(any(grepl("Success: NA", out, fixed = TRUE)))
+df <- as.data.frame(res)
+print(df)
+stopifnot(is.na(df$success))
+message("as.data.frame() of TestResult for skipped test ... DONE")
+
 message("run_tests(timeout = <seconds>) ...")
 t <- make_test({
   t0 <- Sys.time()
