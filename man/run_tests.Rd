@@ -32,3 +32,8 @@ List of test results.
 \description{
 Run All Tests
 }
+\details{
+Test arguments, declared by \code{args} of \code{\link[=make_test]{make_test()}}, that are neither
+specified via \code{defaults} nor exist in \code{envir}, are set to the first of
+the values declared by the test.
+}

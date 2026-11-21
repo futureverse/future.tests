@@ -86,6 +86,22 @@ stopifnot(length(res) == 1L, identical(res[[1]]$value, 42))
 message("run_tests(defaults = NULL) ... DONE")
 
 
+message("run_tests() with default arguments ...")
+t <- make_test({ if (lazy) "lazy" else "eager" }, title = "run_tests() without defaults",
+               args = list(lazy = c(FALSE, TRUE)), register = FALSE)
+## Arguments not given via 'defaults' or 'envir' default to the first
+## declared value
+res <- local(run_tests(list(t)), envir = new.env(parent = globalenv()))
+stopifnot(length(res) == 1L, identical(res[[1]]$value, "eager"))
+## Values in 'defaults' take precedence
+res <- local(run_tests(list(t), defaults = list(lazy = TRUE)), envir = new.env(parent = globalenv()))
+stopifnot(identical(res[[1]]$value, "lazy"))
+## Values in 'envir' take precedence
+res <- local({ lazy <- TRUE; run_tests(list(t)) }, envir = new.env(parent = globalenv()))
+stopifnot(identical(res[[1]]$value, "lazy"))
+message("run_tests() with default arguments ... DONE")
+
+
 message("print() of TestResult for unsupported arguments ...")
 t <- make_test({ 42 }, title = "lazy = FALSE only", args = list(lazy = FALSE), register = FALSE)
 res <- run_test(t, args = list(lazy = TRUE))

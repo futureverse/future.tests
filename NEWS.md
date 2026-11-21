@@ -54,42 +54,15 @@
 
 ## Bug Fixes
 
- * `check_plan()` failed with error 'is_string(left) is not TRUE' when
-   the call of the current future plan was long, e.g. when using
-   `--test-plan=` with a cluster of several workers.
-
- * `run_test()` recorded and restored the variables of its own call frame
-   instead of those of the environment where the test is evaluated, so
-   variables created by a test with `local = FALSE` were never removed.
-
  * When the future plan could not be restored after a test, an obscure
    'invalid argument type' error message was produced instead of
    reporting that the plan differed.
 
- * `run_test()` would use a function as the value of a missing test argument
-   when a function of the same name existed, e.g. `stdout()`, instead of
-   reporting the argument as missing.
-
- * `evaluate_expr()` and `run_test()` would fail with a 'reached
-   elapsed time limit' error when a test timed out.
-
- * `check()` failed to set the future plan when the specified plan
-   contained the word "plan", e.g. `--test-plan=planned::foo`.
-
- * `subset_tests(args, defaults)` ignored the arguments of the tests.
-
- * `along_test_plans()` dropped errors and `NULL` results. Errors are
-   now returned as the result for the plan, and evaluation continues.
-
- * `check_plan(defaults = list())` silently skipped tests without
-   arguments.
-
- * `run_tests(defaults = NULL)` failed with an error.
-
- * `make_test()` accepted a missing title (`NA`).
-
  * `check(timeout = <seconds>)` no longer leaves option
    `future.tests.timeout` set after returning.
+   
+ * `check()` failed to set the future plan when the specified plan
+   contained the word "plan", e.g. `--test-plan=planned::foo`.
 
  * `check()` ignored command-line options `--session-info` and
    `--debug`.
@@ -103,6 +76,39 @@
 
  * `check_plan()` and `as.data.frame()` for tests coerced character
    test arguments to factors.
+   
+ * `check_plan()` failed with error 'is_string(left) is not TRUE' when
+   the call of the current future plan was long, e.g. when using
+   `--test-plan=` with a cluster of several workers.
+
+ * `check_plan(defaults = list())` silently skipped tests without
+   arguments.
+
+ * `run_tests(defaults = NULL)` failed with an error.
+
+ * `run_tests()` failed with its default arguments, because tests that
+   declare arguments, e.g. `lazy`, required those to be specified via
+   `defaults` or to exist in `envir`. Now such arguments default to the
+   first value declared by the test.
+
+ * `run_test()` recorded and restored the variables of its own call frame
+   instead of those of the environment where the test is evaluated, so
+   variables created by a test with `local = FALSE` were never removed.
+
+ * `run_test()` would use a function as the value of a missing test argument
+   when a function of the same name existed, e.g. `stdout()`, instead of
+   reporting the argument as missing.
+
+ * `make_test()` accepted a missing title (`NA`).
+
+ * `evaluate_expr()` and `run_test()` would fail with a 'reached
+   elapsed time limit' error when a test timed out.
+
+ * `subset_tests(args, defaults)` ignored the arguments of the tests.
+
+ * `along_test_plans()` dropped errors and `NULL` results. Errors are
+   now returned as the result for the plan, and evaluation continues.
+
 
 ## Miscellaneous
 
