@@ -13,7 +13,8 @@
 #' If NULL, all tests are performed.
 #'
 #' @param timeout (numeric; optional) Maximum time (in seconds) each test may
-#' run before a timeout error is produced.
+#' run before a timeout error is produced. If NULL, option
+#' `future.tests.timeout` is used, which defaults to 30 seconds.
 #'
 #' @param settings (logical) If TRUE, details on the settings are outputted
 #' before the tests start.
@@ -171,7 +172,9 @@ check <- function(plan = NULL, tags = character(), index = NULL, timeout = NULL,
     cat(sprintf("- Option 'future.tests.root': %s\n", getOption("future.tests.root", "NULL")))
     cat(sprintf("- Default test set folder   : %s\n", system.file("test-db", package = "future.tests", mustWork = TRUE)))
     cat(sprintf("- Max number of workers     : %s\n", availableCores()))
-    cat(sprintf("- Timeout                   : %s\n", if (is.numeric(timeout)) sprintf("%g seconds", timeout) else "N/A"))
+    ## Report the timeout that will be used by check_plan()
+    timeout_used <- if (is.numeric(timeout)) timeout else getOption("future.tests.timeout", 30)
+    cat(sprintf("- Timeout                   : %g seconds\n", timeout_used))
     cat("\n")
   }
 

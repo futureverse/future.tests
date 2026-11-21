@@ -61,6 +61,19 @@ utils::capture.output({
 })
 stopifnot(length(results) == 1L)
 
+## The settings banner reports the timeout used, also when not specified
+old <- options(future.tests.timeout = NULL)
+out <- utils::capture.output({
+  results <- check(plan = "sequential", index = 1L, exit_value = FALSE)
+})
+stopifnot(any(grepl("Timeout *: 30 seconds", out)))
+options(future.tests.timeout = 42)
+out <- utils::capture.output({
+  results <- check(plan = "sequential", index = 1L, exit_value = FALSE)
+})
+stopifnot(any(grepl("Timeout *: 42 seconds", out)))
+options(old)
+
 message("*** check() ... DONE")
 
 ## --test-index

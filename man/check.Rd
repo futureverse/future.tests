@@ -30,7 +30,8 @@ any filtering by \code{tags}. These are the test numbers reported in the output.
 If NULL, all tests are performed.}
 
 \item{timeout}{(numeric; optional) Maximum time (in seconds) each test may
-run before a timeout error is produced.}
+run before a timeout error is produced. If NULL, option
+\code{future.tests.timeout} is used, which defaults to 30 seconds.}
 
 \item{settings}{(logical) If TRUE, details on the settings are outputted
 before the tests start.}
