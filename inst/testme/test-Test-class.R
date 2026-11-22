@@ -149,3 +149,28 @@ res <- run_test(t, envir = envir, local = FALSE)
 stopifnot(exists("keep", envir = envir, inherits = FALSE),
           !exists("leaked", envir = envir, inherits = FALSE))
 message("run_test(local = FALSE) - objects are undone ... DONE")
+
+## Test arguments are removed from, or restored in, the evaluation environment
+message("run_test(local = FALSE) - test arguments are undone ...")
+t <- make_test({ 42 }, title = "with args", args = list(lazy = c(FALSE, TRUE), globals = TRUE), register = FALSE)
+envir <- new.env()
+assign("lazy", "user value", envir = envir)
+res <- run_test(t, envir = envir, local = FALSE, defaults = list(lazy = TRUE, globals = TRUE, stdout = TRUE))
+stopifnot(identical(res$value, 42))
+stopifnot(
+  identical(get("lazy", envir = envir, inherits = FALSE), "user value"),
+  !exists("globals", envir = envir, inherits = FALSE),
+  !exists("stdout", envir = envir, inherits = FALSE)
+)
+
+## Also when the test is not run, because the arguments are not supported
+envir <- new.env()
+res <- run_test(t, envir = envir, local = FALSE, defaults = list(lazy = FALSE, globals = FALSE))
+stopifnot(is.null(res$value), length(ls(envir = envir, all.names = TRUE)) == 0L)
+
+## Also when the test fails
+t <- make_test({ stop("boom") }, title = "with args, error", args = list(lazy = c(FALSE, TRUE)), register = FALSE)
+envir <- new.env()
+res <- run_test(t, envir = envir, local = FALSE, defaults = list(lazy = TRUE))
+stopifnot(inherits(res$error, "error"), length(ls(envir = envir, all.names = TRUE)) == 0L)
+message("run_test(local = FALSE) - test arguments are undone ... DONE")

@@ -25,7 +25,28 @@ run_test <- function(test, envir = parent.frame(), local = TRUE, args = list(), 
   if (length(defaults) > 0) stopifnot(is.list(defaults), !is.null(names(defaults)))
   stopifnot(is.numeric(timeout), length(timeout) == 1L, timeout > 0)
 
-  if (local) envir <- new.env(parent = envir)
+  if (local) {
+    envir <- new.env(parent = envir)
+  } else {
+    ## Record test-argument variables that will be overwritten in 'envir',
+    ## so that they can be restored, or removed, on exit
+    arg_vars <- unique(c(character(0L), names(defaults), names(args)))
+    existed <- vapply(arg_vars, FUN = exists, envir = envir, inherits = FALSE, FUN.VALUE = NA)
+    old_vars <- mget(arg_vars[existed], envir = envir, inherits = FALSE)
+  }
+
+  ## Pop test state, if pushed, and undo test-argument variables on exit.
+  ## The latter must be done after popping the test state, because that
+  ## restores the variables to what they were when the state was pushed
+  pushed <- FALSE
+  on.exit({
+    if (pushed) pop_state()
+    if (!local) {
+      rm(list = arg_vars[!existed], envir = envir, inherits = FALSE)
+      for (name in names(old_vars)) assign(name, old_vars[[name]], envir = envir)
+    }
+  })
+
   for (name in names(defaults)) assign(name, defaults[[name]], envir = envir)
   for (name in names(args)) assign(name, args[[name]], envir = envir)
 
@@ -59,9 +80,10 @@ run_test <- function(test, envir = parent.frame(), local = TRUE, args = list(), 
   ## Push test state, which includes setting the future strategy
   push_state(title = test$title, envir = envir)
 
-  ## Pop test state on exit, which includes resetting the future strategy,
-  ## which in turn will shut down the future backend used during test
-  on.exit(pop_state())
+  ## The test state is popped on exit (see above), which includes resetting
+  ## the future strategy, which in turn will shut down the future backend
+  ## used during test
+  pushed <- TRUE
 
   if (test$reset_workers) {
     resetWorkers(plan())
