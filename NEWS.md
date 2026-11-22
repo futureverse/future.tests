@@ -54,6 +54,11 @@
 
 ## Bug Fixes
 
+ * Loading the package overwrote options `future.tests.debug` and
+   `mc.cores`, if already set. Now they are only set if not already
+   set, except that command-line option `--cores=<n>` still sets
+   `mc.cores`.
+
  * Test 'futureCall() - globals = list(a = 3)' used variable `globals`
    without declaring it as a test argument, which caused it to fail
    when run without `globals` among the default arguments, e.g. via

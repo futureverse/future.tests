@@ -1,8 +1,13 @@
 ## covr: skip=all
 #' @importFrom future availableCores
 .onLoad <- function(libname, pkgname) {
-  debug <- isTRUE(as.logical(Sys.getenv("R_FUTURE_TESTS_DEBUG", FALSE)))
-  options(future.tests.debug = debug)
+  ## Don't override option 'future.tests.debug', if already set
+  debug <- getOption("future.tests.debug")
+  if (is.null(debug)) {
+    debug <- isTRUE(as.logical(Sys.getenv("R_FUTURE_TESTS_DEBUG", FALSE)))
+    options(future.tests.debug = debug)
+  }
+  debug <- isTRUE(debug)
 
   value <- getOption("future.tests.undo")
   if (is.null(value)) {
@@ -23,13 +28,13 @@
 
   args <- parseCmdArgs()
   cores <- args$cores
-  if (is.null(cores)) {
-    ## Use at most two cores by default
-    cores <- min(2L, availableCores())
-  } else {
+  if (!is.null(cores)) {
     if (debug) mdebug("R command-line argument: --cores=%s", cores)
+    options(mc.cores = cores)
+  } else if (is.null(getOption("mc.cores"))) {
+    ## Use at most two cores by default, unless option 'mc.cores' is set
+    options(mc.cores = min(2L, availableCores()))
   }
-  options(mc.cores = cores)
   if (debug) mdebug("Available cores: %d", availableCores())
   
   ## Pre-load all tests
