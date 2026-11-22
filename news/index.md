@@ -60,6 +60,16 @@
 
 ### Bug Fixes
 
+- Loading the package overwrote options `future.tests.debug` and
+  `mc.cores`, if already set. Now they are only set if not already set,
+  except that command-line option `--cores=<n>` still sets `mc.cores`.
+
+- `run_test(local = FALSE)` and `check(local = FALSE)` left the test
+  arguments, e.g. `lazy`, `globals`, and `stdout`, behind in the
+  evaluation environment, which by default is the global environment,
+  overwriting any existing variables with the same names. Now such
+  variables are removed or restored afterward.
+
 - Test ‘futureCall() - globals = list(a = 3)’ used variable `globals`
   without declaring it as a test argument, which caused it to fail when
   run without `globals` among the default arguments, e.g. via
