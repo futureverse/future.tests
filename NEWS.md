@@ -2,6 +2,9 @@
 
 ## Test Updates
 
+ * Add test for RNG reproducibility with `future(..., seed = TRUE)` and
+   `future(..., seed = <integer>)`.
+
  * Add test for `value(..., drop = TRUE)` asserting that a subsequent
    `value()` signals `FutureDroppedError` and that `cancel()` on a
    dropped future is a no-op.

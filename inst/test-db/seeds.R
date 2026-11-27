@@ -15,6 +15,43 @@ make_test(title = 'Random Number Generation (RNG) - seeds and preserving RNGkind
 })
 
 
+make_test(title = 'Random Number Generation (RNG) - seed = TRUE and seed = <integer>', args = list(lazy = c(FALSE, TRUE)), tags = c("rng", "seed", "lazy", "auto-seed"), {
+  ## Reference values under sequential
+  ref <- local({
+    old_plan <- plan()
+    plan("sequential")
+    on.exit(plan(old_plan))
+
+    y_int <- value(future(rnorm(3L), seed = 42L, lazy = lazy))
+
+    set.seed(42L)
+    y_true <- value(future(rnorm(3L), seed = TRUE, lazy = lazy))
+    rng_after <- globalenv()$.Random.seed
+
+    list(y_int = y_int, y_true = y_true, rng_after = rng_after)
+  })
+
+  ## Fixed integer seed: reproducible and does not alter parent RNG state
+  set.seed(123L)
+  rng0 <- globalenv()$.Random.seed
+  y1 <- value(future(rnorm(3L), seed = 42L, lazy = lazy))
+  y2 <- value(future(rnorm(3L), seed = 42L, lazy = lazy))
+  stopifnot(
+    identical(y1, ref$y_int),
+    identical(y2, ref$y_int),
+    identical(globalenv()$.Random.seed, rng0)
+  )
+
+  ## seed = TRUE: reproducible across backends and advances parent RNG state identically
+  set.seed(42L)
+  y3 <- value(future(rnorm(3L), seed = TRUE, lazy = lazy))
+  stopifnot(
+    identical(y3, ref$y_true),
+    identical(globalenv()$.Random.seed, ref$rng_after)
+  )
+})
+
+
 
 ## See Section 6 on 'Random-number generation' in
 ## vignette("parallel", package = "parallel")
