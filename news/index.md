@@ -4,6 +4,65 @@
 
 ### Test Updates
 
+- Add tests asserting that misuse of the RNG, the global environment,
+  connections, and graphics devices in a future is relayed as a
+  `RngFutureWarning`, `GlobalEnvMisuseFutureWarning`,
+  `ConnectionMisuseFutureWarning`, and `DeviceMisuseFutureWarning`, or
+  the corresponding errors, depending on the `future.*.onMisuse`
+  options.
+
+- Add test asserting that changes to existing R options, environment
+  variables, and the working directory made by a future do not leak to
+  the next future evaluated on the same worker. The test is skipped for
+  backends that do not reuse workers.
+
+- Add tests asserting that (i) custom conditions, messages, and warnings
+  are relayed with their classes, messages, and fields,
+
+  \(ii\) errors are relayed with their class, message, and fields, also
+  with `conditions = character(0)`, and (iii) argument `conditions`
+  controls which conditions are captured and relayed, including the
+  `exclude` attribute.
+
+- Add test asserting that when a worker terminates abruptly while
+  evaluating a future, `value()` signals a `FutureError`, and the
+  backend remains usable for subsequent futures. The test is skipped for
+  backends that evaluate futures in the current R session.
+
+- Add tests for `future(..., label = ...)`, `futureOf()`, `futures()`,
+  and infix operators `%label%`, `%globals%`, `%packages%`, and
+  `%conditions%`.
+
+- Add container tests for `resolve(<environment/listenv>, idxs)`,
+  `value(<environment>)`, `value(<list>)` relaying stdout/messages in
+  order with non-future elements, and `cancel()` on `list`, `listenv`,
+  and `environment` containers.
+
+- Add test for RNG reproducibility with `future(..., seed = TRUE)` and
+  `future(..., seed = <integer>)`.
+
+- Add test for `value(..., drop = TRUE)` asserting that a subsequent
+  `value()` signals `FutureDroppedError` and that `cancel()` on a
+  dropped future is a no-op.
+
+- Add `FutureBackend` API tests for
+  [`print()`](https://rdrr.io/r/base/print.html), `listFutures()`, and
+  `maxSizeOfObjects` rejecting oversized globals.
+
+- Add tests for `reset()` on finished, failed, canceled, and running
+  futures.
+
+- Add test for `nbrOfFreeWorkers()`, including `background = TRUE` and
+  verifying that free workers decrement while a future is running and
+  are restored after `value()`.
+
+- Add test asserting that after
+  `future(..., packages = "missing-package")` fails, the future is not
+  left in a `"submitted"` or `"running"` state, can be `reset()`, frees
+  its worker slot, and leaves the backend usable for subsequent futures.
+
+- Add test asserting that `resolved()` does not update the RNG state.
+
 - Now asserting that immediate conditions are relayed, where possible.
 
 - The test for `cancel()` and `value()` now asserts that `value()` on a
@@ -59,6 +118,10 @@
   gained argument `timeout`.
 
 ### Bug Fixes
+
+- [`check_plan()`](https://future.tests.futureverse.org/reference/check_plan.md)
+  reported `Package: ???` instead of the backend package and version for
+  tweaked future plans, e.g. `plan(multisession, workers = 2)`.
 
 - Loading the package overwrote options `future.tests.debug` and
   `mc.cores`, if already set. Now they are only set if not already set,

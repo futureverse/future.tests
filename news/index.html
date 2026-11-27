@@ -13,7 +13,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">future.tests</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9034</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0-9053</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,7 +77,23 @@
 <h2 class="pkg-version" data-toc-text="development version" id="version-development-version">Version (development version)<a class="anchor" aria-label="anchor" href="#version-development-version"></a></h2>
 <div class="section level3">
 <h3 id="test-updates-development-version">Test Updates<a class="anchor" aria-label="anchor" href="#test-updates-development-version"></a></h3>
-<ul><li><p>Now asserting that immediate conditions are relayed, where possible.</p></li>
+<ul><li><p>Add tests asserting that misuse of the RNG, the global environment, connections, and graphics devices in a future is relayed as a <code>RngFutureWarning</code>, <code>GlobalEnvMisuseFutureWarning</code>, <code>ConnectionMisuseFutureWarning</code>, and <code>DeviceMisuseFutureWarning</code>, or the corresponding errors, depending on the <code>future.*.onMisuse</code> options.</p></li>
+<li><p>Add test asserting that changes to existing R options, environment variables, and the working directory made by a future do not leak to the next future evaluated on the same worker. The test is skipped for backends that do not reuse workers.</p></li>
+<li>
+<p>Add tests asserting that (i) custom conditions, messages, and warnings are relayed with their classes, messages, and fields,</p>
+<p>(ii) errors are relayed with their class, message, and fields, also with <code>conditions = character(0)</code>, and (iii) argument <code>conditions</code> controls which conditions are captured and relayed, including the <code>exclude</code> attribute.</p>
+</li>
+<li><p>Add test asserting that when a worker terminates abruptly while evaluating a future, <code>value()</code> signals a <code>FutureError</code>, and the backend remains usable for subsequent futures. The test is skipped for backends that evaluate futures in the current R session.</p></li>
+<li><p>Add tests for <code>future(..., label = ...)</code>, <code>futureOf()</code>, <code>futures()</code>, and infix operators <code>%label%</code>, <code>%globals%</code>, <code>%packages%</code>, and <code>%conditions%</code>.</p></li>
+<li><p>Add container tests for <code>resolve(&lt;environment/listenv&gt;, idxs)</code>, <code>value(&lt;environment&gt;)</code>, <code>value(&lt;list&gt;)</code> relaying stdout/messages in order with non-future elements, and <code>cancel()</code> on <code>list</code>, <code>listenv</code>, and <code>environment</code> containers.</p></li>
+<li><p>Add test for RNG reproducibility with <code>future(..., seed = TRUE)</code> and <code>future(..., seed = &lt;integer&gt;)</code>.</p></li>
+<li><p>Add test for <code>value(..., drop = TRUE)</code> asserting that a subsequent <code>value()</code> signals <code>FutureDroppedError</code> and that <code>cancel()</code> on a dropped future is a no-op.</p></li>
+<li><p>Add <code>FutureBackend</code> API tests for <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code>, <code>listFutures()</code>, and <code>maxSizeOfObjects</code> rejecting oversized globals.</p></li>
+<li><p>Add tests for <code>reset()</code> on finished, failed, canceled, and running futures.</p></li>
+<li><p>Add test for <code>nbrOfFreeWorkers()</code>, including <code>background = TRUE</code> and verifying that free workers decrement while a future is running and are restored after <code>value()</code>.</p></li>
+<li><p>Add test asserting that after <code>future(..., packages = "missing-package")</code> fails, the future is not left in a <code>"submitted"</code> or <code>"running"</code> state, can be <code>reset()</code>, frees its worker slot, and leaves the backend usable for subsequent futures.</p></li>
+<li><p>Add test asserting that <code>resolved()</code> does not update the RNG state.</p></li>
+<li><p>Now asserting that immediate conditions are relayed, where possible.</p></li>
 <li><p>The test for <code>cancel()</code> and <code>value()</code> now asserts that <code>value()</code> on a canceled future signals a <code>FutureCanceledError</code>, which inherits from <code>FutureInterruptError</code>, also when canceled with <code>interrupt = FALSE</code>, when the backend does not support interrupts, and for lazy futures. A new test asserts the same for a future that has already been collected. The new assertions are skipped when testing against a version of the <strong>future</strong> package that does not yet include the corresponding bug fix.</p></li>
 <li>
 <p>Add tests for <code>value()</code> on lists of futures asserting that (i) argument <code>init</code> of <code>reduce</code>, and arguments <code>stdout</code> and <code>signal</code>, are respected also with <code>inorder = FALSE</code>, (ii) an error cancels and resolves the remaining futures, without launching lazy ones,</p>
@@ -98,7 +114,8 @@
 </ul></div>
 <div class="section level3">
 <h3 id="bug-fixes-development-version">Bug Fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
-<ul><li><p>Loading the package overwrote options <code>future.tests.debug</code> and <code>mc.cores</code>, if already set. Now they are only set if not already set, except that command-line option <code>--cores=&lt;n&gt;</code> still sets <code>mc.cores</code>.</p></li>
+<ul><li><p><code><a href="../reference/check_plan.html">check_plan()</a></code> reported <code>Package: ???</code> instead of the backend package and version for tweaked future plans, e.g. <code>plan(multisession, workers = 2)</code>.</p></li>
+<li><p>Loading the package overwrote options <code>future.tests.debug</code> and <code>mc.cores</code>, if already set. Now they are only set if not already set, except that command-line option <code>--cores=&lt;n&gt;</code> still sets <code>mc.cores</code>.</p></li>
 <li><p><code>run_test(local = FALSE)</code> and <code>check(local = FALSE)</code> left the test arguments, e.g. <code>lazy</code>, <code>globals</code>, and <code>stdout</code>, behind in the evaluation environment, which by default is the global environment, overwriting any existing variables with the same names. Now such variables are removed or restored afterward.</p></li>
 <li><p>Test ‘futureCall() - globals = list(a = 3)’ used variable <code>globals</code> without declaring it as a test argument, which caused it to fail when run without <code>globals</code> among the default arguments, e.g. via <code><a href="../reference/run_tests.html">run_tests()</a></code>.</p></li>
 <li><p>Popping the internal test-state stack when it was empty, e.g. after resetting it, removed all environment variables and options. Now it produces an error instead.</p></li>
