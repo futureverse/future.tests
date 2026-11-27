@@ -1,5 +1,5 @@
 [36m──[39m [36mSettings[39m [36m────────────────────────────────────────────────────────────────────[39m
-- future version            : 1.82.0.9034
+- future version            : 1.82.0
 - future.tests version      : 1.0.0.9035
 - R_FUTURE_TESTS_ROOT       : 
 - Option 'future.tests.root': NULL
@@ -8,47 +8,47 @@
 - Timeout                   : 30 seconds
 
 [36m──[39m [36mRunning 77 test sets with plan(future.batchtools::batchtools_bash)[39m [36m──────────[39m
-ℹ Backend package: future.batchtools 0.32.0
-[32m✔[39m  1. cancel() [90m(4 tests)[39m [36m(7.6s)[39m
-[32m✔[39m  2. cancel() and value() [90m(4 tests)[39m [36m(6.5s)[39m
-[32m✔[39m  3. cancel() - a future that has already been collected [90m(2 tests)[39m [36m(4.5s)[39m
-[32m✔[39m  4. future() - conditions [90m(1 test)[39m [36m(969ms)[39m
-[32m✔[39m  5. %<-% - conditions [90m(1 test)[39m [36m(966ms)[39m
-[32m✔[39m  6. future() - muffle conditions [90m(1 test)[39m [36m(999ms)[39m
-[32m✔[39m  7. Argument '...' [90m(1 test)[39m [36m(1.2s)[39m
-[32m✔[39m  8. Argument '...' from parent function [90m(1 test)[39m [36m(1.1s)[39m
-[32m✔[39m  9. Argument '...' - non existing [90m(1 test)[39m [36m(1.1s)[39m
-[32m✔[39m 10. Argument '...' - exception [90m(1 test)[39m [36m(1s)[39m
-[32m✔[39m 11. %<-% - local evaluation [90m(2 tests)[39m [36m(2s)[39m
-[32m✔[39m 12. %<-% - local evaluation & global variable [90m(2 tests)[39m [36m(2s)[39m
-[32m✔[39m 13. %<-% - errors [90m(2 tests)[39m [36m(2.2s)[39m
-[32m✔[39m 14. %<-% - errors and listenv [90m(2 tests)[39m [36m(7s)[39m
-[32m✔[39m 15. %<-% & %->% [90m(2 tests)[39m [36m(4.1s)[39m
-[32m✔[39m 16. %<-% - nested [90m(1 test)[39m [36m(2.1s)[39m
-[32m✔[39m 17. futureAssign() - lazy evaluation [90m(2 tests)[39m [36m(2s)[39m
-[32m✔[39m 18. futureAssign() - potential task name clashes [90m(1 test)[39m [36m(2.1s)[39m
-[32m✔[39m 19. futureAssign() - global variables with and without lazy evaluation [90m(2 tests)[39m [36m(4s)[39m
-[32m✔[39m 20. futureAssign() - lazy evaluation via disposable option [90m(2 tests)[39m [36m(2.1s)[39m
-[32m✔[39m 21. futureCall() [90m(4 tests)[39m [36m(10.6s)[39m
-[32m✔[39m 22. futureCall() - globals = list(a = 3) [90m(2 tests)[39m [36m(5.2s)[39m
-[32m✔[39m 23. futureCall() - globals = "a" [90m(2 tests)[39m [36m(4.4s)[39m
+ℹ Backend package: future.batchtools 0.32.0.9002
+[32m✔[39m  1. cancel() [90m(4 tests)[39m [36m(8s)[39m
+[32m✔[39m  2. cancel() and value() [90m(4 tests)[39m [36m(7.8s)[39m
+[32m✔[39m  3. cancel() - a future that has already been collected [90m(2 tests)[39m [36m(5.4s)[39m
+[32m✔[39m  4. future() - conditions [90m(1 test)[39m [36m(1.2s)[39m
+[32m✔[39m  5. %<-% - conditions [90m(1 test)[39m [36m(1.2s)[39m
+[32m✔[39m  6. future() - muffle conditions [90m(1 test)[39m [36m(1.3s)[39m
+[32m✔[39m  7. Argument '...' [90m(1 test)[39m [36m(1.1s)[39m
+[32m✔[39m  8. Argument '...' from parent function [90m(1 test)[39m [36m(1.3s)[39m
+[32m✔[39m  9. Argument '...' - non existing [90m(1 test)[39m [36m(1.2s)[39m
+[32m✔[39m 10. Argument '...' - exception [90m(1 test)[39m [36m(1.3s)[39m
+[32m✔[39m 11. %<-% - local evaluation [90m(2 tests)[39m [36m(2.5s)[39m
+[32m✔[39m 12. %<-% - local evaluation & global variable [90m(2 tests)[39m [36m(2.5s)[39m
+[32m✔[39m 13. %<-% - errors [90m(2 tests)[39m [36m(2.5s)[39m
+[32m✔[39m 14. %<-% - errors and listenv [90m(2 tests)[39m [36m(7.4s)[39m
+[32m✔[39m 15. %<-% & %->% [90m(2 tests)[39m [36m(4.9s)[39m
+[32m✔[39m 16. %<-% - nested [90m(1 test)[39m [36m(2.5s)[39m
+[32m✔[39m 17. futureAssign() - lazy evaluation [90m(2 tests)[39m [36m(2.5s)[39m
+[32m✔[39m 18. futureAssign() - potential task name clashes [90m(1 test)[39m [36m(2.5s)[39m
+[32m✔[39m 19. futureAssign() - global variables with and without lazy evaluation [90m(2 tests)[39m [36m(4.9s)[39m
+[32m✔[39m 20. futureAssign() - lazy evaluation via disposable option [90m(2 tests)[39m [36m(2.5s)[39m
+[32m✔[39m 21. futureCall() [90m(4 tests)[39m [36m(10.7s)[39m
+[32m✔[39m 22. futureCall() - globals = list(a = 3) [90m(2 tests)[39m [36m(5.3s)[39m
+[32m✔[39m 23. futureCall() - globals = "a" [90m(2 tests)[39m [36m(5.4s)[39m
 [32m✔[39m 24. futureCall() - language objects in 'args' are passed as-is [90m(2 tests)[39m [36m(2.6s)[39m
-[32m✔[39m 25. future() - rm() a global variable [90m(2 tests)[39m [36m(2.7s)[39m
-[32m✔[39m 26. future() - non-exported package objects [90m(1 test)[39m [36m(1.2s)[39m
-[32m✔[39m 27. future() - NSE '...' [90m(1 test)[39m [36m(2.1s)[39m
-[32m✔[39m 28. future() - globals specified as character vector with attributes 'add' and 'ignore' [90m(1 test)[39m [36m(2s)[39m
-[32m✔[39m 29. future() - unused variables are not exported as globals [90m(1 test)[39m [36m(1.1s)[39m
-[32m✔[39m 30. future() - global '...' together with global '...future.FUN' [90m(1 test)[39m [36m(8.8s)[39m
-[32m✔[39m 31. future() - global variables with and without lazy evaluation [90m(2 tests)[39m [36m(2.2s)[39m
-[32m✔[39m 32. resolved() on lazy futures [90m(1 test)[39m [36m(972ms)[39m
-[32m✔[39m 33. demo("mandelbrot", package = "future") [90m(2 tests)[39m [36m(8.3s)[39m
-[32m✔[39m 34. nbrOfWorkers() [90m(1 test)[39m [36m(1ms)[39m
-[32m✔[39m 35. future() - preserve R options (data.table) [90m(1 test)[39m [36m(2.2s)[39m
-[32m✔[39m 36. future() - 'data.table' inject [90m(1 test)[39m [36m(1.1s)[39m
-[32m✔[39m 37. future() - can load 'ff' package [90m(1 test)[39m [36m(990ms)[39m
-[32m✔[39m 38. future() - can attach 'ff' package [90m(1 test)[39m [36m(986ms)[39m
-[32m✔[39m 39. future() - preserve R options (ff) [90m(1 test)[39m [36m(9s)[39m
-[32m✔[39m 40. plan() [90m(1 test)[39m [36m(7ms)[39m
+[32m✔[39m 25. future() - rm() a global variable [90m(2 tests)[39m [36m(2.5s)[39m
+[32m✔[39m 26. future() - non-exported package objects [90m(1 test)[39m [36m(1.4s)[39m
+[32m✔[39m 27. future() - NSE '...' [90m(1 test)[39m [36m(2.5s)[39m
+[32m✔[39m 28. future() - globals specified as character vector with attributes 'add' and 'ignore' [90m(1 test)[39m [36m(2.5s)[39m
+[32m✔[39m 29. future() - unused variables are not exported as globals [90m(1 test)[39m [36m(1.2s)[39m
+[32m✔[39m 30. future() - global '...' together with global '...future.FUN' [90m(1 test)[39m [36m(10.7s)[39m
+[32m✔[39m 31. future() - global variables with and without lazy evaluation [90m(2 tests)[39m [36m(2.5s)[39m
+[32m✔[39m 32. resolved() on lazy futures [90m(1 test)[39m [36m(1.2s)[39m
+[32m✔[39m 33. demo("mandelbrot", package = "future") [90m(2 tests)[39m [36m(10.4s)[39m
+[32m✔[39m 34. nbrOfWorkers() [90m(1 test)[39m [36m(2ms)[39m
+[32m✔[39m 35. future() - preserve R options (data.table) [90m(1 test)[39m [36m(2.8s)[39m
+[32m✔[39m 36. future() - 'data.table' inject [90m(1 test)[39m [36m(1.4s)[39m
+[32m✔[39m 37. future() - can load 'ff' package [90m(1 test)[39m [36m(1.3s)[39m
+[32m✔[39m 38. future() - can attach 'ff' package [90m(1 test)[39m [36m(1.3s)[39m
+[32m✔[39m 39. future() - preserve R options (ff) [90m(1 test)[39m [36m(11.3s)[39m
+[32m✔[39m 40. plan() [90m(1 test)[39m [36m(6ms)[39m
 [34m★[39m 41. plan() - workers=<numeric> [90m(1 test)[39m [36m(1ms)[39m
   [34m★[39m lazy=FALSE, globals=TRUE, stdout=TRUE
     Test skipped
@@ -58,497 +58,43 @@
 [34m★[39m 43. plan() - workers=<invalid> [90m(1 test)[39m [36m(1ms)[39m
   [34m★[39m lazy=FALSE, globals=TRUE, stdout=TRUE
     Test skipped
-[32m✔[39m 44. plan() - interrupts = NA/FALSE/TRUE [90m(1 test)[39m [36m(22ms)[39m
-[32m✔[39m 45. future(..., packages = 'missing-package') - signals an error [90m(1 test)[39m [36m(970ms)[39m
-[31m✖[39m 46. value(<listenv>, idxs) [90m(1 test)[39m [36m(76ms)[39m
-  [31m✖[39m lazy=FALSE, globals=TRUE, stdout=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-104>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-104> (1317daaf22e7bff67adbb75ebc34bd34-104); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        x <- listenv::listenv()
-        for (kk in 1:3) x[[kk]] <- future(kk * 10L)
-        v <- value(x, idxs = 2)
-        stopifnot(identical(unlist(v, use.names = FALSE), 20L))
-        v <- value(x, idxs = c(1, 3))
-        stopifnot(identical(unlist(v, use.names = FALSE), c(10L, 
-            30L)))
-    }
-    Output:
-[31m✖[39m 47. value(<list>, reduce = structure('+', init = 42)) [90m(1 test)[39m [36m(75ms)[39m
-  [31m✖[39m lazy=FALSE, globals=TRUE, stdout=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-105>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-105> (1317daaf22e7bff67adbb75ebc34bd34-105); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        fs <- lapply(1:3, function(kk) future(kk))
-        v <- value(fs, reduce = structure("+", init = 42))
-        stopifnot(identical(as.numeric(v), 48))
-    }
-    Output:
-[31m✖[39m 48. result() - on a canceled and interrupted future [90m(1 test)[39m [36m(80ms)[39m
-  [31m✖[39m lazy=FALSE, globals=TRUE, stdout=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-106>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-106> (1317daaf22e7bff67adbb75ebc34bd34-106); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future({
-            Sys.sleep(3)
-            42L
-        })
-        f <- cancel(f, interrupt = TRUE)
-        r <- tryCatch(result(f), error = identity)
-        print(class(r))
-        stopifnot(inherits(r, "FutureResult") || inherits(r, "FutureInterruptError"))
-    }
-    Output:
-[31m✖[39m 49. makeClusterFuture() - errors are signaled as by other clusters [90m(1 test)[39m [36m(131ms)[39m
-  [31m✖[39m lazy=FALSE, globals=TRUE, stdout=TRUE
-    Error of class ‘simpleError’ with message:
-    grepl("boom", conditionMessage(res)) is not TRUE
-    Call:
-    eval(expr, envir = envir)
-    Test code:
-    {
-        if (getRversion() < "4.4") {
-            future.tests::skip_test("Test requires R (>= 4.4.0)")
-        }
-        if (!is.finite(nbrOfWorkers())) {
-            future.tests::skip_test("Test requires a finite number of workers")
-        }
-        cl <- makeClusterFuture(nbrOfWorkers())
-        on.exit(parallel::stopCluster(cl))
-        res <- tryCatch(parallel::parLapply(cl, 1:2, function(i) stop("boom")), 
-            error = identity)
-        print(res)
-        stopifnot(inherits(res, "error"), grepl("boom", conditionMessage(res)))
-        res <- parallel::parLapply(cl, 1:2, function(i) i)
-        stopifnot(identical(res, list(1L, 2L)))
-    }
-    Output:
-    <FutureLaunchError: Caught an unexpected error of class FutureError when trying to launch future (<unnamed-107>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-107> (1317daaf22e7bff67adbb75ebc34bd34-107); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]>
-    
-    Occurred on: 1317daaf22e7bff67adbb75ebc34bd34 [hb-x1-2023; pid 3531893]
-    Future: 1317daaf22e7bff67adbb75ebc34bd34-107 (<unnamed-107>)
-    
-    DEBUG: BEGIN TROUBLESHOOTING HELP
-    BatchtoolsBashFuture:
-    Label: <unnamed-107>
-    Expression:
-    do.call(fun, args = args, quote = TRUE)
-    Globals: 2 objects totaling 284.56 KiB (list ‘args’ of 282.82 KiB, function ‘fun’ of 1.71 KiB)
-    Packages: <none>
-    L'Ecuyer-CMRG RNG seed: <none> (seed = FALSE)
-    Capture standard output: TRUE
-    Capture condition classes: ‘condition’ (excluding ‘<none>’)
-    Immediate condition classes: ‘immediateCondition’
-    Lazy evaluation: TRUE
-    Local evaluation: TRUE
-    Early signaling: FALSE
-    Actions: [n=1] ‘run’
-    State: ‘failed’ ("Future failed due to an unexpected, internal error during launch, evaluation, or while returning the results")
-    Resolved: FALSE
-    Unique identifier: 1317daaf22e7bff67adbb75ebc34bd34-107
-    Owner process: 1317daaf22e7bff67adbb75ebc34bd34
-    Class: ‘BatchtoolsBashFuture’, ‘BatchtoolsTemplateFuture’, ‘BatchtoolsMultiprocessFuture’, ‘BatchtoolsFuture’, ‘Future’
-    Value: <not collected>
-    Conditions captured: <none>
-    batchtools configuration file: <NA>
-    batchtools cluster functions: ‘Bash’
-    batchtools cluster functions template: ‘/home/hb/R/ubuntu24_04-x86_64-pc-linux-gnu-library/4.6-CBI-gcc13/future.batchtools/templates/bash.tmpl’ (4523 bytes; 129 lines)
-    batchtools status: ‘defined’
-    batchtools Registry:
-      File dir exists: TRUE
-      Work dir exists: TRUE
-    Job Registry
-      Backend  : Bash
-      File dir : /home/hb/futureverse/future.tests/.future/20261127_113014-22mX3b/batchtools_1939640936
-      Work dir : /home/hb/futureverse/future.tests
-      Jobs     : 1
-      Seed     : 4786
-      Writeable: TRUE
-    DEBUG: END TROUBLESHOOTING HELP
-[31m✖[39m 50. resolve() [90m(8 tests)[39m [36m(603ms)[39m
-  [31m✖[39m lazy=FALSE, result=FALSE, recursive=FALSE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-108>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-108> (1317daaf22e7bff67adbb75ebc34bd34-108); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future({
-            Sys.sleep(0.5)
-            list(a = 1, b = 42L)
-        }, lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=TRUE, result=FALSE, recursive=FALSE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-109>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-109> (1317daaf22e7bff67adbb75ebc34bd34-109); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future({
-            Sys.sleep(0.5)
-            list(a = 1, b = 42L)
-        }, lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=FALSE, result=TRUE, recursive=FALSE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-110>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-110> (1317daaf22e7bff67adbb75ebc34bd34-110); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future({
-            Sys.sleep(0.5)
-            list(a = 1, b = 42L)
-        }, lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=TRUE, result=TRUE, recursive=FALSE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-111>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-111> (1317daaf22e7bff67adbb75ebc34bd34-111); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future({
-            Sys.sleep(0.5)
-            list(a = 1, b = 42L)
-        }, lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=FALSE, result=FALSE, recursive=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-112>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-112> (1317daaf22e7bff67adbb75ebc34bd34-112); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future({
-            Sys.sleep(0.5)
-            list(a = 1, b = 42L)
-        }, lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=TRUE, result=FALSE, recursive=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-113>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-113> (1317daaf22e7bff67adbb75ebc34bd34-113); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future({
-            Sys.sleep(0.5)
-            list(a = 1, b = 42L)
-        }, lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=FALSE, result=TRUE, recursive=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-114>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-114> (1317daaf22e7bff67adbb75ebc34bd34-114); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future({
-            Sys.sleep(0.5)
-            list(a = 1, b = 42L)
-        }, lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=TRUE, result=TRUE, recursive=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-115>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-115> (1317daaf22e7bff67adbb75ebc34bd34-115); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future({
-            Sys.sleep(0.5)
-            list(a = 1, b = 42L)
-        }, lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-[31m✖[39m 51. resolve() - run-time exception [90m(8 tests)[39m [36m(578ms)[39m
-  [31m✖[39m lazy=FALSE, result=FALSE, recursive=FALSE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-116>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-116> (1317daaf22e7bff67adbb75ebc34bd34-116); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future(list(a = 1, b = 42L, c = stop("Nah!")), lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=TRUE, result=FALSE, recursive=FALSE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-117>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-117> (1317daaf22e7bff67adbb75ebc34bd34-117); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future(list(a = 1, b = 42L, c = stop("Nah!")), lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=FALSE, result=TRUE, recursive=FALSE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-118>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-118> (1317daaf22e7bff67adbb75ebc34bd34-118); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future(list(a = 1, b = 42L, c = stop("Nah!")), lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=TRUE, result=TRUE, recursive=FALSE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-119>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-119> (1317daaf22e7bff67adbb75ebc34bd34-119); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future(list(a = 1, b = 42L, c = stop("Nah!")), lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=FALSE, result=FALSE, recursive=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-120>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-120> (1317daaf22e7bff67adbb75ebc34bd34-120); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future(list(a = 1, b = 42L, c = stop("Nah!")), lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=TRUE, result=FALSE, recursive=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-121>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-121> (1317daaf22e7bff67adbb75ebc34bd34-121); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future(list(a = 1, b = 42L, c = stop("Nah!")), lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=FALSE, result=TRUE, recursive=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-122>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-122> (1317daaf22e7bff67adbb75ebc34bd34-122); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future(list(a = 1, b = 42L, c = stop("Nah!")), lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-  [31m✖[39m lazy=TRUE, result=TRUE, recursive=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-123>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-123> (1317daaf22e7bff67adbb75ebc34bd34-123); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        f <- future(list(a = 1, b = 42L, c = stop("Nah!")), lazy = lazy)
-        res <- resolve(f, result = result, recursive = recursive)
-        stopifnot(identical(res, f))
-    }
-    Output:
-[31m✖[39m 52. resolve(<list of futures and values>) [90m(2 tests)[39m [36m(140ms)[39m
-  [31m✖[39m lazy=FALSE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-124>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-124> (1317daaf22e7bff67adbb75ebc34bd34-124); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        x <- list()
-        x$a <- future(1, lazy = lazy)
-        x$b <- future(2, lazy = lazy)
-        x[[3]] <- 3
-        y <- resolve(x)
-        stopifnot(identical(y, x))
-        stopifnot(resolved(x$a))
-        stopifnot(resolved(x[["b"]]))
-    }
-    Output:
-  [31m✖[39m lazy=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-125>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-125> (1317daaf22e7bff67adbb75ebc34bd34-125); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        x <- list()
-        x$a <- future(1, lazy = lazy)
-        x$b <- future(2, lazy = lazy)
-        x[[3]] <- 3
-        y <- resolve(x)
-        stopifnot(identical(y, x))
-        stopifnot(resolved(x$a))
-        stopifnot(resolved(x[["b"]]))
-    }
-    Output:
-[31m✖[39m 53. resolve(<list of futures>) [90m(2 tests)[39m [36m(138ms)[39m
-  [31m✖[39m lazy=FALSE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-127>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-127> (1317daaf22e7bff67adbb75ebc34bd34-127); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        x <- list()
-        x$a <- future(1, lazy = lazy)
-        x$b <- future(2, lazy = !lazy)
-        x[[3]] <- 3
-        y <- resolve(x)
-        stopifnot(identical(y, x))
-        stopifnot(resolved(x$a))
-        stopifnot(resolved(x[["b"]]))
-    }
-    Output:
-  [31m✖[39m lazy=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-129>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-129> (1317daaf22e7bff67adbb75ebc34bd34-129); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        x <- list()
-        x$a <- future(1, lazy = lazy)
-        x$b <- future(2, lazy = !lazy)
-        x[[3]] <- 3
-        y <- resolve(x)
-        stopifnot(identical(y, x))
-        stopifnot(resolved(x$a))
-        stopifnot(resolved(x[["b"]]))
-    }
-    Output:
-[31m✖[39m 54. resolve(<named matrix list of futures and values>) - time ordering [90m(1 test)[39m [36m(71ms)[39m
-  [31m✖[39m lazy=FALSE, globals=TRUE, stdout=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-130>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-130> (1317daaf22e7bff67adbb75ebc34bd34-130); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        x <- list()
-        x$a <- future(1)
-        x$b <- future({
-            Sys.sleep(0.5)
-            2
-        })
-        x[[4]] <- 4
-        dim(x) <- c(2, 2)
-        y <- resolve(x, idxs = 1)
-        stopifnot(identical(y, x))
-        stopifnot(resolved(x[[1]]))
-        y <- resolve(x, idxs = 2)
-        stopifnot(identical(y, x))
-        stopifnot(resolved(x[[2]]))
-        y <- resolve(x, idxs = 3)
-        stopifnot(identical(y, x))
-        y <- resolve(x, idxs = seq_along(x))
-        stopifnot(identical(y, x))
-        y <- resolve(x, idxs = names(x))
-        stopifnot(identical(y, x))
-    }
-    Output:
-[31m✖[39m 55. resolved() - assert non-blocking while launching lazy futures [90m(1 test)[39m [36m(80ms)[39m
-  [31m✖[39m lazy=FALSE, globals=TRUE, stdout=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-131>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-131> (1317daaf22e7bff67adbb75ebc34bd34-131); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        message("Creating lazy futures:")
-        if (!is.finite(nbrOfWorkers())) {
-            future.tests::skip_test("Test requires a finite number of workers")
-        }
-        n <- min(3L, nbrOfWorkers() + 1L)
-        xs <- as.list(1:n)
-        fs <- lapply(xs, FUN = function(kk) {
-            future({
-                Sys.sleep(kk)
-                kk
-            }, lazy = TRUE)
-        })
-        vs <- vector("list", length = length(fs))
-        ss <- vapply(fs, FUN = function(f) f$state, NA_character_)
-        print(ss)
-        stopifnot(all(ss == "created"))
-        rs <- rep(NA, times = length(fs))
-        for (ff in seq_along(fs)) {
-            for (kk in ff:length(fs)) {
-                message(sprintf("Checking if future #%d is resolved:", 
-                    kk))
-                rs[[kk]] <- resolved(fs[[kk]])
-                ss <- vapply(fs, FUN = function(f) f$state, NA_character_)
-                utils::str(list(ff = ff, kk = kk, ss = ss, rs = rs))
-                nbrOfFinished <- sum(ss == "finished")
-                if (inherits(fs[[kk]], "UniprocessFuture")) {
-                    stopifnot(rs[[kk]], ss[[kk]] == "finished")
-                }
-                else if (inherits(fs[[kk]], "MultiprocessFuture")) {
-                    stopifnot((!rs[[kk]] && ss[[kk]] == "running") || 
-                      (rs[[kk]] && ss[[kk]] %in% c("running", "finished")))
-                }
-            }
-            message(sprintf("Waiting for future #%d to finish ... ", 
-                ff), appendLF = FALSE)
-            vs[[ff]] <- value(fs[[ff]])
-            message("done")
-            rs[[ff]] <- resolved(fs[[ff]])
-            stopifnot(rs[ff])
-            ss <- vapply(fs, FUN = function(f) f$state, NA_character_)
-            stopifnot(ss[ff] == "finished")
-            nbrOfFinished <- sum(ss == "finished")
-            if (inherits(fs[[kk]], "UniprocessFuture")) {
-                stopifnot(nbrOfFinished == length(fs))
-            }
-            else {
-                stopifnot(nbrOfFinished >= ff)
-            }
-        }
-        ss <- vapply(fs, FUN = function(f) f$state, NA_character_)
-        print(ss)
-        stopifnot(all(ss == "finished"))
-        message("Collecting values:")
-        vs <- value(fs)
-        str(vs)
-        stopifnot(identical(vs, xs))
-    }
-    Output:
-    [1] "created" "created"
-[31m✖[39m 56. Random Number Generation (RNG) - seeds and preserving RNGkind [90m(1 test)[39m [36m(70ms)[39m
-  [31m✖[39m lazy=FALSE, globals=TRUE, stdout=TRUE
-    Error of class ‘FutureLaunchError’ with message:
-    Caught an unexpected error of class FutureError when trying to launch future (<unnamed-133>) on backend of class BatchtoolsBashFutureBackend. The reason was: Cannot reset a running future [future <unnamed-103> (1317daaf22e7bff67adbb75ebc34bd34-103); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>] [future <unnamed-133> (1317daaf22e7bff67adbb75ebc34bd34-133); on 1317daaf22e7bff67adbb75ebc34bd34@hb-x1-2023<3531893>]
-    Test code:
-    {
-        okind <- RNGkind()
-        seed <- c(407L, 1420090545L, 65713854L, -990249945L, 1780737596L, 
-            -1213437427L, 1082168682L)
-        f <- future(42, seed = seed)
-        print(f)
-        stopifnot(identical(f$seed, seed))
-        stopifnot(identical(RNGkind()[1], okind[1]))
-    }
-    Output:
-[32m✔[39m 57. Random Number Generation (RNG) - future [90m(2 tests)[39m [36m(15.3s)[39m
-[32m✔[39m 58. Random Number Generation (RNG) - %<-% [90m(2 tests)[39m [36m(13.1s)[39m
-[32m✔[39m 59. Orchestration Stability - future() does not update RNG state [90m(1 test)[39m [36m(2.3s)[39m
-[32m✔[39m 60. Orchestration Stability - run() does not update RNG state [90m(1 test)[39m [36m(2.2s)[39m
-[32m✔[39m 61. Orchestration Stability - result() does not update RNG state [90m(1 test)[39m [36m(2.2s)[39m
-[32m✔[39m 62. Orchestration Stability - value() does not update RNG state [90m(1 test)[39m [36m(2s)[39m
-[32m✔[39m 63. future() - standard output [90m(2 tests)[39m [36m(2.1s)[39m
-[32m✔[39m 64. %<-% - standard output [90m(2 tests)[39m [36m(2.1s)[39m
-[32m✔[39m 65. value(<list>) - reduce with 'init' attribute [90m(2 tests)[39m [36m(7.1s)[39m
-[32m✔[39m 66. value(<list>) - arguments 'stdout' and 'signal' [90m(2 tests)[39m [36m(6.4s)[39m
-[32m✔[39m 67. value(<list>) - an error cancels and resolves the remaining futures [90m(2 tests)[39m [36m(5.9s)[39m
-[32m✔[39m 68. value(<list>) - an error does not launch lazy futures [90m(2 tests)[39m [36m(2s)[39m
-[32m✔[39m 69. value(<list>) - future resolving to an error object [90m(4 tests)[39m [36m(8s)[39m
-[32m✔[39m 70. value(<list>) - relays standard output and messages of all futures in order [90m(2 tests)[39m [36m(6.7s)[39m
+[32m✔[39m 44. plan() - interrupts = NA/FALSE/TRUE [90m(1 test)[39m [36m(19ms)[39m
+[32m✔[39m 45. future(..., packages = 'missing-package') - signals an error [90m(1 test)[39m [36m(1.3s)[39m
+[32m✔[39m 46. value(<listenv>, idxs) [90m(1 test)[39m [36m(3.8s)[39m
+[32m✔[39m 47. value(<list>, reduce = structure('+', init = 42)) [90m(1 test)[39m [36m(3.7s)[39m
+[32m✔[39m 48. result() - on a canceled and interrupted future [90m(1 test)[39m [36m(4.2s)[39m
+[32m✔[39m 49. makeClusterFuture() - errors are signaled as by other clusters [90m(1 test)[39m [36m(5.5s)[39m
+[32m✔[39m 50. resolve() [90m(8 tests)[39m [36m(14.1s)[39m
+[32m✔[39m 51. resolve() - run-time exception [90m(8 tests)[39m [36m(9.6s)[39m
+[32m✔[39m 52. resolve(<list of futures and values>) [90m(2 tests)[39m [36m(5s)[39m
+[32m✔[39m 53. resolve(<list of futures>) [90m(2 tests)[39m [36m(5s)[39m
+[32m✔[39m 54. resolve(<named matrix list of futures and values>) - time ordering [90m(1 test)[39m [36m(3.1s)[39m
+[32m✔[39m 55. resolved() - assert non-blocking while launching lazy futures [90m(1 test)[39m [36m(5.6s)[39m
+[32m✔[39m 56. Random Number Generation (RNG) - seeds and preserving RNGkind [90m(1 test)[39m [36m(1.3s)[39m
+[32m✔[39m 57. Random Number Generation (RNG) - future [90m(2 tests)[39m [36m(14.8s)[39m
+[32m✔[39m 58. Random Number Generation (RNG) - %<-% [90m(2 tests)[39m [36m(14.8s)[39m
+[32m✔[39m 59. Orchestration Stability - future() does not update RNG state [90m(1 test)[39m [36m(2.4s)[39m
+[32m✔[39m 60. Orchestration Stability - run() does not update RNG state [90m(1 test)[39m [36m(2.4s)[39m
+[32m✔[39m 61. Orchestration Stability - result() does not update RNG state [90m(1 test)[39m [36m(2.5s)[39m
+[32m✔[39m 62. Orchestration Stability - value() does not update RNG state [90m(1 test)[39m [36m(2.5s)[39m
+[32m✔[39m 63. future() - standard output [90m(2 tests)[39m [36m(2.5s)[39m
+[32m✔[39m 64. %<-% - standard output [90m(2 tests)[39m [36m(2.5s)[39m
+[32m✔[39m 65. value(<list>) - reduce with 'init' attribute [90m(2 tests)[39m [36m(8.5s)[39m
+[32m✔[39m 66. value(<list>) - arguments 'stdout' and 'signal' [90m(2 tests)[39m [36m(7.5s)[39m
+[32m✔[39m 67. value(<list>) - an error cancels and resolves the remaining futures [90m(2 tests)[39m [36m(7.4s)[39m
+[32m✔[39m 68. value(<list>) - an error does not launch lazy futures [90m(2 tests)[39m [36m(2.5s)[39m
+[32m✔[39m 69. value(<list>) - future resolving to an error object [90m(4 tests)[39m [36m(10s)[39m
+[32m✔[39m 70. value(<list>) - relays standard output and messages of all futures in order [90m(2 tests)[39m [36m(7s)[39m
 [32m✔[39m 71. value() - visibility [90m(1 test)[39m [36m(2.4s)[39m
-[32m✔[39m 72. future() - switching plan while a future is running [90m(1 test)[39m [36m(2.4s)[39m
-[32m✔[39m 73. value() - repeated on a canceled and interrupted future [90m(1 test)[39m [36m(3.9s)[39m
-[33mT[39m 74. future() - launching many futures leaves no unused connections [90m(1 test)[39m [36m(30.7s)[39m
-  [33mT[39m lazy=FALSE, globals=TRUE, stdout=TRUE [33m(> 30s)[39m
-[32m✔[39m 75. resolved() and value() - immediate conditions are not re-signaled [90m(1 test)[39m [36m(2.6s)[39m
-[32m✔[39m 76. makeClusterFuture() - language objects are passed as-is [90m(1 test)[39m [36m(4.8s)[39m
-[32m✔[39m 77. makeClusterFuture() - clusterEvalQ() that only attaches packages [90m(1 test)[39m [36m(3ms)[39m
+[32m✔[39m 72. future() - switching plan while a future is running [90m(1 test)[39m [36m(2.2s)[39m
+[32m✔[39m 73. value() - repeated on a canceled and interrupted future [90m(1 test)[39m [36m(4.2s)[39m
+[32m✔[39m 74. future() - launching many futures leaves no unused connections [90m(1 test)[39m [36m(16.3s)[39m
+[32m✔[39m 75. resolved() and value() - immediate conditions are not re-signaled [90m(1 test)[39m [36m(3s)[39m
+[32m✔[39m 76. makeClusterFuture() - language objects are passed as-is [90m(1 test)[39m [36m(5.4s)[39m
+[32m✔[39m 77. makeClusterFuture() - clusterEvalQ() that only attaches packages [90m(1 test)[39m [36m(4ms)[39m
 
 Number of tests: 77
 Number of test steps: 129
-Duration: 4m 10s (including 1 timeouts)
-Results: [32m98 ok [32m✔[32m[39m | [34m3 skips [34m★[34m[39m | [31m27 errors [31m✖[31m[39m | [33m1 timeout [33mT[33m[39m
+Duration: 5m 26.3s
+Results: [32m126 ok [32m✔[32m[39m | [34m3 skips [34m★[34m[39m | [31m0 errors [31m✖[31m[39m | [33m0 timeouts [33mT[33m[39m
 
