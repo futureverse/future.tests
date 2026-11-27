@@ -51,12 +51,12 @@ make_test(title = "future() - launching many futures leaves no unused connection
 
 
 make_test(title = "resolved() and value() - immediate conditions are not re-signaled", tags = c("future", "conditions", "immediateCondition", "devel"), {
+  f0 <- future(NULL)
+  v <- value(f0)
+
   if (inherits(f0, "BatchtoolsFuture") && packageVersion("future.batchtools") < "0.30.0-9001") {
     future.tests::skip_test("Test requires future.batchtools (>= 0.30.0-9001)")
   }
-
-  f0 <- future(NULL)
-  v <- value(f0)
   
   cond <- structure(
     class = c("myImmediateCondition", "immediateCondition", "condition"),
@@ -85,6 +85,16 @@ make_test(title = "resolved() and value() - immediate conditions are not re-sign
 
 
 make_test(title = "makeClusterFuture() - language objects are passed as-is", tags = c("future", "makeClusterFuture", "devel"), {
+  if (getRversion() < "4.4") {
+    future.tests::skip_test("Test requires R (>= 4.4.0)")
+  }
+  if (packageVersion("future") < "1.82.0") {
+    future.tests::skip_test("Test requires future (>= 1.82.0)")
+  }
+  if (!is.finite(nbrOfWorkers())) {
+    future.tests::skip_test("Test requires a finite number of workers")
+  }
+
   cl <- makeClusterFuture(nbrOfWorkers())
   on.exit(parallel::stopCluster(cl))
 
@@ -98,6 +108,13 @@ make_test(title = "makeClusterFuture() - language objects are passed as-is", tag
 
 
 make_test(title = "makeClusterFuture() - clusterEvalQ() that only attaches packages", tags = c("future", "makeClusterFuture", "devel"), {
+  if (getRversion() < "4.4") {
+    future.tests::skip_test("Test requires R (>= 4.4.0)")
+  }
+  if (!is.finite(nbrOfWorkers())) {
+    future.tests::skip_test("Test requires a finite number of workers")
+  }
+
   cl <- makeClusterFuture(nbrOfWorkers())
   on.exit(parallel::stopCluster(cl))
 

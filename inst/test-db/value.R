@@ -1,6 +1,11 @@
 ## Tests on value() for lists of futures
 
 make_test(title = "value(<list>) - reduce with 'init' attribute", args = list(inorder = c(TRUE, FALSE)), tags = c("value", "reduce"), {
+  ## 'init' was ignored for inorder = FALSE (fixed in future 1.82.0)
+  if (!inorder && packageVersion("future") < "1.82.0") {
+    future.tests::skip_test("Test requires future (>= 1.82.0)")
+  }
+
   fs <- list(
     future(1),
     future({ Sys.sleep(0.5); 2 }),
@@ -13,12 +18,23 @@ make_test(title = "value(<list>) - reduce with 'init' attribute", args = list(in
 
 
 make_test(title = "value(<list>) - arguments 'stdout' and 'signal'", args = list(inorder = c(TRUE, FALSE)), tags = c("value", "stdout", "conditions"), {
+  ## 'stdout' and 'signal' were ignored for inorder = FALSE (fixed in future 1.82.0)
+  if (!inorder && packageVersion("future") < "1.82.0") {
+    future.tests::skip_test("Test requires future (>= 1.82.0)")
+  }
+
   ## stdout = FALSE: Standard output is not relayed
-  f <- future({ cat("hello\n"); 42 })
-  out <- utils::capture.output({
-    v <- value(list(f), stdout = FALSE, inorder = inorder)
-  })
-  stopifnot(identical(v, list(42)), length(out) == 0L)
+  ## (for inorder = TRUE, this failed with "Cannot resignal future
+  ## conditions" for some backends, e.g. multicore; fixed in future 1.82.0)
+  if (inorder && packageVersion("future") < "1.82.0") {
+    ## Skip this part
+  } else {
+    f <- future({ cat("hello\n"); 42 })
+    out <- utils::capture.output({
+      v <- value(list(f), stdout = FALSE, inorder = inorder)
+    })
+    stopifnot(identical(v, list(42)), length(out) == 0L)
+  }
 
   ## stdout = TRUE: Standard output is relayed
   f <- future({ cat("hello\n"); 42 })
@@ -39,6 +55,12 @@ make_test(title = "value(<list>) - arguments 'stdout' and 'signal'", args = list
 
 
 make_test(title = "value(<list>) - an error cancels and resolves the remaining futures", args = list(inorder = c(TRUE, FALSE)), tags = c("value", "cancel", "resolve", "error"), reset_workers = TRUE, {
+  ## For inorder = FALSE, the remaining futures were neither canceled nor
+  ## resolved (fixed in future 1.82.0)
+  if (!inorder && packageVersion("future") < "1.82.0") {
+    future.tests::skip_test("Test requires future (>= 1.82.0)")
+  }
+
   ## The first future is still running when the second one fails
   fs <- list(
     future({ Sys.sleep(1.0); 1 }),
@@ -61,6 +83,12 @@ make_test(title = "value(<list>) - an error cancels and resolves the remaining f
 
 
 make_test(title = "value(<list>) - an error does not launch lazy futures", args = list(inorder = c(TRUE, FALSE)), tags = c("value", "lazy", "error"), {
+  ## The lazy futures were launched, and waited for, before signaling the
+  ## error (fixed in future 1.82.0)
+  if (packageVersion("future") < "1.82.0") {
+    future.tests::skip_test("Test requires future (>= 1.82.0)")
+  }
+
   f1 <- future(stop("boom"))
   ## Make sure the first future has failed before calling value(), because
   ## value() launches lazy futures while waiting for others to resolve
@@ -72,12 +100,18 @@ make_test(title = "value(<list>) - an error does not launch lazy futures", args 
   stopifnot(inherits(res, "error"), conditionMessage(res) == "boom")
 
   ## The lazy future was never launched. It is canceled, if value() cancels
-  ## the remaining futures (future >= 1.80.0-9024)
+  ## the remaining futures (future >= 1.82.0)
   stopifnot(f2[["state"]] %in% c("created", "canceled"))
 })
 
 
 make_test(title = "value(<list>) - future resolving to an error object", args = list(inorder = c(TRUE, FALSE), drop = c(FALSE, TRUE)), tags = c("value", "error"), {
+  ## value(<list>) signaled an error for a future whose value is an
+  ## error object, whereas value(<Future>) returned it (fixed in future 1.82.0)
+  if (packageVersion("future") < "1.82.0") {
+    future.tests::skip_test("Test requires future (>= 1.82.0)")
+  }
+
   ## A future returning an error object has not failed
   f <- future(simpleError("boom"))
   v1 <- value(f)
@@ -91,6 +125,12 @@ make_test(title = "value(<list>) - future resolving to an error object", args = 
 
 
 make_test(title = "value(<list>) - relays standard output and messages of all futures in order", args = list(drop = c(FALSE, TRUE)), tags = c("value", "stdout", "conditions"), {
+  ## With drop = TRUE, the standard output and messages of futures that
+  ## were resolved before the ones preceding them were lost (fixed in future 1.82.0)
+  if (drop && packageVersion("future") < "1.82.0") {
+    future.tests::skip_test("Test requires future (>= 1.82.0)")
+  }
+
   ## The second future is typically resolved first
   fs <- list(
     future({ Sys.sleep(1.0); cat("out-a\n"); message("msg-a"); 1 }),

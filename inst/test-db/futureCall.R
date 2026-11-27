@@ -96,14 +96,21 @@ make_test(title = 'futureCall() - globals = "a"', args = list(lazy = c(FALSE, TR
   }, error = identity)
   stopifnot(!inherits(res, "FutureError"))
   
-  if (!inherits(res, "error")) {
+  if (packageVersion("future") >= "1.82.0") {
+    stopifnot(!inherits(res, "error"), all.equal(v, v0))
+  } else if (!inherits(res, "error")) {
     stopifnot(all.equal(v, v0))
-  } else {
   }
 })
 
 
 make_test(title = "futureCall() - language objects in 'args' are passed as-is", args = list(lazy = c(FALSE, TRUE)), tags = c("futureCall", "lazy"), {
+  ## Language objects (symbols and calls) in 'args' were evaluated, instead
+  ## of being passed as-is to FUN (fixed in future 1.82.0)
+  if (packageVersion("future") < "1.82.0") {
+    future.tests::skip_test("Test requires future (>= 1.82.0)")
+  }
+
   ## None of 'y', 'a', and 'b' exist, so if they were evaluated, we would
   ## get an "object not found" error
   args <- list(quote(y), quote(a + b))

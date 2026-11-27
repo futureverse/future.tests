@@ -40,6 +40,13 @@ make_test(title = "result() - on a canceled and interrupted future", tags = c("f
 
 
 make_test(title = "makeClusterFuture() - errors are signaled as by other clusters", tags = c("future", "makeClusterFuture", "error", "devel"), {
+  if (getRversion() < "4.4") {
+    future.tests::skip_test("Test requires R (>= 4.4.0)")
+  }
+  if (!is.finite(nbrOfWorkers())) {
+    future.tests::skip_test("Test requires a finite number of workers")
+  }
+
   cl <- makeClusterFuture(nbrOfWorkers())
   on.exit(parallel::stopCluster(cl))
 

@@ -60,7 +60,7 @@ evaluate_expr <- function(expr, envir = parent.frame(), local = TRUE, output = c
       ## SPECIAL CASE: Do not remove options specific to the 'ff' package, cf.
       ## https://github.com/truecluster/ff/issues/14
       skip <- c(skip, grep("^ff[[:alpha:]]+$", added, value = TRUE))
-      skip <- c(skip, grep("^datatable[.][[:alpha:]]+$", added, value = TRUE))
+      skip <- c(skip, grep("^datatable[.]", added, value = TRUE))
 
       added <- setdiff(added, skip)
       opts <- structure(vector("list", length = length(added)), names = added)
