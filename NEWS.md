@@ -2,6 +2,11 @@
 
 ## Test Updates
 
+ * Add test asserting that when a worker terminates abruptly while
+   evaluating a future, `value()` signals a `FutureError`, and the
+   backend remains usable for subsequent futures. The test is skipped
+   for backends that evaluate futures in the current R session.
+
  * Add tests for `future(..., label = ...)`, `futureOf()`, `futures()`,
    and infix operators `%label%`, `%globals%`, `%packages%`, and
    `%conditions%`.

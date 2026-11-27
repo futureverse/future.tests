@@ -126,3 +126,38 @@ make_test(title = "makeClusterFuture() - clusterEvalQ() that only attaches packa
   res <- tryCatch(parallel::clusterEvalQ(cl, { library(stats); library(utils) }), error = identity)
   stopifnot(!inherits(res, "error"))
 })
+
+
+make_test(title = "future() - a worker that terminates signals a FutureError and the backend remains usable", tags = c("future", "worker", "crash", "devel"), reset_workers = TRUE, {
+  ## Never terminate the current R session
+  f <- future(list(pid = Sys.getpid(), host = Sys.info()[["nodename"]]))
+  worker_uuid <- result(f)[["session_uuid"]]
+  if (!is.null(worker_uuid)) {
+    same_session <- identical(as.vector(worker_uuid), as.vector(future:::session_uuid()))
+  } else {
+    info <- value(f)
+    same_session <- identical(info$pid, Sys.getpid()) &&
+                    identical(info$host, Sys.info()[["nodename"]])
+  }
+  if (same_session) {
+    future.tests::skip_test("Test requires futures to be evaluated in a separate R process")
+  }
+
+  ## A future whose worker terminates abruptly
+  f <- future({ tools::pskill(Sys.getpid(), signal = tools::SIGKILL); 42L })
+  v <- tryCatch(value(f), error = identity)
+  print(v)
+  stopifnot(inherits(v, "FutureError"))
+
+  ## Querying the future again must not hang or give an obscure error
+  r <- tryCatch(resolved(f), error = identity)
+  stopifnot(is.logical(r) || inherits(r, "FutureError"))
+
+  ## The backend must remain usable, also for the worker slot that
+  ## was used by the terminated worker
+  n <- nbrOfWorkers()
+  n <- if (is.finite(n)) min(n, 4L) else 2L
+  fs <- lapply(seq_len(n), FUN = function(kk) future(kk))
+  vs <- value(fs)
+  stopifnot(identical(vs, as.list(seq_len(n))))
+})
