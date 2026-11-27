@@ -1,4 +1,12 @@
 make_test(title = "future(..., packages = 'missing-package') - signals an error", tags = c("future", "packages", "error"), {
+  f0 <- future(NULL)
+  v <- value(f0)
+  if (inherits(f0, "BatchtoolsFuture") &&
+      packageVersion("future.batchtools") <= "0.32.0" &&
+      packageVersion("future") <= "1.82.0") {
+    future.tests::skip_test("Test requires future.batchtools (> 0.32.0) or future (> 1.82.0)")
+  }
+
   res <- tryCatch({
     f <- future(42L, packages = "missing-package")
     value(f)
