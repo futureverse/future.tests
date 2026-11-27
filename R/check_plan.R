@@ -34,6 +34,20 @@ check_plan <- function(tests = test_db(), defaults = list(), timeout = getOption
 
   print(rule(left = sprintf("Running %d test sets with %s", length(tests), plan_str), col = "cyan"))
   pkg <- environment(plan)$.packageName
+  if (is.null(pkg)) {
+    factory <- attr(plan, "factory", exact = TRUE)
+    if (is.function(factory)) pkg <- environment(factory)$.packageName
+  }
+  if (is.null(pkg)) {
+    env <- environment(plan)
+    while (!is.null(env) && !identical(env, emptyenv())) {
+      if (isNamespace(env)) {
+        pkg <- getNamespaceName(env)
+        break
+      }
+      env <- parent.env(env)
+    }
+  }
   if (!is.null(pkg)) {
     pkg_version <- packageVersion(pkg)
     cat(sprintf("%s Backend package: %s %s\n", info, pkg, pkg_version))

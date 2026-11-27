@@ -87,6 +87,10 @@
 
 ## Bug Fixes
 
+ * `check_plan()` reported `Package: ???` instead of the backend
+   package and version for tweaked future plans, e.g.
+   `plan(multisession, workers = 2)`.
+
  * Loading the package overwrote options `future.tests.debug` and
    `mc.cores`, if already set. Now they are only set if not already
    set, except that command-line option `--cores=<n>` still sets
