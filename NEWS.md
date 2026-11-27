@@ -2,6 +2,9 @@
 
 ## Test Updates
 
+ * Add `FutureBackend` API tests for `print()`, `listFutures()`, and
+   `maxSizeOfObjects` rejecting oversized globals.
+
  * Add tests for `reset()` on finished, failed, canceled, and running
    futures.
 
