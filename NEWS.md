@@ -2,6 +2,13 @@
 
 ## Test Updates
 
+ * Add tests asserting that misuse of the RNG, the global environment,
+   connections, and graphics devices in a future is relayed as a
+   `RngFutureWarning`, `GlobalEnvMisuseFutureWarning`,
+   `ConnectionMisuseFutureWarning`, and `DeviceMisuseFutureWarning`,
+   or the corresponding errors, depending on the `future.*.onMisuse`
+   options.
+
  * Add test asserting that changes to existing R options, environment
    variables, and the working directory made by a future do not leak
    to the next future evaluated on the same worker. The test is
