@@ -1,5 +1,5 @@
 ## https://github.com/futureverse/future.tests/issues/20
-make_test(title = "future() - 'data.table' inject", tags = c("future", "options", "reset", "ff"), {
+make_test(title = "future() - 'data.table' inject", tags = c("future", "options", "reset", "data.table"), {
   if (!requireNamespace("data.table")) {
     future.tests::skip_test("Test requires the 'data.table' package")
   }
@@ -7,6 +7,7 @@ make_test(title = "future() - 'data.table' inject", tags = c("future", "options"
   dt <- data.table::data.table
   f <- future(dt, packages = "data.table")
   r <- result(f)
+  stopifnot(inherits(r, "FutureResult"))
 })
 
 ## https://github.com/futureverse/future.tests/issues/20
