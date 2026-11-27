@@ -8,6 +8,49 @@ make_test(title = "future(..., packages = 'missing-package') - signals an error"
 })
 
 
+make_test(title = "future(..., packages = 'missing-package') - backend remains usable afterward", tags = c("future", "packages", "error", "reset", "recovery", "devel"), reset_workers = TRUE, {
+  f0 <- future(NULL)
+  v <- value(f0)
+  if (inherits(f0, "MulticoreFuture") && packageVersion("future") <= "1.82.0") {
+    future.tests::skip_test("Test requires future (> 1.82.0) for MulticoreFuture")
+  }
+  if (inherits(f0, "CallrFuture") && packageVersion("future.callr") <= "1.0.2") {
+    future.tests::skip_test("Test requires future.callr (> 1.0.2)")
+  }
+  if (inherits(f0, "BatchtoolsFuture") && packageVersion("future.batchtools") <= "0.32.0") {
+    future.tests::skip_test("Test requires future.batchtools (> 0.32.0)")
+  }
+
+  n0 <- nbrOfFreeWorkers()
+
+  f <- NULL
+  res <- tryCatch({
+    f <- future(42L, packages = "missing-package")
+    value(f)
+  }, error = identity)
+  print(res)
+  stopifnot(inherits(res, "error"))
+
+  if (!is.null(f)) {
+    stopifnot(!f[["state"]] %in% c("submitted", "running"))
+
+    ## Repeated value() still signals an error cleanly
+    res2 <- tryCatch(value(f), error = identity)
+    stopifnot(inherits(res2, "error"))
+
+    ## Failed future can be reset
+    f_reset <- reset(f)
+    stopifnot(identical(f_reset[["state"]], "created"))
+  }
+
+  ## Worker slot is freed and subsequent futures succeed
+  stopifnot(nbrOfFreeWorkers() == n0)
+  f2 <- future(1L)
+  stopifnot(identical(value(f2), 1L))
+  stopifnot(nbrOfFreeWorkers() == n0)
+})
+
+
 make_test(title = "value(<listenv>, idxs)", tags = c("value", "listenv"), {
   x <- listenv::listenv()
   for (kk in 1:3) x[[kk]] <- future(kk * 10L)

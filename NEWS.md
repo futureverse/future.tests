@@ -2,6 +2,11 @@
 
 ## Test Updates
 
+ * Add test asserting that after `future(..., packages = "missing-package")`
+   fails, the future is not left in a `"submitted"` or `"running"` state,
+   can be `reset()`, frees its worker slot, and leaves the backend usable
+   for subsequent futures.
+
  * Add test asserting that `resolved()` does not update the RNG state.
 
  * Now asserting that immediate conditions are relayed, where possible.
