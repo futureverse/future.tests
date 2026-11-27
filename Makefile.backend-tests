@@ -22,7 +22,8 @@ backend_results/all: \
   backend_results/future.callr,callr.out \
   backend_results/future.batchtools,batchtools_local.out \
   backend_results/future.batchtools,batchtools_bash.out \
-  backend_results/future.mirai,mirai_multisession.out
+  backend_results/future.mirai,mirai_multisession.out \
+  backend_results/future.mizu,mizu_multisession.out
 
 backend_results/summary:
 	cd backend_results; \
