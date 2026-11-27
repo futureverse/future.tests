@@ -2,6 +2,9 @@
 
 ## Test Updates
 
+ * Add tests for `reset()` on finished, failed, canceled, and running
+   futures.
+
  * Add test for `nbrOfFreeWorkers()`, including `background = TRUE`
    and verifying that free workers decrement while a future is running
    and are restored after `value()`.
