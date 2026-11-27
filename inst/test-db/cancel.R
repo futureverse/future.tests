@@ -142,3 +142,39 @@ make_test(title = "cancel() - a future that has already been collected", args = 
   ## and collected.
   stopifnot(inherits(v, "FutureCanceledError"))
 })
+
+
+make_test(title = "cancel() - containers (list, listenv, environment)", tags = c("cancel", "containers"), {
+  if (packageVersion("future") < "1.82.0") {
+    future.tests::skip_test("Test requires future (>= 1.82.0)")
+  }
+
+  ## list (mixed with non-future)
+  fs <- list(future(1L, lazy = TRUE), 2L, future(3L, lazy = TRUE))
+  cancel(fs)
+  stopifnot(
+    inherits(tryCatch(value(fs[[1]]), error = identity), "FutureCanceledError"),
+    identical(fs[[2]], 2L),
+    inherits(tryCatch(value(fs[[3]]), error = identity), "FutureCanceledError")
+  )
+
+  ## listenv
+  le <- listenv::listenv()
+  le[[1]] <- future(1L, lazy = TRUE)
+  le[[2]] <- 2L
+  cancel(le)
+  stopifnot(
+    inherits(tryCatch(value(le[[1]]), error = identity), "FutureCanceledError"),
+    identical(le[[2]], 2L)
+  )
+
+  ## environment
+  env <- new.env(parent = emptyenv())
+  env$a <- future(1L, lazy = TRUE)
+  env$b <- 2L
+  cancel(env)
+  stopifnot(
+    inherits(tryCatch(value(env$a), error = identity), "FutureCanceledError"),
+    identical(env$b, 2L)
+  )
+})

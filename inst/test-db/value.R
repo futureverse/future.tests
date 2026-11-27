@@ -170,3 +170,48 @@ make_test(title = "value(..., drop = TRUE) - signals FutureDroppedError on subse
   res2 <- tryCatch(value(f), error = identity)
   stopifnot(inherits(res2, "FutureDroppedError"))
 })
+
+
+make_test(title = "value(<environment>)", tags = c("value", "environment", "containers"), {
+  env <- new.env(parent = emptyenv())
+  env$a <- future(1L)
+  env$b <- future(2L)
+  env$c <- 3L
+
+  v <- value(env)
+  stopifnot(
+    is.list(v),
+    identical(v$a, 1L),
+    identical(v$b, 2L),
+    identical(v$c, 3L)
+  )
+})
+
+
+make_test(title = "value(<list>) - relays standard output and messages in order with non-future elements", tags = c("value", "stdout", "conditions", "containers"), {
+  if (packageVersion("future") <= "1.82.0") {
+    future.tests::skip_test("Test requires future (> 1.82.0)")
+  }
+
+  fs <- list(
+    future({ Sys.sleep(0.5); cat("out-a\n"); message("msg-a"); 1L }),
+    future({                 cat("out-b\n"); message("msg-b"); 2L }),
+    3L
+  )
+
+  msgs <- character(0L)
+  out <- utils::capture.output({
+    v <- withCallingHandlers({
+      value(fs)
+    }, message = function(m) {
+      msgs <<- c(msgs, conditionMessage(m))
+      invokeRestart("muffleMessage")
+    })
+  })
+
+  stopifnot(
+    identical(v, list(1L, 2L, 3L)),
+    identical(out, c("out-a", "out-b")),
+    identical(msgs, c("msg-a\n", "msg-b\n"))
+  )
+})

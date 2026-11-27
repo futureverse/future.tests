@@ -2,6 +2,11 @@
 
 ## Test Updates
 
+ * Add container tests for `resolve(<environment/listenv>, idxs)`,
+   `value(<environment>)`, `value(<list>)` relaying stdout/messages in
+   order with non-future elements, and `cancel()` on `list`, `listenv`,
+   and `environment` containers.
+
  * Add test for RNG reproducibility with `future(..., seed = TRUE)` and
    `future(..., seed = <integer>)`.
 
