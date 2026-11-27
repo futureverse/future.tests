@@ -2,6 +2,10 @@
 
 ## Test Updates
 
+ * Add test for `nbrOfFreeWorkers()`, including `background = TRUE`
+   and verifying that free workers decrement while a future is running
+   and are restored after `value()`.
+
  * Add test asserting that after `future(..., packages = "missing-package")`
    fails, the future is not left in a `"submitted"` or `"running"` state,
    can be `reset()`, frees its worker slot, and leaves the backend usable
