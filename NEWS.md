@@ -2,6 +2,13 @@
 
 ## Test Updates
 
+ * Add tests asserting that (i) custom conditions, messages, and
+   warnings are relayed with their classes, messages, and fields,
+   (ii) errors are relayed with their class, message, and fields, also
+   with `conditions = character(0)`, and (iii) argument `conditions`
+   controls which conditions are captured and relayed, including the
+   `exclude` attribute.
+
  * Add test asserting that when a worker terminates abruptly while
    evaluating a future, `value()` signals a `FutureError`, and the
    backend remains usable for subsequent futures. The test is skipped
