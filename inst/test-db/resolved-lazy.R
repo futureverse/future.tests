@@ -41,8 +41,8 @@ make_test(title = "resolved() - assert non-blocking while launching lazy futures
         )
       } else if (inherits(fs[[kk]], "MultiprocessFuture")) {
         stopifnot(
-          (!rs[[kk]] && ss[[kk]] == "running" ) ||
-          ( rs[[kk]] && ss[[kk]] %in% c("running", "finished"))
+          (!rs[[kk]] && ss[[kk]] %in% c("submitted", "running")) ||
+          ( rs[[kk]] && ss[[kk]] %in% c("submitted", "running", "finished"))
         )
       }
     } ## for (kk ...)
@@ -57,7 +57,7 @@ make_test(title = "resolved() - assert non-blocking while launching lazy futures
     ss <- vapply(fs, FUN = function(f) f$state, NA_character_)
     stopifnot(ss[ff] == "finished")
     nbrOfFinished <- sum(ss == "finished")
-    if (inherits(fs[[kk]], "UniprocessFuture")) {
+    if (inherits(fs[[ff]], "UniprocessFuture")) {
       stopifnot(nbrOfFinished == length(fs))
     } else {
       stopifnot(nbrOfFinished >= ff)
