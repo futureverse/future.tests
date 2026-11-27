@@ -2,6 +2,11 @@
 
 ## Test Updates
 
+ * Add test asserting that changes to existing R options, environment
+   variables, and the working directory made by a future do not leak
+   to the next future evaluated on the same worker. The test is
+   skipped for backends that do not reuse workers.
+
  * Add tests asserting that (i) custom conditions, messages, and
    warnings are relayed with their classes, messages, and fields,
    (ii) errors are relayed with their class, message, and fields, also

@@ -161,3 +161,64 @@ make_test(title = "future() - a worker that terminates signals a FutureError and
   vs <- value(fs)
   stopifnot(identical(vs, as.list(seq_len(n))))
 })
+
+
+make_test(title = "future() - changes to existing options, environment variables, and working directory do not leak to the next future on the same worker", tags = c("future", "worker", "options", "envvars", "workdir", "devel"), reset_workers = TRUE, {
+  uuid_of <- function(f) {
+    uuid <- result(f)[["session_uuid"]]
+    if (is.null(uuid)) return(NULL)
+    as.vector(uuid)
+  }
+
+  ## A future that changes existing R options, environment variables,
+  ## and the working directory of the worker. Note that the Future API
+  ## only restores R options and environment variables that existed
+  ## before the future was evaluated; added ones are left as-is on
+  ## purpose, because packages loaded may rely on them
+  f <- future({
+    before <- list(
+      option = getOption("digits"),
+      envvar = Sys.getenv("R_HOME", NA_character_),
+      workdir = getwd()
+    )
+    options(digits = if (getOption("digits") == 3L) 4L else 3L)
+    Sys.setenv(R_HOME = file.path(Sys.getenv("R_HOME"), "future.tests"))
+    setwd(tempdir())
+    before
+  })
+  before <- value(f)
+  worker <- uuid_of(f)
+  if (is.null(worker)) {
+    future.tests::skip_test("Future results do not identify the worker session")
+  }
+  if (identical(worker, as.vector(future:::session_uuid()))) {
+    future.tests::skip_test("Test requires futures to be evaluated in a separate R process")
+  }
+
+  ## Evaluate futures, one at a time, until one runs on the same worker
+  n <- nbrOfWorkers()
+  n <- if (is.finite(n)) min(2L * n, 10L) else 2L
+  after <- NULL
+  for (kk in seq_len(n)) {
+    f <- future(list(
+      option = getOption("digits"),
+      envvar = Sys.getenv("R_HOME", NA_character_),
+      workdir = getwd()
+    ))
+    value <- value(f)
+    if (identical(uuid_of(f), worker)) {
+      after <- value
+      break
+    }
+  }
+  if (is.null(after)) {
+    future.tests::skip_test(sprintf("Backend did not reuse the worker within %d futures", n))
+  }
+
+  str(list(before = before, after = after))
+  stopifnot(
+    identical(after$option, before$option),
+    identical(after$envvar, before$envvar),
+    identical(after$workdir, before$workdir)
+  )
+})
