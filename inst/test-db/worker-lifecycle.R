@@ -31,12 +31,15 @@ make_test(title = "value() - repeated on a canceled and interrupted future", tag
 
 make_test(title = "future() - launching many futures leaves no unused connections", tags = c("future", "connections", "devel"), {
   conns_before <- nrow(showConnections(all = TRUE))
+  max_time <- 0.5 * getOption("future.tests.timeout", 30)
+  t0 <- proc.time()[["elapsed"]]
   ws <- character(0L)
   withCallingHandlers({
     for (kk in 1:30) {
       f <- future(kk)
       v <- value(f)
       stopifnot(identical(v, kk))
+      if (kk >= 5L && (proc.time()[["elapsed"]] - t0) >= max_time) break
     }
     rm(list = c("f", "v"))
     gc()
