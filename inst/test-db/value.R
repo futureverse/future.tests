@@ -153,3 +153,20 @@ make_test(title = "value(<list>) - relays standard output and messages of all fu
     identical(msgs, c("msg-a\n", "msg-b\n"))
   )
 })
+
+
+make_test(title = "value(..., drop = TRUE) - signals FutureDroppedError on subsequent value()", args = list(lazy = c(FALSE, TRUE)), tags = c("value", "drop", "error", "lazy"), {
+  f <- future(42L, lazy = lazy)
+  v <- value(f, drop = TRUE)
+  stopifnot(identical(v, 42L))
+
+  ## A subsequent value() on a dropped future signals FutureDroppedError
+  res <- tryCatch(value(f), error = identity)
+  print(res)
+  stopifnot(inherits(res, "FutureDroppedError"), inherits(res, "FutureError"))
+
+  ## Canceling a dropped future is a no-op; value() still signals FutureDroppedError
+  f <- cancel(f)
+  res2 <- tryCatch(value(f), error = identity)
+  stopifnot(inherits(res2, "FutureDroppedError"))
+})

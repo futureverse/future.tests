@@ -2,6 +2,10 @@
 
 ## Test Updates
 
+ * Add test for `value(..., drop = TRUE)` asserting that a subsequent
+   `value()` signals `FutureDroppedError` and that `cancel()` on a
+   dropped future is a no-op.
+
  * Add `FutureBackend` API tests for `print()`, `listFutures()`, and
    `maxSizeOfObjects` rejecting oversized globals.
 
