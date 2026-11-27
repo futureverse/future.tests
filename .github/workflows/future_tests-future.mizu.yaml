@@ -60,7 +60,7 @@ jobs:
       - name: Install 'future.tests' and any backend R packages
         run: |
           ## 'future.mizu' is currently only available via GitHub
-          remotes::install_github("futureverse/future.mizu")
+          remotes::install_github("futureverse/future.mizu", ref = "develop")
         shell: Rscript {0}
 
       - name: Session info
