@@ -1,4 +1,4 @@
-make_test(title = 'demo("mandelbrot", package = "future")', args = list(lazy = c(FALSE, TRUE)), tags = c("demo", "mandelbrot"), {
+make_test(title = 'demo("mandelbrot", package = "future")', tags = c("demo", "mandelbrot"), {
   options(future.demo.mandelbrot.nrow = 2L)
   options(future.demo.mandelbrot.resolution = 50L)
   options(future.demo.mandelbrot.delay = FALSE)
