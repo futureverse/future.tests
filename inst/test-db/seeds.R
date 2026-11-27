@@ -151,6 +151,36 @@ make_test(title = 'Orchestration Stability - run() does not update RNG state', t
 })
 
 
+make_test(title = 'Orchestration Stability - resolved() does not update RNG state', tags = c("orchestration", "rng", "seed", "stealth", "resolved"), {
+  f1 <- future({ Sys.sleep(0.2); 1 })
+  f2 <- future(2, lazy = TRUE)
+
+  rng0 <- globalenv()$.Random.seed
+
+  while (!resolved(f1)) {
+    ## Assert RNG state is still the same
+    stopifnot(identical(globalenv()$.Random.seed, rng0))
+    Sys.sleep(0.05)
+  }
+  ## Assert RNG state is still the same
+  stopifnot(identical(globalenv()$.Random.seed, rng0))
+
+  while (!resolved(f2)) {
+    ## Assert RNG state is still the same
+    stopifnot(identical(globalenv()$.Random.seed, rng0))
+    Sys.sleep(0.05)
+  }
+  ## Assert RNG state is still the same
+  stopifnot(identical(globalenv()$.Random.seed, rng0))
+
+  v1 <- value(f1)
+  stopifnot(identical(v1, 1))
+
+  v2 <- value(f2)
+  stopifnot(identical(v2, 2))
+})
+
+
 make_test(title = 'Orchestration Stability - result() does not update RNG state', tags = c("orchestration", "rng", "seed", "stealth"), {
   f1 <- future(1)
   f2 <- future(2)

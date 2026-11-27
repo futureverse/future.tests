@@ -2,6 +2,8 @@
 
 ## Test Updates
 
+ * Add test asserting that `resolved()` does not update the RNG state.
+
  * Now asserting that immediate conditions are relayed, where possible.
 
  * The test for `cancel()` and `value()` now asserts that `value()` on
