@@ -2,6 +2,10 @@
 
 ## Test Updates
 
+ * Add tests for `future(..., label = ...)`, `futureOf()`, `futures()`,
+   and infix operators `%label%`, `%globals%`, `%packages%`, and
+   `%conditions%`.
+
  * Add container tests for `resolve(<environment/listenv>, idxs)`,
    `value(<environment>)`, `value(<list>)` relaying stdout/messages in
    order with non-future elements, and `cancel()` on `list`, `listenv`,
