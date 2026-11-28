@@ -10,11 +10,12 @@ jobs:
     
     runs-on: ubuntu-latest
 
-    name: future.plan=${{ matrix.future.plan }}
+    name: future.plan=${{ matrix.future.plan }}${{ matrix.devel && ' (devel tests)' || '' }}
 
     strategy:
       fail-fast: false
       matrix:
+        devel: [ false, true ]
         future:
           - { plan: 'cluster'      }
           - { plan: 'multicore'    }
@@ -30,6 +31,8 @@ jobs:
       _R_CHECK_CRAN_INCOMING_: false
       ## Specific to futures
       R_FUTURE_RNG_ONMISUSE: error
+      ## Specific to future.tests
+      R_FUTURE_TESTS_DEVEL: ${{ matrix.devel }}
       
     steps:
       - uses: actions/checkout@v7
@@ -92,5 +95,5 @@ jobs:
         if: failure()
         uses: actions/upload-artifact@v7
         with:
-          name: ${{ runner.os }}-r${{ matrix.future.plan }}-results
+          name: ${{ runner.os }}-r${{ matrix.future.plan }}-devel=${{ matrix.devel }}-results
           path: check

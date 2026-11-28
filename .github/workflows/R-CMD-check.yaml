@@ -33,6 +33,7 @@ jobs:
           - {os: ubuntu-latest,  r: 'release'  , language: ko,    label: ko    }
           - {os: ubuntu-latest,  r: 'release'  , language: zh_CN, label: zh_CN }
           - {os: ubuntu-latest,  r: 'release'  , language: zh_TW, label: zh_TW }
+          - {os: ubuntu-latest,  r: 'release'  , devel: true,     label: 'devel tests' }
  
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -52,6 +53,8 @@ jobs:
       ## Specific to futures
       R_PARALLELLY_AVAILABLECORES_SYSTEM: ${{ matrix.config.availablecores }}
       R_FUTURE_RNG_ONMISUSE: error
+      ## Specific to future.tests
+      R_FUTURE_TESTS_DEVEL: ${{ matrix.config.devel }}
       
     steps:
       - uses: actions/checkout@v7
