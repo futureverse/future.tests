@@ -60,7 +60,11 @@ make_test(title = "resolved() and value() - immediate conditions are not re-sign
   if (inherits(f0, "BatchtoolsFuture") && packageVersion("future.batchtools") < "0.30.0-9001") {
     future.tests::skip_test("Test requires future.batchtools (>= 0.30.0-9001)")
   }
-  
+
+  if (packageVersion("future") <= "1.82.0") {
+    future.tests::skip_test("Test requires future (> 1.82.0)")
+  }
+
   cond <- structure(
     class = c("myImmediateCondition", "immediateCondition", "condition"),
     list(message = "hello", call = NULL)
