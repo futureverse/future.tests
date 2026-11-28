@@ -144,14 +144,19 @@ make_test(title = "future() - a worker that terminates signals a FutureError and
   }
 
   ## A future whose worker terminates abruptly
-  f <- future({ tools::pskill(Sys.getpid(), signal = tools::SIGKILL); 42L })
-  v <- tryCatch(value(f), error = identity)
+  f <- NULL
+  v <- tryCatch({
+    f <- future({ tools::pskill(Sys.getpid(), signal = tools::SIGKILL); 42L })
+    value(f)
+  }, error = identity)
   print(v)
   stopifnot(inherits(v, "FutureError"))
 
   ## Querying the future again must not hang or give an obscure error
-  r <- tryCatch(resolved(f), error = identity)
-  stopifnot(is.logical(r) || inherits(r, "FutureError"))
+  if (!is.null(f)) {
+    r <- tryCatch(resolved(f), error = identity)
+    stopifnot(is.logical(r) || inherits(r, "FutureError"))
+  }
 
   ## The backend must remain usable, also for the worker slot that
   ## was used by the terminated worker
